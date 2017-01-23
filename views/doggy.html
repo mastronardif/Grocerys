@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>Johny dog walker</title>
+<link rel="stylesheet" href="./stylesheets/grocery.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Bootstrap core CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--
+    <script src="./javascripts/my.js"></script>
+        <script src="./javascripts/vendor/bootstrap-formhelpers-phone.js"></script>
+    -->
+    <script src="./javascripts/vendor/bootstrap-formhelpers.js"></script>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="navmenu-push.css" rel="stylesheet">
+  </head>
+
+  <body>
+  
+  <!-- -->
+  
+  <nav class="navbar navbar-default navbar-fixed-top"
+              style="background: url('https://cdn.vectorstock.com/i/composite/91,05/background-with-dogs-paw-print-and-bone-vector-2669105.jpg');"
+  >
+  <div class="container">
+<button type="button" class="btn btn-default navbar-btn">About</button>
+<button type="button" class="btn btn-default navbar-btn">Sign in</button>
+<button type="button" class="btn btn-default navbar-btn">Order</button>
+<button type="button" class="btn btn-default navbar-btn">Sign out</button>
+
+  </div><!-- /.container-fluid -->
+</nav>
+  
+  <!-- end 1/22/17 11:00 am-->
+  
+  
+ <form id="contact-form" method="post" action="/ping" role="form"> 
+<div class="container" style="margin-top: 20px">
+
+  <p class="lead">
+  This is the place to order your Groceries.
+  </p>
+   
+  <table class="table forum table-striped">
+    <tbody>
+      <tr>
+        <td class="text-center"><i class="fa fa-paw fa-2x text-primary"></i></td>
+        <td>
+          <h4><a href="#">Dog Walking/Sitting</a><br><small>Dog care</small></h4>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center"><i class="fa fa-magic fa-2x text-primary"></i></td>
+        <td>
+          <h4><a href="#">Identity</a><br><small>Household information</small></h4>
+          
+
+  <div class="form-group">
+    <label for="Name">Name:</label>
+    <input type="name" class="form-control" id="name" name="name">
+    
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email" name="email">
+  </div>
+  
+  <div class="form-group">
+    <label for="phone">Contact Phone:</label>
+    <input type="tel" class="input-medium bfh-phone" data-country="US" id="phone" name="phone">
+  </div>
+
+
+  </div>
+  
+    <div class="form-group">
+    <label for="addr">Address:</label>
+       <textarea class="form-control input-lg" rows="2" id="address" name="address"></textarea>
+  </div>
+  
+ 
+   <div class="container">
+<div class="row">   
+<label class="col-md-12 control-label" for="days">Day(s) of  Week</label>
+</div>
+
+<div class="row">
+<label class="col-md-1 checkbox-inline" for="days-6">
+  <input type="checkbox" name="days" id="days-6" value="7">
+  Sa
+</label>
+<label class="col-md-1 checkbox-inline" for="days-0">
+  <input type="checkbox" name="days" id="days-0" value="1">
+  Su
+</label>
+</div>
+
+
+<div class="row">
+<div class="form-group">
+
+<label class="col-md-1 checkbox-inline" for="days-1">
+  <input type="checkbox" name="days" id="days-1" value="2">
+  Mo
+</label>
+<label class="col-md-1 checkbox-inline" for="days-2">
+  <input type="checkbox" name="days" id="days-2" value="3">
+  Tu
+</label>
+<label class="col-md-1 checkbox-inline" for="days-3">
+  <input type="checkbox" name="days" id="days-3" value="4">
+  We
+</label>
+<label class="col-md-1 checkbox-inline" for="days-4">
+  <input type="checkbox" name="days" id="days-4" value="5">
+  Th
+</label>
+<label class="col-md-1 checkbox-inline" for="days-5">
+  <input type="checkbox" name="days" id="days-5" value="6">
+  Fr
+</label>
+
+</div>
+</div>
+</div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+    <table class="table forum table-striped">
+    </thead>
+    <tbody>
+      <tr>
+        <td>          
+
+  <div class="form-group">
+      <label for="list">      
+       <i class="fa fa-sticky-note-o fa-2x text-primary"></i> Notes:
+      </label>
+  <textarea class="form-control input-lg" rows="5" id="notes" name="notes"></textarea>
+    <button type="submit" class="btn btn-default">Inquire about walker</button>   
+  </div>   
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+  </body>
+</html>
+

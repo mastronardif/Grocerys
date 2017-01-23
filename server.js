@@ -1,7 +1,13 @@
 var express = require("express");
+var bodyp   = require('body-parser');
 var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
+var pingController    = require('./controllers/ping-controller');
+
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyp.urlencoded({ extended: false }));
+app.use(bodyp.json());
 
 app.use(express.static(__dirname + '/public'));
 
@@ -21,6 +27,10 @@ router.get("/grocery",function(req,res){
   res.sendFile(path + "grocery.html");
 });
 
+router.get("/doggy",function(req,res){
+  res.sendFile(path + "doggy.html");
+});
+
 router.get("/about",function(req,res){
   res.sendFile(path + "about.html");
 });
@@ -28,6 +38,12 @@ router.get("/about",function(req,res){
 router.get("/contact",function(req,res){
   res.sendFile(path + "contact.html");
 });
+
+// for testing.!!!
+//router.all ('/ping', bodyp.json(), pingController.ping);
+//router.all ('/ping', bodyp.urlencoded(), pingController.ping);
+router.all ('/ping', pingController.ping);
+//app.all ('/ping',stormpath.loginRequired, pingController.ping);console.log(req.query);
 
 app.use("/",router);
 

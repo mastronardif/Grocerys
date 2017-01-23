@@ -1,10 +1,11 @@
 {
-  "name" : "talkback101",
-  "version" : "0.0.1",
-  "scripts" : {
-    "start" : "node Server.js"
+  "name": "talkback101",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node Server.js"
   },
-  "dependencies" : {
-    "express" : "latest"
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "latest"
   }
 }
