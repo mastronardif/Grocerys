@@ -9,6 +9,8 @@ var pingController    = require('./controllers/ping-controller');
 app.use(bodyp.urlencoded({ extended: false }));
 app.use(bodyp.json());
 
+app.set('port', (process.env.PORT || 3000));
+
 app.use(express.static(__dirname + '/public'));
 
 router.use(function (req,res,next) {
