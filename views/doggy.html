@@ -29,15 +29,10 @@
         <script src="./javascripts/vendor/bootstrap-formhelpers-phone.js"></script>
     -->
     <script src="./javascripts/vendor/bootstrap-formhelpers.js"></script>
-
-
-
-    <!-- Custom styles for this template -->
-    <link href="navmenu-push.css" rel="stylesheet">
   </head>
 
   <body>
-  
+
   <!-- -->
   
   <nav class="navbar navbar-default navbar-fixed-top"
@@ -59,7 +54,7 @@
 <div class="container" style="margin-top: 20px">
 
   <p class="lead">
-  This is the place to order your Groceries.
+  This is the place to request a walker/sitter.
   </p>
    
   <table class="table forum table-striped">
@@ -73,8 +68,7 @@
       <tr>
         <td class="text-center"><i class="fa fa-magic fa-2x text-primary"></i></td>
         <td>
-          <h4><a href="#">Identity</a><br><small>Household information</small></h4>
-          
+          <h4><a href="#">Identity</a><br><small>Household information</small></h4>          
 
   <div class="form-group">
     <label for="Name">Name:</label>
@@ -88,61 +82,57 @@
     <label for="phone">Contact Phone:</label>
     <input type="tel" class="input-medium bfh-phone" data-country="US" id="phone" name="phone">
   </div>
-
-
   </div>
   
     <div class="form-group">
     <label for="addr">Address:</label>
        <textarea class="form-control input-lg" rows="2" id="address" name="address"></textarea>
-  </div>
-  
+  </div>  
  
    <div class="container">
 <div class="row">   
+<p>
 <label class="col-md-12 control-label" for="days">Day(s) of  Week</label>
-</div>
+  <br/>
+<button type="button" id="toggle-allOn" class="btn btn-info">checkAll</button>
+<button type="button" id="toggle-allOff" class="btn btn-info">uncheckAll</button>
 
-<div class="row">
-<label class="col-md-1 checkbox-inline" for="days-6">
-  <input type="checkbox" name="days" id="days-6" value="7">
-  Sa
-</label>
-<label class="col-md-1 checkbox-inline" for="days-0">
-  <input type="checkbox" name="days" id="days-0" value="1">
-  Su
-</label>
-</div>
-
-
-<div class="row">
 <div class="form-group">
-
-<label class="col-md-1 checkbox-inline" for="days-1">
-  <input type="checkbox" name="days" id="days-1" value="2">
-  Mo
+<div class="btn-group">
+<label class="checkbox-inline" for="days-1">
+  <input type="checkbox" name="days" id="days-1" value="Mon">
+  Mon
 </label>
-<label class="col-md-1 checkbox-inline" for="days-2">
-  <input type="checkbox" name="days" id="days-2" value="3">
-  Tu
+<label class="checkbox-inline" for="days-2">
+  <input type="checkbox" name="days" id="days-2" value="Tue">
+  Tue
 </label>
-<label class="col-md-1 checkbox-inline" for="days-3">
-  <input type="checkbox" name="days" id="days-3" value="4">
-  We
+<label class="checkbox-inline" for="days-3">
+  <input type="checkbox" name="days" id="days-3" value="Wed">
+  Wed
 </label>
-<label class="col-md-1 checkbox-inline" for="days-4">
-  <input type="checkbox" name="days" id="days-4" value="5">
-  Th
+<label class="checkbox-inline" for="days-4">
+  <input type="checkbox" name="days" id="days-4" value="Thu">
+  Thu
 </label>
-<label class="col-md-1 checkbox-inline" for="days-5">
-  <input type="checkbox" name="days" id="days-5" value="6">
-  Fr
+<label class="checkbox-inline" for="days-5">
+  <input type="checkbox" name="days" id="days-5" value="Fri">
+  Fri
 </label>
-
+<br/>
+<label class="checkbox-inline" for="days-6">
+  <input type="checkbox" name="days" id="days-6" value="Sat">
+  Sat
+</label>
+<label class="checkbox-inline" for="days-0">
+  <input type="checkbox" name="days" id="days-0" value="Sun">
+  Sun
+</label>
+</div>
+</p>
 </div>
 </div>
 </div>
-
         </td>
       </tr>
     </tbody>
@@ -168,6 +158,15 @@
     </tbody>
   </table>
 </form>
+
+<script>
+$('#toggle-allOn').click(function() {
+    $('.btn-group input[name="days"]').prop('checked', true);
+});
+$('#toggle-allOff').click(function() {
+    $('.btn-group input[name="days"]').prop('checked', false);
+});
+</script>
 
   </body>
 </html>
