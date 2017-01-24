@@ -9,7 +9,7 @@ var pingController    = require('./controllers/ping-controller');
 app.use(bodyp.urlencoded({ extended: false }));
 app.use(bodyp.json());
 
-//app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -53,7 +53,6 @@ app.use("*",function(req,res){
   res.sendFile(path + "404.html");
 });
 
-var port = process.env.PORT || 3000; 
-app.listen(port,function(){
-  console.log("Live at Port ", port);
+app.listen(app.get('port'), function() {
+  console.log("Live at Port ", app.get('port'));
 });
