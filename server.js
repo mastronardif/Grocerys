@@ -3,7 +3,7 @@ var bodyp   = require('body-parser');
 var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
-var pingController    = require('./controllers/ping-controller');
+var replyController    = require('./controllers/reply-controller');
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyp.urlencoded({ extended: false }));
@@ -44,7 +44,7 @@ router.get("/contact",function(req,res){
 // for testing.!!!
 //router.all ('/ping', bodyp.json(), pingController.ping);
 //router.all ('/ping', bodyp.urlencoded(), pingController.ping);
-router.all ('/ping', pingController.ping);
+router.all ('/ping', replyController.ping);
 //app.all ('/ping',stormpath.loginRequired, pingController.ping);console.log(req.query);
 
 app.use("/",router);
