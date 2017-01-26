@@ -1,0 +1,13 @@
+{
+  "Admin": {
+        "mail": "mastronardif@gmail.com",
+        "subject": "Westfield area dog walking/sitting services.",
+        "fromAdmin": "mastronardif@gmail.com",
+        "toAdmin": "mastronardif@gmail.com"
+  },
+  
+  "Mg": {
+        "api_key": "key-0-rxwnpe9gllqe6odwxebn79vicgxf76",
+        "domain": "joeschedule.mailgun.org"  
+  }  
+}

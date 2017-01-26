@@ -3,8 +3,10 @@ var bodyp   = require('body-parser');
 var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
-var replyController    = require('./controllers/reply-controller');
+global.config = require('config');
+var replyController = require('./controllers/reply-controller');
 
+console.log(__dirname);
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyp.urlencoded({ extended: false }));
 app.use(bodyp.json());
@@ -44,7 +46,7 @@ router.get("/contact",function(req,res){
 // for testing.!!!
 //router.all ('/ping', bodyp.json(), pingController.ping);
 //router.all ('/ping', bodyp.urlencoded(), pingController.ping);
-router.all ('/ping', replyController.ping);
+router.all ('/ping', replyController.reply);
 //app.all ('/ping',stormpath.loginRequired, pingController.ping);console.log(req.query);
 
 app.use("/",router);

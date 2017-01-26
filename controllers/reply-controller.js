@@ -4,7 +4,12 @@
 //var assert = require('assert');
 var json2html = require('node-json2html');
 
-module.exports.ping = function (req, res) {
+var mg = global.config.get('Mg');
+var admin = global.config.get('Admin');
+
+var mailgun = require('mailgun-js')({apiKey: mg.api_key, domain: mg.domain});
+
+module.exports.reply = function (req, res) {
     console.log("ping-controller.ping");
     console.log(req.params);
     //console.log(req);
@@ -26,7 +31,7 @@ module.exports.ping = function (req, res) {
     ]},
     
    {"<>":"span","html":" <br/> <br/>Someone will get back to you."},
-   {"<>":"span","html":" <br/> <br/>Sincerely, "},
+   {"<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>Westfield Dog walkers"},
    {"<>":"span","html":" <br/> <br/>FM"},
         
   {"<>":"p","html":""}
@@ -36,7 +41,28 @@ module.exports.ping = function (req, res) {
     var html = json2html.transform(data,transform);
     console.log("html = ", html );
     
-    
+    // send email to _________ Fm, and User.
+    // begin mailgun
+
+    var to = admin.toAdmin;
+var data = {
+  from: admin.fromAdmin,
+  to: to, //to: 'serobnic@mail.ru',
+  subject: admin.subject,
+  html: html //'Testing some Mailgun awesomness!'
+  //text: html //'Testing some Mailgun awesomness!'
+};
+ 
+mailgun.messages().send(data, function (error, body) {
+    if (error) {
+        console.log('error = ', error);
+    }
+    else {
+        console.log(body);
+    }
+});
+    // end mailgun
+   
     var results = {'query': req.query, 'body':req.body};
     //res.json(results);
     res.send(html);
