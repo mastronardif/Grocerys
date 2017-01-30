@@ -10,7 +10,7 @@ var admin = global.config.get('Admin');
 var mailgun = require('mailgun-js')({apiKey: mg.api_key, domain: mg.domain});
 
 module.exports.reply = function (req, res) {
-    console.log("ping-controller.ping");
+    console.log("reply-controller.ping");
     console.log(req.params);
     //console.log(req);
     var data =  req.body;

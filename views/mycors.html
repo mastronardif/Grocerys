@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+   <title>CORS Smores and JSONP</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+  <div id="targetPromise" style="border:solid;width:200px;background:white">
+  Click here promise get  .done(function()
+  </div>
+
+<div id="target" style="border:solid;">
+  Click here
+</div>
+<div id="other">
+  Trigger the handler
+</div>
+<p style="border:solid">This is examples of CORS issues. <br/>Click on this paragraph.</p>
+
+<br/>
+<div id="p22" style="color:pink;border:solid;width:230px;">p22 click test. <br/>Click on this.</div>
+
+<h1>results below</h1>
+<div id="div1" style="border:solid">
+</div>
+<button id="jsonpButton">jsonp</button>
+
+<button id="ajaxButton">ajax default NO CORS</button>
+<button id="ajaxButtonCorsEnabled">ajax CORS enbabled on the server </button>
+
+  <div id="targetJsonp" style="border:solid;width:300px;background:#ECC4F3">
+  Click here jsonp.
+</div>
+
+
+
+<script>
+function cb(data){
+    console.log(data);
+    alert('data = '+ data);
+}
+
+function bbb(src){
+    //var url = 'https://johndog.herokuapp.com/doggy';
+	var url = 'http://localhost:3000/doggy?jsoncallback=mycb';
+   alert('function bbb ('+ src + ')');
+   
+   $.getJSON(
+        url,
+        function(returnData) {
+            alert(returnData);
+            console.log(returnData);
+        }
+   )
+}
+//bbb('My Cors');
+
+$(document).ready(function(){
+    $("p").click(function(){
+        alert("The paragraph was clicked.");
+    }),
+    
+    $("#p22").click(function(){
+        alert("The paragraph(p22) was clicked.");
+    }),
+    
+    $("#ajaxButton").click(function(){
+     //$("ajaxButton").click(function(){
+        alert("The ajaxButton was clicked.");
+        //var url = 'https://johndog.herokuapp.com/doggy';
+        //var url = 'http://localhost:3000/doggy';
+        var url = 'http://localhost:3000/pingjp?callback=cb';
+        
+        $.get(url, function(data){
+        $('#div1').html(data);
+        });
+    }),
+    
+    $("#ajaxButtonCorsEnabled").click(function(){
+        //$("ajaxButton").click(function(){
+        alert("The ajaxButtonCorsEnabled was clicked.");
+        //var url = 'https://johndog.herokuapp.com/doggy';
+        //var url = 'http://localhost:3000/doggy';
+        var url = 'http://localhost:3000/pingcors';
+        //var url = 'http://localhost:3000/ping';
+        
+        $.get(url, {name: "John", time: "3:09 PM"}, function(data){
+        $('#div1').html(JSON.stringify(data));
+        console.log(JSON.stringify(data) );
+        });
+    })
+
+
+});
+
+$("#jsonpButton").click(function(){
+    alert("The json button test was clicked.");
+    var url = "http://localhost:3000/pingjp?callback=cb"
+    
+$.ajax({
+    //url: "http://query.yahooapis.com/v1/public/yql",
+    url: url,
+ 
+    // The name of the callback parameter, as specified by the YQL service
+    jsonp: "callback",
+ 
+    // Tell jQuery we're expecting JSONP
+    dataType: "jsonp",
+ 
+    // Tell YQL what we want and that we want JSON
+    data: {
+        q: "select title,abstract,url from search.news where query=\"cat\"",
+        format: "json"
+    },
+ 
+    // Work with the response
+    success: function( response ) {
+        console.log( response ); // server response
+    }
+});    
+    
+    
+});
+
+
+
+
+    $("#targetPromise").click(function(){
+        alert("The targetPromise was clicked.");
+        //$('#targetPromise').css({ background: 'yellow' });
+        
+        
+        // Assign handlers immediately after making the request,
+// and remember the jqxhr object for this request
+//var url = 'https://johndog.herokuapp.com/doggy';
+var url = 'http://localhost:3000/doggy';
+var jqxhr = $.get( url, function(data) {
+  alert( "success" );
+  //$("#div1").html(JSON.stringify(data));
+})
+  .done(function(data) {
+    alert( "second success" );
+    $("#div1").html(JSON.stringify(data));
+    
+    $('#targetPromise').css({ background: 'green' });
+  })
+  .fail(function(err) {
+    alert( "error" + JSON.stringify(err ) );
+    console.log("error" + JSON.stringify(err ));
+    $('#targetPromise').css({ background: 'red' });
+  })
+  .always(function() {
+    alert( ".always, finished" );
+  });
+ 
+// Perform other work here ...
+ 
+// Set another completion function for the request above
+jqxhr.always(function() {
+  alert( "jqxhr.always, second finished" );
+});
+        
+    });
+    
+    $( "#target" ).click(function() {
+  alert( "Handler for .click() called." );
+alert('aaaa');
+//https://httpbin.org/
+//https://enable-cors.org/
+var url = 'https://johndog.herokuapp.com/doggy';
+//var url = 'http://localhost:3000/doggy';
+	$.get(url, function(response) {    
+            console.log(response);
+             $("#div1").html(JSON.stringify(response));
+            //document.write(JSON.stringify(response));
+    });
+    
+});
+</script>
+<!--
+<script type="text/javascript" src="http://localhost:3000/pingjp?callback=cb"></script>
+<script type="text/javascript" src="./javascripts/ex01.js"></script>
+-->
+
+</body>
+</html>
