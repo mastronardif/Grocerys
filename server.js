@@ -52,7 +52,7 @@ router.use(function (req,res,next) {
 });
 
 router.get("/",function(req,res){
-  res.sendFile(path + "index.html");
+  res.sendFile(path + "doggy.html");
 });
 
 router.get("/taxi",function(req,res){
