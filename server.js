@@ -70,6 +70,10 @@ router.get("/mycors",function(req,res){
     res.sendFile(path + "mycors.html");
 });
 
+router.get("/mycanvas",function(req,res){
+    res.sendFile(path + "mycanvas.html");
+});
+
 router.get("/gmail",function(req,res){
     //res.get('X-Frame-Options') // === 'Deny' 
     //middleware = xFrameOptions(headerValue = 'Allow')
