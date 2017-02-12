@@ -94,6 +94,8 @@ router.get("/contact",function(req,res){
 //router.all ('/ping', bodyp.urlencoded(), pingController.ping);
 router.all ('/pingcors', pingController.pingcors);
 router.all ('/ping', pingController.ping);
+router.all ('/mysubmit', replyController.reply);
+
 router.get ('/pingjp', pingController.pingjp);
 //app.all ('/ping',stormpath.loginRequired, pingController.ping);console.log(req.query);
 

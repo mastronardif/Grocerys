@@ -1,3 +1,6 @@
+body {
+  padding-top: 85px;
+}
 
 .forum.table > tbody > tr > td {
     vertical-align: middle;

@@ -10,7 +10,7 @@ var admin = global.config.get('Admin');
 var mailgun = require('mailgun-js')({apiKey: mg.api_key, domain: mg.domain});
 
 module.exports.reply = function (req, res) {
-    console.log("reply-controller.ping");
+    console.log("reply-controller.reply");
     console.log(req.params);
     //console.log(req);
     var data =  req.body;
@@ -30,7 +30,7 @@ module.exports.reply = function (req, res) {
       {"<>":"li","html":"${days}"}
     ]},
     
-   {"<>":"span","html":" <br/> <br/>Someone will get back to you."},
+   {"<>":"span","html":" <br/> <br/>A Walker will get back to you."},
    {"<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>Westfield Dog walkers"},
    {"<>":"span","html":" <br/> <br/>FM"},
         

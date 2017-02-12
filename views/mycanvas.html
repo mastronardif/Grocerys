@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./stylesheets/mycanvas.css"/>
+<link rel="stylesheet" href="./stylesheets/mydivs.css"/>
 <title>Sign</title>
 
 </head>
@@ -16,6 +17,21 @@
 </p>
 <canvas id="sketchpad" height="300" width="290"></canvas>  
 
+<div style="position: absolute; top: 60px; left: 355px; width: 240px; 
+ border: solid;
+background-color: azure;">
+position: absolute; top: 70px; left: 255px; width: 240px; background-color: 
+<div class="wrapper" style="width:122px; height:38px;">
+ <canvas id="canvas2" height="30"  width="110" border="1"></canvas>
+</div>
+ 
+azure; overall width 248px including 2*3px padding and 2*1px border; (no height)
+</div>
+
+<div id="mydiv">
+jjjjclass clasxs
+</div>
+
 <br/>  
 <input type="button" value="test" onclick="printCanvas(canvasDest,ctxDest, canvas,ctx);">
 
@@ -24,7 +40,7 @@
 
 <div class="wrapper">
 <!--    -->
-    <canvas id="canvas2" height="300"  width="290" ></canvas>
+    <canvas id="canvas2a" height="300"  width="290" ></canvas>
 
 </div>
 
