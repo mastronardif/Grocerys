@@ -3,6 +3,8 @@
 //var session = require('client-sessions');
 //var assert = require('assert');
 var json2html = require('node-json2html');
+var validator = require('validator');
+//var mylib = require('../lib/mylib');
 
 var mg = global.config.get('Mg');
 var admin = global.config.get('Admin');
@@ -11,11 +13,15 @@ var mailgun = require('mailgun-js')({apiKey: mg.api_key, domain: mg.domain});
 
 module.exports.reply = function (req, res) {
     console.log("reply-controller.reply");
-    console.log(req.params);
+    //console.log(req.params);
+    
     //console.log(req);
     var data =  req.body;
     console.log(JSON.stringify(req.body) );
-    
+    var cc = (req.body.email) ? req.body.email : "";
+    if (validator.isEmail(cc)) {
+        cc = req.body.email;
+    }    
     
     //var transform = {"<>":"div","html":"${name} likes ${email}"};
     var transform = [{"<>":"p","html":[
@@ -45,13 +51,30 @@ module.exports.reply = function (req, res) {
     // begin mailgun
 
     var to = admin.toAdmin;
+    
+    //mylib.log();
+    //validator.isEmail('foo@bar.com');
+    console.log(data.email);
+    console.log('cc(', cc, ')');
+    if (cc)
+    {
+        console.log('cc(', cc, ')');
+    }
+
+    
 var data = {
   from: admin.fromAdmin,
   to: to, //to: 'serobnic@mail.ru',
+  //cc: cc,
   subject: admin.subject,
   html: html //'Testing some Mailgun awesomness!'
   //text: html //'Testing some Mailgun awesomness!'
 };
+console.log("data = ", data);
+if (cc) {
+    data.cc = cc;
+}
+console.log("data = ", data);
  
 mailgun.messages().send(data, function (error, body) {
     if (error) {
