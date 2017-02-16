@@ -10,7 +10,7 @@
     <title>Johny dog walker</title>
 <link rel="stylesheet" href="./stylesheets/grocery.css"/>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -23,16 +23,11 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!--
-    <script src="./javascripts/my.js"></script>
-        <script src="./javascripts/vendor/bootstrap-formhelpers-phone.js"></script>
-    -->
-    <script src="./javascripts/vendor/bootstrap-formhelpers.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-  </head>
+<script src="./javascripts/vendor/bootstrap-formhelpers.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
 
-  <body>
-
+<body>
   <!-- -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <h4><i class="fa fa-paw fa-2x text-primary"></i>
@@ -45,13 +40,13 @@
   <!-- end 1/22/17 11:00 am-->
   
  <form id="contact-form" method="post" action="/mysubmit" data-toggle="validator" role="form"> 
-   <nav class="navbar navbar-default navbar-fixed-bottom">
+  <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container">
-  <button type="submit" class="btn btn-success navbar-btn">Make Request</button>
- <a href="/about" type="button" class="btn btn-default navbar-btn">About</a>
-<button type="button" class="btn btn-default navbar-btn">Tell a friend</button>
-  </div><!-- /.container-fluid -->
-</nav>
+    <button type="submit" class="btn btn-success navbar-btn">Make Request</button>
+    <a href="/about" type="button" class="btn btn-default navbar-btn">About</a>
+    <a href="/tellafriend" type="button" class="btn btn-default navbar-btn">Tell a friend</a>
+    </div><!-- /.container-fluid -->
+  </nav>
 <!--
  <div class="container" style="margin-top: 20px">
   <p class="lead">
@@ -73,9 +68,6 @@
       <tr>
         <td class="text-center"><i class="fa fa-magic fa-2x text-primary"></i></td>
         <td>
-        <!--
-          <h4><a href="#">Identity</a><br><small>Household information</small></h4>          
-          -->
 
   <div class="form-group">
     <label for="Name">Your Name:</label>
@@ -168,9 +160,7 @@
         </td>
       </tr>
     </tbody>
-  </table>
-  
-
+  </table>  
 </form>
 
 <script>

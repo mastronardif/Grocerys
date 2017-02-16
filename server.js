@@ -84,6 +84,9 @@ router.get("/gmail",function(req,res){
 router.get("/about",function(req,res){
   res.sendFile(path + "about.html");
 });
+router.get("/tellafriend",function(req,res){
+  res.sendFile(path + "tellafriend.html");
+});
 
 router.get("/contact",function(req,res){
   res.sendFile(path + "contact.html");
@@ -95,6 +98,7 @@ router.get("/contact",function(req,res){
 router.all ('/pingcors', pingController.pingcors);
 router.all ('/ping', pingController.ping);
 router.all ('/mysubmit', replyController.reply);
+router.all ('/tellafriend/mysubmit', replyController.replyTellAFriend);
 
 router.get ('/pingjp', pingController.pingjp);
 //app.all ('/ping',stormpath.loginRequired, pingController.ping);console.log(req.query);
