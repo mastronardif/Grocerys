@@ -56,7 +56,7 @@ router.use(function (req,res,next) {
 });
 
 router.get("/",function(req,res){
-  res.sendFile(path + "doggy.html");
+  res.sendFile(path + "doggy22.html");
 });
 
 // fm begin
@@ -111,10 +111,10 @@ router.get("/grocery",function(req,res){
   res.sendFile(path + "grocery.html");
 });
 
-router.get("/doggy22",function(req,res){
+router.get("/doggy",function(req,res){
   res.sendFile(path + "doggy22.html");
 });
-router.get("/doggy",function(req,res){
+router.get("/doggy00",function(req,res){
   res.sendFile(path + "doggy.html");
 });
 
