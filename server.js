@@ -118,6 +118,10 @@ router.get("/doggy00",function(req,res){
   res.sendFile(path + "doggy.html");
 });
 
+router.get("/sb",function(req,res){
+  res.sendFile(path + "starbucks.html");
+});
+
 router.get("/mycors",function(req,res){
     res.sendFile(path + "mycors.html");
 });

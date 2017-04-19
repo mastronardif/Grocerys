@@ -237,13 +237,26 @@ var gmyMailBody = {
     {"<>":"span","html":" What you said: <br/> <br/>"},
     {"<>":"span","html":" Name:  ${name}"},
     {"<>":"br","html":""},
+
+
+    {"<>":"span","html":" Ph:  ${phone}"},
+    {"<>":"br","html":""},
+
     {"<>":"span","html":"Email: ${email}"},
     {"<>":"br","html":""},
+
+    {"<>":"span","html":" Address:  ${address}"},
+    {"<>":"br","html":""},
+
     {"<>":"span","html":"Note: ${notes}"}
-  ]}
-   ,{"<>":"ul","html":[
+  ]},
+
+  {"<>":"span","html":" Day(s): <br/>"},
+
+   {"<>":"ul","html":[
       {"<>":"li","html":"${days}"}
     ]},
+
     
    {"<>":"span","html":" <br/> <br/>A Walker will get back to you."},
    {"<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>Westfield Dog walkers"},
