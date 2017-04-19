@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>HTML5 Camera Fun</title>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+<style>
+  .thumb {
+    <!--
+    height: 175px;
+    width:  300px;
+    -->
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+
+</head>
+
+<form enctype="multipart/form-data" action="/upload/image" method="post">
+<body>
+
+
+<input type="file" id="files" name="files[]" multiple />
+<br/>
+<output id="list"></output>
+
+</form>
+
+
+</body>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      alert(" f = "+ f.name); // debug
+      console.log(f);
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+
+          // fm begin 
+          console.log("e.target.result\n");
+          console.log(e.target.result);
+          // fm end
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>

@@ -74,16 +74,16 @@ app.post('/upload', function(req, res) {
             //new_path = gpath.join(process.env.PWD, '/uploads/', file_name + '.' + file_ext);
             new_path = gpath.join(process.env.PWD, '/uploads/', file_name);
 
-//console.log("FM begin fields = \n", fields);
+console.log("FM begin fields = \n", fields);
 //console.log("FM begin files = \n", files);
-//console.log("FM begin new_path = \n", new_path);
+console.log("FM begin new_path = \n", new_path);
 
         fs.readFile(old_path, function(err, data) {
-            //fs.writeFile(new_path, data, function(err) {
-            {	
+            fs.writeFile(new_path, data, function(err) {
+            	
             	//console.log('data = \n', data);
 
-                //fs.unlink(old_path, function(err) {
+                fs.unlink(old_path, function(err) {
                     if (err) {
                         res.status(500);
                         res.json({'err 500 success': false});
@@ -96,14 +96,12 @@ app.post('/upload', function(req, res) {
                        	req.data = data;
                         replyController.mailStore(req, res);
                     }
-                //});
-            }
-            //});
+                });
+            });
         });
     });
 });
 // fm end
-
 router.get("/taxi",function(req,res){
   res.sendFile(gpath + "taxi.html");
 });

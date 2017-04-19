@@ -11,13 +11,63 @@ var admin = global.config.get('Admin');
 
 var mailgun = require('mailgun-js')({apiKey: mg.api_key, domain: mg.domain});
 
+module.exports.mailStore = function (req, res) {
+  //var request = require('request');
+  var file; // = request("https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png");
+  file = req.data;
+  var filename = "wtf.jpg";
+
+  var data =  req.fields;
+  //console.log("\n\ndata = \n", data );
+  var html = json2html.transform(data, gmyMailBody.transform);
+  //console.log("html = ", html );
+
+  // for each file
+  var attch = new mailgun.Attachment({data: file, filename: filename});
+
+  //console.log('\n\n mailStore file = \n', file); 
+
+  var data = {
+    from: admin.fromAdmin,
+    to: admin.toAdmin,
+    subject: admin.subject,
+    //text: 'Testing some Mailgun awesomness!',
+    //html: htm,
+    //attachment: file
+    //attachment: attch //[attch,attch] 
+    //inline: file
+  };
+  if (req.data.length>12) {
+    data.attachment = attch;
+  }
+
+  data.html = html; //'<h1>Testing some Mailgun awesomness!<h1/>';
+  mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+
+  if (error) {
+      console.log('error = ', error);
+  }
+  else {
+      console.log(body);
+  }
+  });
+
+  //var html = "<h1>Holly FUCK <h1/>";
+  res.send(html);
+}
+
+
 module.exports.reply = function (req, res) {
     console.log("reply-controller.reply");
     //console.log(req.params);
     
     //console.log(req);
     var data =  req.body;
-    console.log(JSON.stringify(req.body) );
+    //console.log(JSON.stringify(req.body) );
+    //console.log("\n________________________\n" );
+    //console.log("\n________________________\n\n" );
+    
     var cc = (req.body.email) ? req.body.email : "";
     if (validator.isEmail(cc)) {
         cc = req.body.email;
@@ -180,4 +230,27 @@ mailgun.messages().send(data, function (error, body) {
 //print out error messages
 function printError(error){
   console.error(error.message);
+};
+
+var gmyMailBody = {
+  "transform" : [{"<>":"p","html":[
+    {"<>":"span","html":" What you said: <br/> <br/>"},
+    {"<>":"span","html":" Name:  ${name}"},
+    {"<>":"br","html":""},
+    {"<>":"span","html":"Email: ${email}"},
+    {"<>":"br","html":""},
+    {"<>":"span","html":"Note: ${notes}"}
+  ]}
+   ,{"<>":"ul","html":[
+      {"<>":"li","html":"${days}"}
+    ]},
+    
+   {"<>":"span","html":" <br/> <br/>A Walker will get back to you."},
+   {"<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>Westfield Dog walkers"},
+   {"<>":"span","html":" <br/> <br/>FM"},
+        
+  {"<>":"p","html":""}
+]
+  
+
 };

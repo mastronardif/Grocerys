@@ -8,9 +8,11 @@
     "body-parser": "^1.16.0",
     "config": "^1.24.0",
     "express": "latest",
+    "formidable": "^1.1.1",
     "frameguard": "^3.0.0",
     "mailgun-js": "^0.8.0",
     "node-json2html": "^1.1.1",
+    "request": "^2.81.0",
     "validator": "^6.2.1",
     "x-frame-options": "^1.0.0"
   }
