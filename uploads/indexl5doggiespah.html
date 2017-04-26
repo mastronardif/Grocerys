@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+ <link rel="stylesheet" href="./stylesheets/my.css" />
+<style>
+@media all and (min-width: 768px) {
+    .nav {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
+    .article {-webkit-flex:5 0px;flex:5 0px;-webkit-order:2;order:2;}
+    footer {-webkit-order:3;order:3;}
+}
+</style>
+
+  <script>document.createElement("myHero")</script>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+</script>
+
+<title>Doggie Care 07090</title>
+</head>
+
+<body>
+
+<header>
+  <h1>Doggy Gallery</h1>
+</header>
+
+<nav class="nav">
+<ul>
+  <li><a href="#">London</a></li>
+  <li><a href="#">Paris</a></li>
+  <li><a href="#">Tokyo</a></li>
+</ul>
+</nav> 
+
+
+<article class="article">
+  <h1>London</h1>
+  <p>London is the capital city of England. It is the most populous city in the United Kingdom,
+  with a metropolitan area of over 13 million inhabitants.</p>
+  <p>Standing on the River Thames, London has been a major settlement for two millennia,
+  its history going back to its founding by the Romans, who named it Londinium.</p>
+  <p><strong>Resize this page to see that what happens!</strong></p>
+</article>
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+
+
+<footer>Copyleft &copy; mastronardif@gmail.com</footer>
+
+</body>
+</html>
+

@@ -15,5 +15,14 @@
     "request": "^2.81.0",
     "validator": "^6.2.1",
     "x-frame-options": "^1.0.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.4"
+  },
+
+    "jshintConfig" : {
+     "expr": true,
+    "require": true,
+    "console": false
   }
 }

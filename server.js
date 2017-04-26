@@ -10,6 +10,7 @@ var gpath = require('path');
 
 
 var path = __dirname + '/views/';
+var pathUploads = __dirname + '/uploads/';
 global.config = require('config');
 var replyController = require('./controllers/reply-controller');
 var pingController = require('./controllers/ping-controller');
@@ -49,7 +50,7 @@ app.use(bodyp.json());
 app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname + '/uploads'));
 router.use(function (req,res,next) {
   console.log("/" + req.method);
   next();
@@ -74,7 +75,9 @@ app.post('/upload', function(req, res) {
             //new_path = gpath.join(process.env.PWD, '/uploads/', file_name + '.' + file_ext);
             new_path = gpath.join(process.env.PWD, '/uploads/', file_name);
 
-//console.log("FM begin fields = \n", fields);
+console.log("FM begin fields = \n", fields);
+//console.log(req.param('days'));
+
 //console.log("FM begin files = \n", files);
 //console.log("FM begin new_path = \n", new_path);
 
@@ -119,7 +122,7 @@ router.get("/doggy00",function(req,res){
 });
 
 router.get("/sb",function(req,res){
-  res.sendFile(path + "starbucks.html");
+  res.sendFile(pathUploads + "index.html");
 });
 
 router.get("/mycors",function(req,res){

@@ -1,4 +1,7 @@
+/* jslint node: true */
 'use strict';
+// $ jshint ./controllers/reply-controller.js
+
 //var util = require('util');
 //var session = require('client-sessions');
 //var assert = require('assert');
@@ -17,10 +20,11 @@ module.exports.mailStore = function (req, res) {
   file = req.data;
   var filename = "wtf.jpg";
 
-  var data =  req.fields;
-  //console.log("\n\ndata = \n", data );
-  var html = json2html.transform(data, gmyMailBody.transform);
-  //console.log("html = ", html );
+  var data22 =  req.fields;
+
+  console.log("\n\ndata = \n", data22 );
+  var htmlResp = json2html.transform(data22, gmyMailBody.transform);
+  console.log("htmlResp = ", htmlResp );
 
   // for each file
   var attch = new mailgun.Attachment({data: file, filename: filename});
@@ -41,6 +45,15 @@ module.exports.mailStore = function (req, res) {
     data.attachment = attch;
   }
 
+//
+var gpath = require('path');
+var fs = require('fs');
+var new_path = gpath.join(process.env.PWD, '/uploads/', 'index.html');
+console.log('\n\n new_path = \n', new_path);
+var html = fs.readFileSync(new_path).toString(); 
+//
+
+if ('fm debug' === 'fm debug') {
   data.html = html; //'<h1>Testing some Mailgun awesomness!<h1/>';
   mailgun.messages().send(data, function (error, body) {
   console.log(body);
@@ -52,10 +65,10 @@ module.exports.mailStore = function (req, res) {
       console.log(body);
   }
   });
+} // end debug
 
-  //var html = "<h1>Holly FUCK <h1/>";
-  res.send(html);
-}
+  res.send(htmlResp);
+};
 
 
 module.exports.reply = function (req, res) {
@@ -81,8 +94,8 @@ module.exports.reply = function (req, res) {
     {"<>":"span","html":"Email: ${email}"},
     {"<>":"br","html":""},
     {"<>":"span","html":"Note: ${notes}"}
-  ]}
-   ,{"<>":"ul","html":[
+  ]},
+  {"<>":"ul","html":[
       {"<>":"li","html":"${days}"}
     ]},
     
@@ -112,7 +125,7 @@ module.exports.reply = function (req, res) {
     }
 
     
-var data = {
+data = {
   from: admin.fromAdmin,
   to: to, //to: 'serobnic@mail.ru',
   //cc: cc,
@@ -197,7 +210,7 @@ html: "doggy"}
     }
 
     
-var data = {
+data = {
   from: admin.fromAdmin,
   to: to, //to: 'serobnic@mail.ru',
   //cc: cc,
@@ -230,40 +243,16 @@ mailgun.messages().send(data, function (error, body) {
 //print out error messages
 function printError(error){
   console.error(error.message);
-};
+}
 
 var gmyMailBody = {
-  "transform" : [{"<>":"p","html":[
-    {"<>":"span","html":" What you said: <br/> <br/>"},
-    {"<>":"span","html":" Name:  ${name}"},
-    {"<>":"br","html":""},
+  "transform" : {'<>':'li','html':'${aaa.name} (${aaa.age})',
 
+   "<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>${nameMy}",
+   "<>":"span","html":" <br/> ${emailMy}",
+   "<>":"span","html":" <br/><br/> Westfield Dog walkers",
 
-    {"<>":"span","html":" Ph:  ${phone}"},
-    {"<>":"br","html":""},
-
-    {"<>":"span","html":"Email: ${email}"},
-    {"<>":"br","html":""},
-
-    {"<>":"span","html":" Address:  ${address}"},
-    {"<>":"br","html":""},
-
-    {"<>":"span","html":"Note: ${notes}"}
-  ]},
-
-  {"<>":"span","html":" Day(s): <br/>"},
-
-   {"<>":"ul","html":[
-      {"<>":"li","html":"${days}"}
-    ]},
-
-    
-   {"<>":"span","html":" <br/> <br/>A Walker will get back to you."},
-   {"<>":"span","html":" <br/> <br/>Sincerely, <br/><br/> <hr/>Westfield Dog walkers"},
-   {"<>":"span","html":" <br/> <br/>FM"},
-        
-  {"<>":"p","html":""}
-]
-  
+   "<>":"span","html":" <br/>FM"
+} 
 
 };
