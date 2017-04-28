@@ -12,7 +12,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="javascripts/myemail01.js"></script>
-
+<!-- moved from leafs begin 
+<script src="javascripts/vendor/signature_pad/signature_pad.js"></script>
+<script src="javascripts/vendor/signature_pad/app.js"></script>
+ moved from leafs end -->
 
 
 <body>
@@ -54,6 +57,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif;}
         <p>FU_MARKETING</p>
       </div>
     </a>
+
+<!-- this needs javascript injection.
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" 
+             onclick="openMailFromServer22('FU_SIG');w3_close();">
+      <div class="w3-container">
+        <img class="w3-round w3-margin-right" src="/w3images/avatar2.png" style="width:15%;"><span class="w3-opacity w3-large">FU</span>
+        <p>FU_ Signature Pad</p>
+      </div>
+    </a>
+    -->
 
       <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" 
              onclick="openMailFromServer22('FU_BASIC');w3_close();">
@@ -231,6 +244,8 @@ function openMail(personName) {
 function openMailFromServer22(personName) {
   var srcIds = [{"name": "name", "id" : "", "path": ""}, 
                 {"name": "Marketing", "id": "FU_MARKETING", "path": "./marketing.html"},
+                //{"name": "Signature Pad", "id": "FU_SIG", "path": "./indexsig.html"},
+                //{"name": "Signature Pad", "id": "FU_SIG", "path": "signature_pad/example/index.html"},
                 {"name": "Basic", "id": "FU_BASIC", "path": "./basic.html"},
                 {"name": "Won Ton Delivery", "id": "FU_WONTONDELIVERY", "path": "./index.html"}
                ];
