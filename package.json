@@ -11,6 +11,7 @@
     "formidable": "^1.1.1",
     "frameguard": "^3.0.0",
     "mailgun-js": "^0.8.0",
+    "mongodb": "^2.2.28",
     "node-json2html": "^1.1.1",
     "request": "^2.81.0",
     "validator": "^6.2.1",
@@ -19,9 +20,8 @@
   "devDependencies": {
     "jshint": "^2.9.4"
   },
-
-    "jshintConfig" : {
-     "expr": true,
+  "jshintConfig": {
+    "expr": true,
     "require": true,
     "console": false
   }

@@ -48,8 +48,12 @@ module.exports.mailStore = function (req, res) {
 //
 var gpath = require('path');
 var fs = require('fs');
-var new_path = gpath.join(process.env.PWD, '/uploads/', 'index.html');
+//var new_path = gpath.join(process.env.PWD, '/uploads/', 'index.html');
+var new_path = gpath.join(process.env.PWD, '/uploads/', 'indexdoggy.html');
+
 console.log('\n\n new_path = \n', new_path);
+
+console.log(`\n\n *new_path = ${__filename} \n', ${new_path}`);
 var html = fs.readFileSync(new_path).toString(); 
 //
 

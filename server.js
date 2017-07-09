@@ -49,15 +49,17 @@ app.use(bodyp.json());
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
-router.use(function (req,res,next) {
-  console.log("/" + req.method);
-  next();
-});
+// router.use(function (req,res,next) {
+  // console.log("\t /" + req.method);
+  // next();
+// });
 
-router.get("/",function(req,res){
-  res.sendFile(path + "doggy22.html");
+router.get("/", function(req,res){
+	console.log(path + "doggy22.html");
+	//res.send('asdf ffffff');
+	res.sendFile(path + "doggy22.html");
 });
 
 // fm begin
@@ -75,11 +77,13 @@ app.post('/upload', function(req, res) {
             //new_path = gpath.join(process.env.PWD, '/uploads/', file_name + '.' + file_ext);
             new_path = gpath.join(process.env.PWD, '/uploads/', file_name);
 
+console.log("\t *** FM begin files = \n", files, "\nEND");
+
 console.log("FM begin fields = \n", fields);
 //console.log(req.param('days'));
 
 //console.log("FM begin files = \n", files);
-//console.log("FM begin new_path = \n", new_path);
+console.log("FM begin new_path = \n", new_path);
 
         fs.readFile(old_path, function(err, data) {
             //fs.writeFile(new_path, data, function(err) {
@@ -115,14 +119,16 @@ router.get("/grocery",function(req,res){
 });
 
 router.get("/doggy",function(req,res){
+	//res.send ("asdf afff");
   res.sendFile(path + "doggy22.html");
 });
 router.get("/doggy00",function(req,res){
+	//res.send("doggy.html");
   res.sendFile(path + "doggy.html");
 });
 
 router.get("/sb",function(req,res){
-  res.sendFile(pathUploads + "index.html");
+  res.sendFile(pathUploads + "indexdoggy.html");
 });
 
 router.get("/mycors",function(req,res){
@@ -175,9 +181,9 @@ router.get ('/pingjp', pingController.pingjp);
 app.use("/",router);
 
 app.use("*",function(req,res){
-  res.sendFile(path + "404.html");
+   res.sendFile(path + "404.html");
 });
 
 app.listen(app.get('port'), function() {
-  console.log("Live at Port ", app.get('port'));
+  console.log("Live sat at Port ", app.get('port'));
 });
