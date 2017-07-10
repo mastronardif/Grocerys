@@ -59,7 +59,8 @@ app.use(express.static(__dirname + '/uploads'));
 router.get("/", function(req,res){
 	console.log(path + "doggy22.html");
 	//res.send('asdf ffffff');
-	res.sendFile(path + "doggy22.html");
+	//res.sendFile(path + "doggy22.html");
+	res.sendFile(pathUploads + "indexdoggy.html");
 });
 
 // fm begin
