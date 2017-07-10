@@ -56,12 +56,12 @@ app.use(express.static(__dirname + '/uploads'));
   // next();
 // });
 
-router.get("/", function(req,res){
-	console.log(path + "doggy22.html");
-	//res.send('asdf ffffff');
-	//res.sendFile(path + "doggy22.html");
-	res.sendFile(pathUploads + "indexdoggy.html");
-});
+// router.get("/", function(req,res){
+	// console.log(path + "doggy22.html");
+	// //res.send('asdf ffffff');
+	// //res.sendFile(path + "doggy22.html");
+	// res.sendFile(pathUploads + "indexdoggy.html");
+// });
 
 // fm begin
 // Upload route.
@@ -113,7 +113,7 @@ console.log("FM begin new_path = \n", new_path);
 // fm end
 
 router.get("/taxi",function(req,res){
-  res.sendFile(gpath + "taxi.html");
+  res.sendFile(path + "taxi.html");
 });
 router.get("/grocery",function(req,res){
   res.sendFile(path + "grocery.html");
