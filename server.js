@@ -49,7 +49,7 @@ app.use(bodyp.json());
 
 app.set('port', (process.env.PORT || 3000));
 
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
 // router.use(function (req,res,next) {
   // console.log("\t /" + req.method);
@@ -185,5 +185,5 @@ app.use("*",function(req,res){
 });
 
 app.listen(app.get('port'), function() {
-  console.log("Live sat at Port ", app.get('port'));
+  console.log("Live at Port ", app.get('port'));
 });
