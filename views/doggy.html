@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Johny dog walker</title>
+<link rel="stylesheet" href="./stylesheets/grocery.css"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Bootstrap core CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="./javascripts/vendor/bootstrap-formhelpers.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+
+<body>
+  <!-- -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <h4><i class="fa fa-paw fa-2x text-primary"></i>
+    <a href="#">Westfield Area Dog Walking/Sitting</a>
+    <br>
+    <small>Dog care <i>908-858-09xx</i></small>
+    </h4>   
+</nav>
+
+  <!-- end 1/22/17 11:00 am-->
+  
+ <form id="contact-form" method="post" action="/mysubmit" data-toggle="validator" role="form"> 
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <button type="submit" class="btn btn-success navbar-btn">Make Request</button>
+    <a href="/about" type="button" class="btn btn-default navbar-btn">About</a>
+    <a href="/tellafriend" type="button" class="btn btn-default navbar-btn">Tell a friend</a>
+    </div><!-- /.container-fluid -->
+  </nav>
+<!--
+ <div class="container" style="margin-top: 20px">
+  <p class="lead">
+  This is the place to request a walker/sitter.
+  </p>
+</div>
+-->  
+
+  <table class="table forum table-striped">
+    <tbody>
+    <!--
+      <tr>
+        <td class="text-center"><i class="fa fa-paw fa-2x text-primary"></i></td>
+        <td>
+          <h4><a href="#">Westfield Area Dog Walking/Sitting</a><br><small>Dog care <i>908-858-09xx</i></small></h4>
+        </td>
+      </tr>
+      -->
+      <tr>
+        <td class="text-center"><i class="fa fa-magic fa-2x text-primary"></i></td>
+        <td>
+
+  <div class="form-group">
+    <label for="Name">Your Name:</label>
+    <input type="name" class="form-control input-lg" id="name" name="name"  placeholder="Enter contact name" required>
+    
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email" name="email">
+  </div>
+  
+  <div class="form-group">
+    <label for="phone">Contact Phone:</label>
+    <input type="tel" class="form-control input-medium bfh-phone" data-country="US" id="phone" name="phone" required>
+  </div>
+  </div>
+  
+    <div class="form-group">
+    <label for="addr">Address:</label>
+       <textarea class="form-control input-lg" rows="1" id="address" name="address"></textarea>
+  </div>  
+ 
+   <div class="container">
+<div class="row">   
+<p>
+
+<div class="form-group">
+<div class="btn-group">
+
+<div class="container">
+    <div class="row">
+    
+        <h4>Day(s) of the Week</h4>
+        <button type="button" id="toggle-allOn" class="btn btn-info">checkAll</button>
+<button type="button" id="toggle-allOff" class="btn btn-info">uncheckAll</button>
+
+        <div id="no-more-tables">
+            <table class="col-lg-12 table-bordered table-striped table-condensed cf">
+                <tbody>
+            	<thead class="cf">
+        			<tr>
+        				<th>Sun</th>
+        				<th>Mon</th>
+            			<th>Tue</th>
+        				<th>Wed</th>
+                		<th>Thu</th>
+        				<th>Fri</th>
+                        <th>Sat</th>
+        			</tr>
+        		</thead>
+        			<tr>
+        				<td data-title="Sun"><input type="checkbox" name="days" id="days-1" value="Sun"></td>
+                        <td data-title="Mon"><input type="checkbox" name="days" id="days-2" value="Mon"></td>
+                        <td data-title="Tue"><input type="checkbox" name="days" id="days-3" value="Tue"></td>
+                        <td data-title="Wed"><input type="checkbox" name="days" id="days-4" value="Wed"></td>
+                        <td data-title="Thu"><input type="checkbox" name="days" id="days-5" value="Thu"></td>
+                        <td data-title="Fri"><input type="checkbox" name="days" id="days-6" value="Fri"></td>
+                        <td data-title="Sat"><input type="checkbox" name="days" id="days-0" value="Sat"></td>
+        			</tr>
+        		</tbody>
+        	</table>
+        </div>
+    </div>
+
+</div>
+</div>
+
+</p>
+</div>
+</div>
+</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    <table class="table forum table-striped">
+    </thead>
+    <tbody>
+      <tr>
+        <td>          
+
+  <div class="form-group">
+      <label for="list">      
+       <i class="fa fa-sticky-note-o fa-2x text-primary"></i> Notes about your pet:
+       <i class="fa fa-sticky-note-o fa-2x text-primary"></i> Take a pic:
+      </label>
+  <textarea class="form-control input-lg" rows="4" id="notes" name="notes"></textarea>
+
+<div class="g-recaptcha" data-sitekey="6Lfd4xIUAAAAAN7vZGidLytbnCZGnwhuXMQ3A9zR"></div>    
+    <!-- <button type="submit" class="btn btn-default">Inquire about walker</button>   -->
+  </div>   
+
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+</form>
+
+<script>
+$('#toggle-allOn').click(function() {
+    $('.btn-group input[name="days"]').prop('checked', true);
+});
+$('#toggle-allOff').click(function() {
+    $('.btn-group input[name="days"]').prop('checked', false);
+});
+</script>
+
+  </body>
+</html>
+

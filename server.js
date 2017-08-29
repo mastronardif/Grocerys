@@ -112,6 +112,11 @@ console.log("FM begin new_path = \n", new_path);
 });
 // fm end
 
+
+router.get("/mylist",function(req,res){
+  res.sendFile(path + "thelist.html");
+});
+
 router.get("/taxi",function(req,res){
   res.sendFile(path + "taxi.html");
 });
