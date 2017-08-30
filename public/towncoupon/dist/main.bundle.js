@@ -188,7 +188,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/charttwo/charttwo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"height:600px; font-size: 50%\">\n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n-->\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n-->\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -256,6 +256,13 @@ var CharttwoComponent = (function () {
     }
     CharttwoComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.townService.searchTown('Metuchen').subscribe(function (res) {
+            console.log(res);
+            _this.single = res;
+        }, function (err) {
+            alert("FM err = " + err);
+            console.log(err);
+        });
         var delta = 5000;
         this.timer = setInterval(function () {
             _this.onSelect(null);
@@ -330,7 +337,7 @@ var CharttwoComponent = (function () {
         var link = ['/detail', id];
         //this.router.navigate(link);
         this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
-        //this.router.navigate(['/detail'], { queryParams: { id: '1FUCKYOU' }  }); 
+        //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
     };
     CharttwoComponent.prototype.setColors = function (name) {
         // //this.colorScheme
@@ -506,80 +513,80 @@ var single2 = [
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return single; });
 var single = [
     {
-        "name": "Advertise Here 908-858-0954",
+        "name": "Advertise:908-858-0954",
         "value": 909858
     },
     {
         "name": "Ferraro's",
-        "value": 894000
+        "value": 909858
     },
     {
         "name": "Starbucks",
-        "value": 400001
+        "value": 909858
     },
     {
         "name": "Trader Joes",
-        "value": 320003
+        "value": 909858
     },
     {
         "name": "Fujiyama Mama",
-        "value": 500001
+        "value": 909858
     },
     {
         "name": "QDOBA",
-        "value": 720000
+        "value": 909858
     },
     {
         "name": "Theresa's",
-        "value": 500000
+        "value": 909858
     },
     {
         "name": "Cosimo's",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Xocolatz",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "NY Korean BBQ",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Nagoya Japanese",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Inspiration Roll",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Westfield Diner",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Addams Tavern",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Limani Seafood Gril",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Manhattan Bagel",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Roosterspin",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Old Havana",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Splash of Thai",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Jade Garden Chinese",
@@ -587,43 +594,43 @@ var single = [
     },
     {
         "name": "La Casa Italian",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "La Famiglia Sorrento",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Publick House",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Turning Point",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Fuji Japanese & Asian Cuisine",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Echo Tap & Grille",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Five Guys",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "SUBWAY",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Buona Pizza",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Cold Stone Creamery",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Hunan Wok III",
@@ -631,11 +638,11 @@ var single = [
     },
     {
         "name": "Brick Oven",
-        "value": 720001
+        "value": 909858
     },
     {
         "name": "Chipotle",
-        "value": 200010
+        "value": 909858
     }
 ];
 //# sourceMappingURL=westfieldfood1.js.map
@@ -654,6 +661,7 @@ var single = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -663,6 +671,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -707,7 +716,7 @@ var TownService = (function () {
     TownService.prototype.getCoupon = function (searchText) {
         var _this = this;
         console.log("searchGit: ", searchText);
-        searchText = "15300";
+        //searchText= "15300";
         //const url = 'http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + searchText;
         var url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
         //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";     
@@ -729,6 +738,32 @@ var TownService = (function () {
                 });
             }
             return results; //.slice(0, 21); //{lef:111, right: 222};//data;      
+        });
+    };
+    TownService.prototype.searchTown = function (searchText) {
+        console.log("searchTown: ", searchText);
+        //const url = 'http://api.github.com/search/users?q=' + searchText;
+        //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
+        // put root in a config file.
+        //const root = "http://localhost:3000";
+        var path = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].apiEndpoint + "/mylist";
+        var url = path + "/metuchen";
+        //const url = `${root}/town/mylist/metuchen`;
+        //  const url = 'http://api.github.com/search/users?q=' + searchText;
+        //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
+        //const  url = 'http://date.jsontest.com/?service=ip'; //http://echo.jsontest.com/key/value/one/two';
+        //console.log('here', url);
+        return this.http.get(url).map(function (res) {
+            var results = []; //[{name: "Fred", value: 123123}];
+            var data = res.json();
+            var items = [];
+            if (res) {
+                data.forEach(function (element) {
+                    var val = element.value.toString().substring(0, 6);
+                    results.push({ name: element.name, value: val });
+                });
+            }
+            return results.slice(0, 21); //{lef:111, right: 222};//data;      
         });
     };
     TownService.prototype.searchGitPromise = function (searchText) {
@@ -879,8 +914,8 @@ var TowndetailComponent = (function () {
         this.route = route;
         this.location = location;
         this.timerCounter0 = 0;
-        this.timerStopAt = 400;
-        this.timerTickSize = .01;
+        this.timerStopAt = 200;
+        this.timerTickSize = .001;
         this.timer0button = 'Subscribe';
     }
     TowndetailComponent.prototype.ngOnInit = function () {
@@ -1025,6 +1060,7 @@ var appRoutes = [
     { path: '', redirectTo: '/', pathMatch: 'full' },
     { path: 'detail', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] },
     { path: 'detail/:id', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] }
+    //,{ path: '**', component: CharttwoComponent }
 ];
 var TownroutesRoutingModule = (function () {
     function TownroutesRoutingModule() {
@@ -1202,7 +1238,9 @@ var ColorHelper = (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 // The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: false
+    production: false,
+    apiEndpoint: 'http://192.168.1.9:3000/town'
+    //apiEndpoint: 'http://localhost:3000/town'
 };
 //# sourceMappingURL=environment.js.map
 

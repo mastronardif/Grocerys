@@ -113,6 +113,21 @@ console.log("FM begin new_path = \n", new_path);
 // fm end
 
 
+router.get("/town/mylist/:id",function(req,res){
+	 var id = req.params.id;
+	console.log(`/town/mylist/ id(${id})`);
+
+	if ('cors' == 'cors') {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');  
+        res.header("Access-Control-Allow-Headers", "Content-Type");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    }
+   
+	// select by id
+  res.sendFile(path + "metuchen.json");
+});
+
 router.get("/mylist",function(req,res){
   res.sendFile(path + "thelist.html");
 });
