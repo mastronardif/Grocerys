@@ -1,0 +1,40 @@
+﻿[
+  {
+    "name": "Westfield",
+    "value": 8940000
+  },
+  {
+    "name": "Metuchen",
+    "value": 4000010
+  },
+  {
+    "name": "Summit",
+    "value": 3200020
+  },
+  {
+    "name": "Rutgers",
+    "value": 3200020
+  },
+  {
+    "name": "Chattam",
+    "value": 5000013
+  },
+  {
+    "name": "Madison",
+    "value": 7200000
+  }
+  ,
+  {
+    "name": "Cranford",
+    "value": 5000000
+  },
+  {
+    "name": "Garwood",
+    "value": 7200010
+  }
+  ,
+  {
+    "name": "Milburn",
+    "value": 7200010
+  }
+]

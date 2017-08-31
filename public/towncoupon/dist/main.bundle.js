@@ -254,16 +254,30 @@ var CharttwoComponent = (function () {
         Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
         //this.someattribute = elementRef.nativeElement.getAttribute('someattribute');       
     }
-    CharttwoComponent.prototype.ngOnInit = function () {
+    CharttwoComponent.prototype.setResturaunts = function (town, dest) {
         var _this = this;
-        this.townService.searchTown('Metuchen').subscribe(function (res) {
-            console.log(res);
-            _this.single = res;
+        console.log("setResturaunts(" + town + ")");
+        this.townService.searchTown(town).subscribe(function (res) {
+            console.log("Resturaunts= ", res);
+            //this.single = res; 
+            _this.resturaunts = res;
         }, function (err) {
             alert("FM err = " + err);
             console.log(err);
         });
-        var delta = 5000;
+    };
+    CharttwoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.townService.searchTown('Rutgers').subscribe(function (res) {
+            console.log(res);
+            _this.single = res;
+            _this.towns = res;
+            _this.towns = _this.towns.map(function (item) { return item.name; });
+        }, function (err) {
+            alert("FM err = " + err);
+            console.log(err);
+        });
+        var delta = 6000;
         this.timer = setInterval(function () {
             _this.onSelect(null);
             //console.log(`tick tock every ${delta}`);
@@ -275,16 +289,24 @@ var CharttwoComponent = (function () {
         // }, 500);
         //console.log('ngOnInit() ngOnInit() ngOnInit()');
     };
+    CharttwoComponent.prototype.addToTowns = function (town) {
+        console.log("addToTowns(" + town + ")");
+    };
     CharttwoComponent.prototype.onSelect = function (event) {
         //console.log(event, this.count);
+        // if a town add to town list.
+        // addToTowns(event.name);
+        var _this = this;
         //console.log("debug ", this.single[0].name);
         //alert(JSON.stringify(event));
-        var _this = this;
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         //this.single = this.single2;
         //Object.assign(this, {single2});
         //console.log(event, this.count);
         if (event != null) {
+            if (this.towns.findIndex(function (item) { return (item == event.name); }) != -1) {
+                this.setResturaunts(event.name, this.single);
+            }
             this.getCoupon(event);
             return;
             //this.townService.getCoupon(event);
@@ -316,6 +338,11 @@ var CharttwoComponent = (function () {
                 //console.log("\t", event, this.count);
                 _this.setColors('vivid');
                 _this.single = _this.single2;
+                //this.single = this.resturaunts;
+                //console.log("1 this.single= ", this.single);
+                //this.single = Object.assign([], this.resturaunts);
+                //this.single = this.resturaunts;
+                console.log("2 this.single= ", _this.single);
                 var name = _this.single[0].name + " ZZ";
                 _this.single[0].value = _this.single[0].value + wasCount_1;
                 //this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
@@ -742,19 +769,10 @@ var TownService = (function () {
     };
     TownService.prototype.searchTown = function (searchText) {
         console.log("searchTown: ", searchText);
-        //const url = 'http://api.github.com/search/users?q=' + searchText;
-        //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
-        // put root in a config file.
-        //const root = "http://localhost:3000";
         var path = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].apiEndpoint + "/mylist";
-        var url = path + "/metuchen";
-        //const url = `${root}/town/mylist/metuchen`;
-        //  const url = 'http://api.github.com/search/users?q=' + searchText;
-        //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
-        //const  url = 'http://date.jsontest.com/?service=ip'; //http://echo.jsontest.com/key/value/one/two';
-        //console.log('here', url);
+        var url = path + "/" + searchText;
         return this.http.get(url).map(function (res) {
-            var results = []; //[{name: "Fred", value: 123123}];
+            var results = [];
             var data = res.json();
             var items = [];
             if (res) {
@@ -763,7 +781,7 @@ var TownService = (function () {
                     results.push({ name: element.name, value: val });
                 });
             }
-            return results.slice(0, 21); //{lef:111, right: 222};//data;      
+            return results.slice(0, 21);
         });
     };
     TownService.prototype.searchGitPromise = function (searchText) {
@@ -1239,8 +1257,9 @@ var ColorHelper = (function () {
 // The file contents for the current environment will overwrite these during build.
 var environment = {
     production: false,
-    apiEndpoint: 'http://192.168.1.9:3000/town'
+    //apiEndpoint: 'http://192.168.1.9:3000/town'
     //apiEndpoint: 'http://localhost:3000/town'
+    apiEndpoint: 'http://johndog.herokuapp.com/town'
 };
 //# sourceMappingURL=environment.js.map
 

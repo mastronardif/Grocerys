@@ -14,6 +14,7 @@ var pathUploads = __dirname + '/uploads/';
 global.config = require('config');
 var replyController = require('./controllers/reply-controller');
 var pingController = require('./controllers/ping-controller');
+var townController = require('./controllers/town-controller');
 
 console.log(__dirname);
 
@@ -113,20 +114,20 @@ console.log("FM begin new_path = \n", new_path);
 // fm end
 
 
-router.get("/town/mylist/:id",function(req,res){
-	 var id = req.params.id;
-	console.log(`/town/mylist/ id(${id})`);
+// router.get("/town/mylist/:id",function(req,res){
+// 	 var id = req.params.id;
+// 	console.log(`/town/mylist/ id(${id})`);
 
-	if ('cors' == 'cors') {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');  
-        res.header("Access-Control-Allow-Headers", "Content-Type");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    }
+// 	if ('cors' == 'cors') {
+//         res.header("Access-Control-Allow-Origin", "*");
+//         res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');  
+//         res.header("Access-Control-Allow-Headers", "Content-Type");
+//         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     }
    
-	// select by id
-  res.sendFile(path + "metuchen.json");
-});
+// 	// select by id
+//   res.sendFile(path + "metuchen.json");
+// });
 
 router.get("/mylist",function(req,res){
   res.sendFile(path + "thelist.html");
@@ -186,6 +187,11 @@ router.get("/contact",function(req,res){
 // for testing.!!!
 //router.all ('/ping', bodyp.json(), pingController.ping);
 //router.all ('/ping', bodyp.urlencoded(), pingController.ping);
+//router.get ('/town/mylist/:id', townController.townlist);
+router.get ('/town/mylist/:id', function(req,res){
+  townController.townlist(path, req, res);
+});
+
 router.all ('/pingcors', pingController.pingcors);
 router.all ('/ping', pingController.ping);
 router.all ('/mysubmit', replyController.reply);
