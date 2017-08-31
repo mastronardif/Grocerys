@@ -268,7 +268,7 @@ var CharttwoComponent = (function () {
     };
     CharttwoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.townService.searchTown('Rutgers').subscribe(function (res) {
+        this.townService.searchTown('The Towns').subscribe(function (res) {
             console.log(res);
             _this.single = res;
             _this.towns = res;
