@@ -793,8 +793,9 @@ var TownService = (function () {
     TownService.prototype.searchGit = function (searchText) {
         //const searchText = 'js';
         console.log("searchGit: ", searchText);
-        //const url = 'http://api.github.com/search/users?q=' + searchText;
-        var url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
+        var url = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].apiEndpointCocktailDrinks;
+        //const url = 'http://api.github.com/search/users?q=' + searchText;    
+        //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
         //  const url = 'http://api.github.com/search/users?q=' + searchText;
         //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
         //const  url = 'http://date.jsontest.com/?service=ip'; //http://echo.jsontest.com/key/value/one/two';
