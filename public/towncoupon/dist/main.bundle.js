@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .example-spacer {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }\r\n  \r\n  .example-fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <h1>\r\n  Charts Demo\r\n</h1>\r\n\r\n<div style=\"height: 100px\">\r\n  <ngx-charts-bar-vertical\r\n   [view]=\"view\"\r\n   [scheme]=\"colorScheme\"\r\n   [results]=\"single\"\r\n   [gradient]=\"gradient\"\r\n   [xAxis]=\"showXAxis\"\r\n   [yAxis]=\"showYAxis\"\r\n   [legend]=\"showLegend\"\r\n   [showXAxisLabel]=\"showXAxisLabel\"\r\n   [showYAxisLabel]=\"showYAxisLabel\"\r\n   [xAxisLabel]=\"xAxisLabel\"\r\n   [yAxisLabel]=\"yAxisLabel\"\r\n   (select)=\"onSelect($event)\">\r\n </ngx-charts-bar-vertical>\r\n</div> -->\r\n\r\n<div style=\"color: gray\">\r\n<app-charttwo>\r\n</app-charttwo>\r\n<span style=\"font-size: 40%\">&copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "<div style=\"color: gray\">\r\n<app-charttwo>\r\n</app-charttwo>\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n    <span>v0.12</span>       \r\n    <md-icon class=\"example-icon\">favorite</md-icon>\r\n    <button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n    <button md-raised-button color=\"accent\">Add a Town</button>\r\n    <md-icon class=\"example-icon\">delete</md-icon>        \r\n</md-toolbar>\r\n         \r\n\r\n<span style=\"font-size: 40%\">&copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
 
 /***/ }),
 
@@ -44,45 +44,49 @@ module.exports = "<!-- <h1>\r\n  Charts Demo\r\n</h1>\r\n\r\n<div style=\"height
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = (function () {
-    function AppComponent() {
-        this.single = [
-            {
-                "name": "Germany",
-                "value": 8940000
-            },
-            {
-                "name": "USA",
-                "value": 5000000
-            },
-            {
-                "name": "Canada",
-                "value": 7200000
-            }
-        ];
-        this.view = [700, 400];
-        // options
-        this.showXAxis = true;
-        this.showYAxis = true;
-        this.gradient = false;
-        this.showLegend = true;
-        this.showXAxisLabel = true;
-        this.xAxisLabel = 'Country';
-        this.showYAxisLabel = true;
-        this.yAxisLabel = 'Population';
-        this.colorScheme = {
-            domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-        };
+    function AppComponent(router) {
+        this.router = router;
+        console.log("app.components.ts, constructor, " + router);
     }
-    AppComponent.prototype.onSelect = function (event) {
-        console.log('\app.component.ts', event);
+    AppComponent.prototype.ngOnInit = function () {
+        console.log('app.component:ngOnInit');
+        console.log('this.router[0]', this.router);
+        // this.router.routeReuseStrategy.shouldReuseRoute = function() {
+        //   return false;
+        // };
+        // ( =>
+        //   {
+        //     console.log(`what the fuck is bob (${bob})`);
+        //     return false;
+        //   }
+        // );
+    };
+    AppComponent.prototype.adminTown = function (event) {
+        var elementId = event.currentTarget.id;
+        //alert(`Admin(${elementId}) Town coming to a theater near you.`);
+        this.getCoupon('Add an establishment. ');
+    };
+    AppComponent.prototype.getCoupon = function (id) {
+        id = id + Date.now();
+        console.log(':getCoupon', id);
+        //let id = event.name;
+        var link = ['/detail', id];
+        //this.router.navigate(link);
+        this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
+        //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
     };
     return AppComponent;
 }());
@@ -91,9 +95,11 @@ AppComponent = __decorate([
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-    })
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -110,20 +116,23 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_simple_timer__ = __webpack_require__("../../../../ng2-simple-timer/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ng2_simple_timer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__swimlane_ngx_charts__ = __webpack_require__("../../../../@swimlane/ngx-charts/release/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__swimlane_ngx_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__charttwo_charttwo_component__ = __webpack_require__("../../../../../src/app/charttwo/charttwo.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__townroutes_townroutes_routing_module__ = __webpack_require__("../../../../../src/app/townroutes/townroutes-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__ = __webpack_require__("../../../../ng2-simple-timer/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__swimlane_ngx_charts__ = __webpack_require__("../../../../@swimlane/ngx-charts/release/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__swimlane_ngx_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__swimlane_ngx_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__charttwo_charttwo_component__ = __webpack_require__("../../../../../src/app/charttwo/charttwo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__ = __webpack_require__("../../../../../src/app/townroutes/townroutes-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -145,21 +154,24 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__charttwo_charttwo_component__["a" /* CharttwoComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__towndetail_towndetail_component__["a" /* TowndetailComponent */]
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__charttwo_charttwo_component__["a" /* CharttwoComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__towndetail_towndetail_component__["a" /* TowndetailComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"], __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MaterialModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_9__swimlane_ngx_charts__["NgxChartsModule"],
+            __WEBPACK_IMPORTED_MODULE_10__swimlane_ngx_charts__["NgxChartsModule"],
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_12__townroutes_townroutes_routing_module__["a" /* TownroutesRoutingModule */]
+            __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_material__["b" /* MdCardModule */],
+            __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__["a" /* TownroutesRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_7_ng2_simple_timer__["SimpleTimer"]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__["SimpleTimer"]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -188,7 +200,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/charttwo/charttwo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n-->\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n-->\n<router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -215,26 +227,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
  //'./data';
 
-//import { single2 } from './data2';
 
 
 
 
-//import { Location } from '@angular/common';
 var CharttwoComponent = (function () {
     function CharttwoComponent(townService, route, 
         //private location: Location,
         router, el) {
-        //el.nativeElement.view = [70, 40]; // wtf
         this.townService = townService;
         this.route = route;
         this.router = router;
         this.count = 123;
-        //single2: any[];    
-        //view: any[] =[390, 1400]; // []; //
-        //@el Input('view') view: string;
-        //@Input() someattribute: string;
-        // @ElementRef() asdf: string;
         // options
         //showXAxis = true;
         //showYAxis = true;
@@ -252,7 +256,6 @@ var CharttwoComponent = (function () {
         };
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
-        //this.someattribute = elementRef.nativeElement.getAttribute('someattribute');       
     }
     CharttwoComponent.prototype.setResturaunts = function (town, dest) {
         var _this = this;
@@ -268,8 +271,7 @@ var CharttwoComponent = (function () {
     };
     CharttwoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.townService.searchTown('The Towns').subscribe(function (res) {
-            console.log(res);
+        this.townService.searchTown('the towns').subscribe(function (res) {
             _this.single = res;
             _this.towns = res;
             _this.towns = _this.towns.map(function (item) { return item.name; });
@@ -289,16 +291,11 @@ var CharttwoComponent = (function () {
         // }, 500);
         //console.log('ngOnInit() ngOnInit() ngOnInit()');
     };
-    CharttwoComponent.prototype.addToTowns = function (town) {
-        console.log("addToTowns(" + town + ")");
-    };
+    // addToTowns(town) {
+    //   console.log(`addToTowns(${town})`);
+    // }
     CharttwoComponent.prototype.onSelect = function (event) {
-        //console.log(event, this.count);
-        // if a town add to town list.
-        // addToTowns(event.name);
         var _this = this;
-        //console.log("debug ", this.single[0].name);
-        //alert(JSON.stringify(event));
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         //this.single = this.single2;
         //Object.assign(this, {single2});
@@ -312,41 +309,19 @@ var CharttwoComponent = (function () {
             //this.townService.getCoupon(event);
         }
         if (this.count % 2) {
-            //this.single = this.single;
-            //this.single[0].name = "pray(1)";
             this.single[0].value = this.single[0].value + 1;
             var name = this.single[1].name;
-            //this.single[1].value =  this.single[1].value+this.count;
-            //this.single[1] = {"name": name, "value": this.single[1].value+this.count};
-            //@view = [700, 400];      
             this.setColors('fire');
         }
         else {
-            // this.townService.searchGitPromise("fish").
-            // then(heroes => 
-            //   {
-            //     console.log('WAHT ARE YOU: ', heroes.Hero);          
-            //   this.single = heroes.Hero;
-            // }      
-            // );//.slice(1, 5));       
-            //      this.single = this.single2;            
-            //      this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
-            //      this.single[1] = {"name": "Starbucks", "value": 4000000+this.count};
             var wasCount_1 = this.count;
-            //this.townService.searchGitObservable2('mastronardif').subscribe(
             this.townService.searchGit('mastronardi').subscribe(function (res) {
                 //console.log("\t", event, this.count);
                 _this.setColors('vivid');
                 _this.single = _this.single2;
-                //this.single = this.resturaunts;
-                //console.log("1 this.single= ", this.single);
-                //this.single = Object.assign([], this.resturaunts);
-                //this.single = this.resturaunts;
-                console.log("2 this.single= ", _this.single);
+                //console.log("2 this.single= ", this.single);
                 var name = _this.single[0].name + " ZZ";
                 _this.single[0].value = _this.single[0].value + wasCount_1;
-                //this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
-                //this.single[1] = {"name": "Starbucks", "value": 4000000+wasCount};
             }, function (err) {
                 alert("FM err = " + err);
                 console.log(err);
@@ -357,9 +332,6 @@ var CharttwoComponent = (function () {
     CharttwoComponent.prototype.getCoupon = function (event) {
         console.log('getCoupon', event);
         this.setColors('night');
-        //alert(JSON.stringify(event));
-        //this.router.navigate(['/detail', 123]);
-        // route to ____
         var id = event.name;
         var link = ['/detail', id];
         //this.router.navigate(link);
@@ -367,8 +339,6 @@ var CharttwoComponent = (function () {
         //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
     };
     CharttwoComponent.prototype.setColors = function (name) {
-        // //this.colorScheme
-        // //const scheme = { domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
         this.colors = new __WEBPACK_IMPORTED_MODULE_4__common_color_helper__["a" /* ColorHelper */](name, null, null); // (scheme, 'ordinal', [], null);
         this.colorScheme = { domain: this.colors.colorDomain }; //scheme; //this.colors.colorDomain; // // scheme; //this.colors;
     };
@@ -715,7 +685,8 @@ var TownService = (function () {
         this.httpClient = httpClient;
         this.headers = new Headers({ 'Content-Type': 'application/json' });
         this.jsonApi = 'http://jsonplaceholder.typicode.com/posts';
-        this.hero = { "Data": [
+        this.hero = {
+            "Data": [
                 {
                     "name": "foo",
                     "value": 112312
@@ -742,10 +713,11 @@ var TownService = (function () {
     };
     TownService.prototype.getCoupon = function (searchText) {
         var _this = this;
-        console.log("searchGit: ", searchText);
+        console.log("twon.service:getCoupon: ", searchText);
         //searchText= "15300";
         //const url = 'http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + searchText;
-        var url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
+        //const url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
+        var url = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].apiEndpointCocktailRandom;
         //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";     
         //  const url = 'http://api.github.com/search/users?q=' + searchText;
         //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
@@ -786,11 +758,8 @@ var TownService = (function () {
     };
     TownService.prototype.searchGitPromise = function (searchText) {
         var _this = this;
-        // cheesy crap for the rest local api debacle.
-        //let max = Math.max.apply(Math, HEROES.map(function(o){return o.id;}))
-        //let idd = 0;
-        //if (NaN !== max) {idd = max+1};
-        var hero = { "Hero": [
+        var hero = {
+            "Hero": [
                 {
                     "name": "foo",
                     "value": 112312
@@ -811,15 +780,16 @@ var TownService = (function () {
             .then(function (res) { return res.json(); })
             .catch(function (res) { return _this.handleErrorPromise; });
     };
-    TownService.prototype.searchGitObservable2 = function (searchText) {
-        var url = this.jsonApi;
-        return this.http.post(url, this.hero).map(function (res) {
-            var results = [];
-            results = res.json().Data;
-            console.log('results = ', results);
-            return results.slice(0, 21); //{lef:111, right: 222};//data;      
-        });
-    };
+    // public searchGitObservable2(searchText: string): Observable<any> {
+    //   const url = this.jsonApi;
+    //   return this.http.post(url, this.hero).map(
+    //     res => {
+    //       let results = [];
+    //       results = res.json().Data;
+    //       console.log('results = ', results);
+    //       return results.slice(0, 21); //{lef:111, right: 222};//data;      
+    //     });
+    // }
     TownService.prototype.searchGit = function (searchText) {
         //const searchText = 'js';
         console.log("searchGit: ", searchText);
@@ -846,15 +816,14 @@ var TownService = (function () {
             return results.slice(0, 21); //{lef:111, right: 222};//data;      
         });
     };
-    TownService.prototype.search = function (term) {
-        var _this = this;
-        var url = 'http://date.jsontest.com'; //'http://localhost:3000/pingcors?left=right'; //'http://localhost:3000/ping?ass=ffff';//'http://localhost:4200/dashboard';
-        this.httpClient.get(url).subscribe(function (data) {
-            console.log('data = ', data);
-            _this.results = data; //JSON.stringify(data, null, '');
-            console.log('results = ', _this.results);
-        });
-    };
+    // public search(term: string) {
+    //   let url = 'http://date.jsontest.com';//'http://localhost:3000/pingcors?left=right'; //'http://localhost:3000/ping?ass=ffff';//'http://localhost:4200/dashboard';
+    //   this.httpClient.get(url).subscribe(data => {
+    //     console.log('data = ', data);
+    //     this.results = data; //JSON.stringify(data, null, '');
+    //     console.log('results = ', this.results);
+    //   });
+    // }
     TownService.prototype.handleErrorPromise = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         alert("wtf2 error: " + JSON.stringify(error));
@@ -880,7 +849,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".center-div\r\n{\r\n  position: absolute;\r\n  margin: auto;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100px;\r\n  height: 100px;\r\n  background-color: #ccc;\r\n  border-radius: 3px;\r\n}", ""]);
+exports.push([module.i, ".center-div\r\n{\r\n  position: absolute;\r\n  margin: auto;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 330px;\r\n  height: 100px;\r\n  background-color: #ccc;\r\n  border-radius: 3px;\r\n}", ""]);
 
 // exports
 
@@ -893,7 +862,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/towndetail/towndetail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div *ngIf=\"param\">\n<div class=\"center-div\" style=\"border: solid; width: 300px; height: 200px\" >\n    <p>\n       {{discount}}<br/>\n\n        <img src={{imagePath}} width=\"50\" height=\"50\"/>\n        <span style=\"color:red;\">{{param}}</span><br/>\n\n        <!--<button (click)=\"subscribeTimer0()\">{{timer0button}}  1 sec timer</button>\n        -->\n        \n        \n        <button (click)=\"reserveCoupon()\" md-button>claim coupon</button>\n        <span style=\"font-size: 55%;\">{{timerCounter0}} </span>\n        <button (click)=\"reserveCoupon()\" md-button>never mind</button> \n        <!--\n        <span style=\"font-size: 13%;\">{{results}} results!</span>  \n        -->\n\n    </p>\n</div>\n</div>\n"
+module.exports = "\n<div *ngIf=\"param\">\n        <div class=\"center-div\" style=\"border: solid; width: 300px; height: 200px\" >\n            <p>\n               {{discount}}<br/>\n        \n                <img src={{imagePath}} width=\"50\" height=\"50\"/>\n                <span style=\"color:red;\">{{param}}</span><br/>\n        \n                <!--<button (click)=\"subscribeTimer0()\">{{timer0button}}  1 sec timer</button>\n                -->\n                \n                \n                <button (click)=\"reserveCoupon()\" md-button>claim coupon</button>\n                <span style=\"font-size: 55%;\">{{timerCounter0}} </span>\n                <button (click)=\"reserveCoupon()\" md-button>never mind</button> \n                <!--\n                <span style=\"font-size: 13%;\">{{results}} results!</span>  \n                -->\n        \n            </p>\n        </div>\n        </div>"
 
 /***/ }),
 
@@ -939,17 +908,20 @@ var TowndetailComponent = (function () {
     TowndetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log("\t **** towndetail.component.ts:ngOnInit");
+        // this.route.params.subscribe(params => {
+        //   // each time the search data is change you'll get this running
+        //   //Do what ever you need to refresh your search page
+        //   console.log('*** New route params for towndetail.component ', this.route);
+        // });
         //this.bShowCoupon= false;
         this.st.newTimer('1sec', this.timerTickSize);
         //this.subscribeTimer0();
         //FM research this.  It looks like it calls the route at init time.
         // Alex ?
         this.route.paramMap
-            .switchMap(function (params) {
-            return (_this.param = params.get('id'),
-                console.log("this.param = " + _this.param),
-                _this.townService.getCoupon(String(+params.get('id'))));
-        })
+            .switchMap(function (params) { return (_this.param = params.get('id'),
+            console.log("this.param = " + _this.param),
+            _this.townService.getCoupon(String(+params.get('id')))); })
             .subscribe(function (res) {
             console.log("** this.param = " + _this.param);
             console.log("towndetail.component.ts this.route.paramMap", res);
@@ -961,8 +933,6 @@ var TowndetailComponent = (function () {
                 _this.startTimer0();
             }
         });
-        // this.heroService.getHero(+params.get('id')))
-        // .subscribe(hero => this.hero = hero);
     };
     TowndetailComponent.prototype.delAllTimer = function () {
         this.st.delTimer('1sec');
@@ -977,46 +947,36 @@ var TowndetailComponent = (function () {
         this.param = "";
         this.timerCounter0 = 0;
         this.unsubscribeTimer();
-        //this.subscribeTimer0();
-        //this.bShowCoupon;
-        //this.st.unsubscribe(this.timer0Id);
-        //this.timer0Id = undefined;
     };
     TowndetailComponent.prototype.unsubscribeTimer = function () {
         if (this.timer0Id) {
-            // Unsubscribe if timer Id is defined
             this.st.unsubscribe(this.timer0Id);
             this.timer0Id = undefined;
-            //this.timer0button = 'Subscribe';
             console.log('timer 0 Unsubscribed.');
         }
     };
     TowndetailComponent.prototype.subscribeTimer = function () {
         var _this = this;
         if (!this.timer0Id) {
-            // Subscribe if timer Id is undefined
             this.timer0Id = this.st.subscribe('1sec', function () { return _this.timer0callback(); });
-            //this.timer0button = 'Unsubscribe XXXX';
             console.log('timer 0 Subscribed.');
         }
     };
-    TowndetailComponent.prototype.REMOVEME__subscribeTimer0 = function () {
-        var _this = this;
-        if (this.timer0Id) {
-            // Unsubscribe if timer Id is defined
-            this.st.unsubscribe(this.timer0Id);
-            this.timer0Id = undefined;
-            //this.timer0button = 'Subscribe';
-            console.log('timer 0 Unsubscribed.');
-        }
-        else {
-            // Subscribe if timer Id is undefined
-            this.timer0Id = this.st.subscribe('1sec', function () { return _this.timer0callback(); });
-            //this.timer0button = 'Unsubscribe XXXX';
-            console.log('timer 0 Subscribed.');
-        }
-        console.log(this.st.getSubscription());
-    };
+    // REMOVEME__subscribeTimer0() {
+    // 	if (this.timer0Id) {
+    // 		// Unsubscribe if timer Id is defined
+    // 		this.st.unsubscribe(this.timer0Id);
+    // 		this.timer0Id = undefined;
+    // 		//this.timer0button = 'Subscribe';
+    // 		console.log('timer 0 Unsubscribed.');
+    // 	} else {
+    // 		// Subscribe if timer Id is undefined
+    // 		this.timer0Id = this.st.subscribe('1sec', () => this.timer0callback());
+    // 		//this.timer0button = 'Unsubscribe XXXX';
+    // 		console.log('timer 0 Subscribed.');
+    // 	}
+    // 	console.log(this.st.getSubscription());
+    // }
     TowndetailComponent.prototype.timer0callback = function () {
         this.timerCounter0++;
         //console.log(`counter ${this.timerCounter0}`);
@@ -1259,7 +1219,8 @@ var environment = {
     production: false,
     //apiEndpoint: 'http://192.168.1.9:3000/town'
     //apiEndpoint: 'http://localhost:3000/town'
-    apiEndpoint: 'http://johndog.herokuapp.com/town'
+    apiEndpoint: 'https://johndog.herokuapp.com/town',
+    apiEndpointCocktailRandom: 'http://www.thecocktaildb.com/api/json/v1/1/random.php'
 };
 //# sourceMappingURL=environment.js.map
 
