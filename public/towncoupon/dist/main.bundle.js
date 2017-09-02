@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .example-spacer {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }\r\n  \r\n  .example-fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }", ""]);
+exports.push([module.i, ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .example-spacer {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }\r\n  \r\n  .example-fill-remaining-space {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n  }\r\n  .md-button {\r\n    min-width: 1%;\r\n}\r\nbutton {\r\n  min-height: 23px !important;\r\n  min-width: 46px !important;\r\n  font-size: 10px !important;\r\n  line-height: 0px; \r\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"color: gray\">\r\n<app-charttwo>\r\n</app-charttwo>\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n    <span>v0.12</span>       \r\n    <md-icon class=\"example-icon\">favorite</md-icon>\r\n    <button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n    <button md-raised-button color=\"accent\">Add a Town</button>\r\n    <md-icon class=\"example-icon\">delete</md-icon>        \r\n</md-toolbar>\r\n         \r\n\r\n<span style=\"font-size: 40%\">&copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "<div style=\"color: gray\">\r\n<app-charttwo>\r\n</app-charttwo>\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n    <span>v0.12</span>       \r\n    <md-icon class=\"example-icon\">favorite</md-icon>\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n    <button md-raised-button color=\"accent\">Add a Town</button>\r\n    <md-icon class=\"example-icon\">delete</md-icon>        \r\n</md-toolbar>\r\n         \r\n\r\n<span style=\"font-size: 40%\">&copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
 
 /***/ }),
 
