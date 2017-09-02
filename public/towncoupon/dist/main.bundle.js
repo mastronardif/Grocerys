@@ -1210,17 +1210,11 @@ var ColorHelper = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: false,
-    //apiEndpoint: 'http://192.168.1.9:3000/town'
-    //apiEndpoint: 'http://localhost:3000/town'
+    production: true,
     apiEndpoint: 'https://johndog.herokuapp.com/town',
-    apiEndpointCocktailRandom: 'http://www.thecocktaildb.com/api/json/v1/1/random.php'
+    apiEndpointCocktailRandom: 'https://www.thecocktaildb.com/api/json/v1/1/random.php',
+    apiEndpointCocktailDrinks: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink'
 };
 //# sourceMappingURL=environment.js.map
 
