@@ -1,5 +1,12 @@
 webpackJsonp(["scripts"],{
 
+/***/ "../../../../raw-loader/index.js!../../../../exports-loader/index.js?module.exports.toString()!../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../@swimlane/ngx-charts/release/tree-map/tree-map.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "exports = module.exports = require(\"../../../../css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.id, \".tree-map .treemap-val {\\n  font-size: 1.3em;\\n  padding-top: 5px;\\n  display: inline-block; }\\n\\n.tree-map .label p {\\n  display: table-cell;\\n  text-align: center;\\n  line-height: 1.2em;\\n  vertical-align: middle; }\\n\", \"\"]);\n\n// exports\n\n\n/*** EXPORTS FROM exports-loader ***/\nmodule.exports = module.exports.toString();"
+
+/***/ }),
+
 /***/ "../../../../raw-loader/index.js!../../../../hammerjs/hammer.min.js":
 /***/ (function(module, exports) {
 
@@ -24,6 +31,13 @@ module.exports = function(src) {
 
 /***/ }),
 
+/***/ "../../../../script-loader/index.js!../../../../@swimlane/ngx-charts/release/tree-map/tree-map.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("../../../../script-loader/addScript.js")(__webpack_require__("../../../../raw-loader/index.js!../../../../exports-loader/index.js?module.exports.toString()!../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../@swimlane/ngx-charts/release/tree-map/tree-map.component.css"))
+
+/***/ }),
+
 /***/ "../../../../script-loader/index.js!../../../../hammerjs/hammer.min.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34,7 +48,8 @@ __webpack_require__("../../../../script-loader/addScript.js")(__webpack_require_
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("../../../../script-loader/index.js!../../../../hammerjs/hammer.min.js");
+__webpack_require__("../../../../script-loader/index.js!../../../../hammerjs/hammer.min.js");
+module.exports = __webpack_require__("../../../../script-loader/index.js!../../../../@swimlane/ngx-charts/release/tree-map/tree-map.component.css");
 
 
 /***/ })
