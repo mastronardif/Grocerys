@@ -4,7 +4,11 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
-	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
 }
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
@@ -34,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"color: gray\">\r\n<!--\r\n    <app-charttwo></app-charttwo>\r\n-->\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
 
 /***/ }),
 
@@ -46,6 +50,7 @@ module.exports = "<div style=\"color: gray\">\r\n<!--\r\n    <app-charttwo></app
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_town_service__ = __webpack_require__("../../../../../src/app/services/town.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,14 +63,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = (function () {
-    function AppComponent(router) {
+    function AppComponent(data, router) {
+        this.data = data;
         this.router = router;
+        this.town = "tbd";
         console.log("app.components.ts, constructor, " + router);
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log('app.component:ngOnInit');
         console.log('this.router[0]', this.router);
+        this.data.currentMessage.subscribe(function (message) {
+            console.log("SUB: " + message);
+            _this.town = message;
+        });
         // this.router.routeReuseStrategy.shouldReuseRoute = function() {
         //   return false;
         // };
@@ -76,6 +89,10 @@ var AppComponent = (function () {
         //   }
         // );
     };
+    // recieveMessage($event) {
+    //   console.log('recieveMessage(${event})');
+    //   this.town = $event;
+    // }
     AppComponent.prototype.adminTown = function (event) {
         var elementId = event.currentTarget.id;
         //alert(`Admin(${elementId}) Town coming to a theater near you.`);
@@ -110,10 +127,10 @@ AppComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/app.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_2__services_town_service__["a" /* TownService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], AppComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -141,12 +158,14 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__ = __webpack_require__("../../../../../src/app/townroutes/townroutes-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -192,7 +211,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__angular_material__["d" /* MdSnackBarModule */],
             __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__["a" /* TownroutesRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__["SimpleTimer"]],
+        providers: [__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__["SimpleTimer"], __WEBPACK_IMPORTED_MODULE_16__services_data_service__["a" /* DataService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -302,6 +321,7 @@ module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tre
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -322,15 +342,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CharttwoComponent = (function () {
-    function CharttwoComponent(townService, snackBar, route, 
-        //private location: Location,
-        router, el) {
+    function CharttwoComponent(data, townService, snackBar, route, router, el) {
+        this.data = data;
         this.townService = townService;
         this.snackBar = snackBar;
         this.route = route;
         this.router = router;
         this.count = 123;
+        this.town = 'bbb';
         // options
         //showXAxis = true;
         //showYAxis = true;
@@ -349,8 +370,13 @@ var CharttwoComponent = (function () {
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
     }
+    CharttwoComponent.prototype.newTown = function (town) {
+        this.data.changeMessage(town);
+    };
     CharttwoComponent.prototype.setResturaunts = function (town, dest) {
         var _this = this;
+        // set town
+        this.newTown(town);
         console.log("setResturaunts(" + town + ")");
         this.townService.searchTown(town).subscribe(function (res) {
             console.log("Resturaunts= ", res);
@@ -363,6 +389,7 @@ var CharttwoComponent = (function () {
     };
     CharttwoComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.data.currentMessage.subscribe(function (message) { return _this.town = message; });
         this.townService.searchTown('the towns').subscribe(function (res) {
             _this.single = res;
             _this.towns = res;
@@ -437,7 +464,7 @@ var CharttwoComponent = (function () {
         //CharttwoComponent,
         //StoredetailComponent,
         //TowndetailComponent,
-        __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 6500, });
+        __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 1000, });
     };
     CharttwoComponent.prototype.getCoupon = function (event) {
         var name = event.name;
@@ -475,10 +502,10 @@ CharttwoComponent = __decorate([
         providers: [__WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */], __WEBPACK_IMPORTED_MODULE_7__towndetail_towndetail_component__["a" /* TowndetailComponent */], __WEBPACK_IMPORTED_MODULE_8__storedetail_storedetail_component__["a" /* StoredetailComponent */], __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]]
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[view]' }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_10__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _f || Object])
 ], CharttwoComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=charttwo.component.js.map
 
 /***/ }),
@@ -766,6 +793,44 @@ var single = [
     }
 ];
 //# sourceMappingURL=westfieldfood1.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/data.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DataService = (function () {
+    function DataService() {
+        this.messageSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"]("-");
+        this.currentMessage = this.messageSource.asObservable();
+    }
+    DataService.prototype.changeMessage = function (message) {
+        this.messageSource.next(message);
+    };
+    return DataService;
+}());
+DataService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [])
+], DataService);
+
+//# sourceMappingURL=data.service.js.map
 
 /***/ }),
 

@@ -40,6 +40,10 @@ module.exports.townlist = function (path, req, res) {
 
   var fn = "";
   switch (id) {
+	case 'CRANFORD':
+      fn = "cranford.json";
+      break;
+	  
     case 'WESTFIELD':
       fn = "westfield.json";
       break;
