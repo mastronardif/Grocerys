@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            Admin</button>\r\n    <span class=\"example-spacer\"></span>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            T</button>\r\n    <span class=\"example-spacer\"></span>\r\n\r\n    <md-icon class=\"material-icon\" (click)=\"adminSelectTown()\">search</md-icon>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
 
 /***/ }),
 
@@ -76,27 +76,19 @@ var AppComponent = (function () {
         console.log('app.component:ngOnInit');
         console.log('this.router[0]', this.router);
         this.data.currentMessage.subscribe(function (message) {
-            console.log("SUB: " + message);
+            //console.log("SUBscribed. A new TOWN has been loaded: "+message);
             _this.town = message;
         });
-        // this.router.routeReuseStrategy.shouldReuseRoute = function() {
-        //   return false;
-        // };
-        // ( =>
-        //   {
-        //     console.log(`what the fuck is bob (${bob})`);
-        //     return false;
-        //   }
-        // );
     };
-    // recieveMessage($event) {
-    //   console.log('recieveMessage(${event})');
-    //   this.town = $event;
-    // }
     AppComponent.prototype.adminTown = function (event) {
         var elementId = event.currentTarget.id;
-        //alert(`Admin(${elementId}) Town coming to a theater near you.`);
         this.getCoupon('Add an establishment. ');
+    };
+    AppComponent.prototype.adminSelectTown = function () {
+        var id = 'b' + Date.now();
+        console.log(':adminAddSelectTown', id);
+        var link = ['/charttwo', id];
+        this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
     };
     AppComponent.prototype.adminAddStoreDetail = function () {
         console.log('adminAddStoreDetail');
@@ -316,12 +308,13 @@ module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tre
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__westfieldfood__ = __webpack_require__("../../../../../src/app/charttwo/westfieldfood.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_town_service__ = __webpack_require__("../../../../../src/app/services/town.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_color_helper__ = __webpack_require__("../../../../../src/common/color.helper.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_color_sets__ = __webpack_require__("../../../../../src/utils/color-sets.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -332,7 +325,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
- //'./data';
+
+
 
 
 
@@ -370,30 +364,41 @@ var CharttwoComponent = (function () {
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
     }
-    CharttwoComponent.prototype.newTown = function (town) {
+    CharttwoComponent.prototype.tellEveryoneAboutTown = function (town) {
+        //console.log(`tellEveryoneAboutTown(${town})`);
         this.data.changeMessage(town);
     };
     CharttwoComponent.prototype.setResturaunts = function (town, dest) {
         var _this = this;
-        // set town
-        this.newTown(town);
-        console.log("setResturaunts(" + town + ")");
+        //console.log(`setResturaunts(${town})`);
         this.townService.searchTown(town).subscribe(function (res) {
-            console.log("Resturaunts= ", res);
             //this.single = res; 
             _this.resturaunts = res;
+            _this.single2 = res;
+            _this.town = town;
+            //console.log("resturaunts = ", this.single2)
         }, function (err) {
             alert("FM err = " + err);
             console.log(err);
         });
     };
+    CharttwoComponent.prototype.ngOnDestroy = function () {
+        console.log('ngOnDestroy()');
+        clearInterval(this.timer);
+    };
     CharttwoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.currentMessage.subscribe(function (message) { return _this.town = message; });
+        //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
+        console.log('charttwo:ngOnInit()');
+        this.route.paramMap
+            .switchMap(function (params) { return _this.townService.searchTown(params.get('id')); })
+            .subscribe(function (res) { _this.single2 = res; _this.setColors('RANDOM'); });
         this.townService.searchTown('the towns').subscribe(function (res) {
             _this.single = res;
             _this.towns = res;
             _this.towns = _this.towns.map(function (item) { return item.name; });
+            _this.town = 'the towns';
+            _this.tellEveryoneAboutTown('the towns');
         }, function (err) {
             alert("FM err = " + err);
             console.log(err);
@@ -410,17 +415,14 @@ var CharttwoComponent = (function () {
         // }, 500);
         //console.log('ngOnInit() ngOnInit() ngOnInit()');
     };
-    // addToTowns(town) {
-    //   console.log(`addToTowns(${town})`);
-    // }
     CharttwoComponent.prototype.onSelect = function (event) {
+        //Object.assign(this, {single});
         var _this = this;
-        Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
-        //this.single = this.single2;
-        //Object.assign(this, {single2});
-        //console.log(event, this.count);
         if (event != null) {
+            var town = event.name;
             if (this.towns.findIndex(function (item) { return (item == event.name); }) != -1) {
+                console.log("SET single for " + town);
+                //this.town=town;
                 this.setResturaunts(event.name, this.single);
             }
             this.getCoupon(event);
@@ -428,18 +430,23 @@ var CharttwoComponent = (function () {
             //this.townService.getCoupon(event);
         }
         if (this.count % 2) {
+            Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
             this.single[0].value = this.single[0].value + 1;
             var name = this.single[1].name;
             this.setColors('fire');
+            //this.town='Westfield(default)';
+            this.tellEveryoneAboutTown('Westfield');
         }
         else {
+            //console.log("\t ***** ***** ", event, this.count);
+            this.tellEveryoneAboutTown(this.town);
             var wasCount_1 = this.count;
             this.townService.searchGit('mastronardi').subscribe(function (res) {
                 //console.log("\t", event, this.count);
                 _this.setColors('vivid');
                 _this.single = _this.single2;
                 //console.log("2 this.single= ", this.single);
-                var name = _this.single[0].name + " ZZ";
+                //let name = `${this.single[0].name} ZZ`;    
                 _this.single[0].value = _this.single[0].value + wasCount_1;
             }, function (err) {
                 alert("FM err = " + err);
@@ -456,7 +463,7 @@ var CharttwoComponent = (function () {
         //});
     };
     CharttwoComponent.prototype.openSnackBar2 = function (name) {
-        console.log('openSnackBar2');
+        //console.log('openSnackBar2');
         //this.snackBar.openFromComponent(PizzaPartyComponent, {
         //this.snackBar.open(`getting your coupon for ${name}`, 'Close', { duration: 1000 });
         //import { TowndetailComponent }  from '../towndetail/towndetail.component';
@@ -464,7 +471,7 @@ var CharttwoComponent = (function () {
         //CharttwoComponent,
         //StoredetailComponent,
         //TowndetailComponent,
-        __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 1000, });
+        __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 1000, });
     };
     CharttwoComponent.prototype.getCoupon = function (event) {
         var name = event.name;
@@ -479,8 +486,7 @@ var CharttwoComponent = (function () {
             }
             return;
         }
-        //if (event.name != 'Public House') {return};
-        console.log('getCoupon', event);
+        //console.log('getCoupon', event);
         this.setColors('night');
         var id = event.name;
         var link = ['/detail', id];
@@ -488,7 +494,17 @@ var CharttwoComponent = (function () {
         this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
         //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
     };
+    CharttwoComponent.prototype.getRandomIntInclusive = function (min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+    };
     CharttwoComponent.prototype.setColors = function (name) {
+        if (name.toUpperCase() == 'RANDOM') {
+            var iRand = this.getRandomIntInclusive(0, __WEBPACK_IMPORTED_MODULE_5__utils_color_sets__["a" /* colorSets */].length - 1);
+            //console.log(iRand, colorSets[iRand].name);
+            name = __WEBPACK_IMPORTED_MODULE_5__utils_color_sets__["a" /* colorSets */][iRand].name;
+        }
         this.colors = new __WEBPACK_IMPORTED_MODULE_4__common_color_helper__["a" /* ColorHelper */](name, null, null); // (scheme, 'ordinal', [], null);
         this.colorScheme = { domain: this.colors.colorDomain }; //scheme; //this.colors.colorDomain; // // scheme; //this.colors;
     };
@@ -499,10 +515,10 @@ CharttwoComponent = __decorate([
         selector: 'app-charttwo',
         template: __webpack_require__("../../../../../src/app/charttwo/charttwo.component.html"),
         styles: [__webpack_require__("../../../../../src/app/charttwo/charttwo.component.css")],
-        providers: [__WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */], __WEBPACK_IMPORTED_MODULE_7__towndetail_towndetail_component__["a" /* TowndetailComponent */], __WEBPACK_IMPORTED_MODULE_8__storedetail_storedetail_component__["a" /* StoredetailComponent */], __WEBPACK_IMPORTED_MODULE_9__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */], __WEBPACK_IMPORTED_MODULE_8__towndetail_towndetail_component__["a" /* TowndetailComponent */], __WEBPACK_IMPORTED_MODULE_9__storedetail_storedetail_component__["a" /* StoredetailComponent */], __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]]
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[view]' }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_10__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _f || Object])
 ], CharttwoComponent);
 
 var _a, _b, _c, _d, _e, _f;
@@ -938,7 +954,8 @@ var TownService = (function () {
             if (res) {
                 data.forEach(function (element) {
                     var val = element.value.toString().substring(0, 6);
-                    results.push({ name: element.name, value: val });
+                    //results.push({ name: element.name, value: val });
+                    results.push({ name: element.name, value: element.value });
                 });
             }
             return results.slice(0, 21);
@@ -980,7 +997,7 @@ var TownService = (function () {
     // }
     TownService.prototype.searchGit = function (searchText) {
         //const searchText = 'js';
-        console.log("searchGit: ", searchText);
+        //console.log("searchGit: ", searchText);
         var url = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].apiEndpointCocktailDrinks;
         //const url = 'http://api.github.com/search/users?q=' + searchText;    
         //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
@@ -1338,6 +1355,7 @@ var appRoutes = [
     //{ path: '', redirectTo: '/', pathMatch: 'full' },
     { path: '', redirectTo: '/charttwo', pathMatch: 'full' },
     { path: 'charttwo', component: __WEBPACK_IMPORTED_MODULE_4__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
+    { path: 'charttwo/:id', component: __WEBPACK_IMPORTED_MODULE_4__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
     { path: 'detail', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] },
     { path: 'detail/:id', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] },
     { path: 'store/:id', component: __WEBPACK_IMPORTED_MODULE_3__storedetail_storedetail_component__["a" /* StoredetailComponent */] },

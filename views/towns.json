@@ -5,36 +5,34 @@
   },
   {
     "name": "Metuchen",
-    "value": 4000010
+    "value": 400010
   },
   {
     "name": "Summit",
-    "value": 3200020
+    "value": 3208020
   },
   {
     "name": "Rutgers",
     "value": 3200020
   },
   {
-    "name": "Chattam",
-    "value": 5000013
+    "name": "Chatham",
+    "value": 500013
   },
   {
-    "name": "Madison",
-    "value": 7200000
-  }
-  ,
-  {
     "name": "Cranford",
-    "value": 5000000
+    "value": 500000
   },
   {
     "name": "Garwood",
-    "value": 7200010
-  }
-  ,
+    "value": 720010
+  },
   {
-    "name": "Milburn",
-    "value": 7200010
+    "name": "Madison",
+    "value": 720000
+  },
+  {
+    "name": "Millburn",
+    "value": 720010
   }
 ]

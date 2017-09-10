@@ -1,4 +1,5 @@
 'use strict';
+var gTowns = require('../views/towns.json');
 //var util = require('util');
 //var session = require('client-sessions');
 //var assert = require('assert');
@@ -29,7 +30,7 @@ module.exports.pingjp = function (req, res) {
 
 module.exports.townlist = function (path, req, res) {
   var id = req.params.id.toUpperCase();
-  console.log(`/town/mylist/ id(${id})`);
+  console.log(`/town/mylist/ id(${id})`);   
 
   if ('cors' == 'cors') {
         res.header("Access-Control-Allow-Origin", "*");
@@ -38,30 +39,18 @@ module.exports.townlist = function (path, req, res) {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   }
 
-  var fn = "";
-  switch (id) {
-	case 'CRANFORD':
-      fn = "cranford.json";
-      break;
-	  
-    case 'WESTFIELD':
-      fn = "westfield.json";
-      break;
-
-    case 'METUCHEN':
-      fn = "metuchen.json";
-      break;
-
-    case 'RUTGERS':
-      fn = "rutgers.json";
-      break;
-
-
-
-    default:
-      fn = "towns.json";
-      break;
+    var foundIt = gTowns.filter(value => { 
+		return value.name.toUpperCase()==id});
+		
+  // var foundIt = gTowns.filter(function(value){ 
+		// return value.name.toUpperCase()==id});
+	 
+  var fn = "towns.json";
+  if (foundIt[0]) {
+	  fn = foundIt[0].name.toLowerCase()+'.json';
   }
+  console.log(`fn = (${fn})`);
+
    
   res.sendFile(path + fn);
 
