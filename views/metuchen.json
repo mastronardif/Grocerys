@@ -1,32 +1,32 @@
 ﻿[
   {
-    "name": "Brick Oven Pizza",
+    "name": "Brewed Awakening",
     "value": 8940000
   },
   {
-    "name": "Starbucks",
+    "name": "Bagels4u",
+    "value": 5000013
+  },
+  {
+    "name": "Hailey's Harp & Pub",
     "value": 4000010
   },
   {
-    "name": "Trader Joes",
+    "name": "Friendly's",
     "value": 3200020
   }
   ,
   {
-    "name": "Ferros",
-    "value": 5000013
-  },
-  {
-    "name": "Cordoba",
+    "name": "Dnovo Restaurant",
     "value": 7200000
   }
   ,
   {
-    "name": "Taresas",
+    "name": "Fusha Asian Bistro & Sushi",
     "value": 5000000
   },
   {
-    "name": "XChocalte",
+    "name": "Civile Cucina Italiana",
     "value": 7200010
   }
 ]

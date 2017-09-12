@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            T</button>\r\n    <span class=\"example-spacer\"></span>\r\n\r\n    <md-icon class=\"material-icon\" (click)=\"adminSelectTown()\">search</md-icon>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            T</button>\r\n\r\n    <button md-button id=\"s1\" name=\"s1\" md-raised-button (click)=\"sendMsg($event)\">\r\n                S1</button>      \r\n    <button md-button id=\"s1\" name=\"s2\" md-raised-button (click)=\"sendMsg($event)\">\r\n                S2</button> \r\n                \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <span class=\"example-spacer\"></span>\r\n    <md-icon class=\"material-icon\" (click)=\"adminSelectTown()\">search</md-icon>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
 
 /***/ }),
 
@@ -79,6 +79,10 @@ var AppComponent = (function () {
             //console.log("SUBscribed. A new TOWN has been loaded: "+message);
             _this.town = message;
         });
+    };
+    AppComponent.prototype.sendMsg = function (event) {
+        // Send msg to ___.
+        this.data.changeMessage22(event.currentTarget.name);
     };
     AppComponent.prototype.adminTown = function (event) {
         var elementId = event.currentTarget.id;
@@ -243,6 +247,7 @@ module.exports = "<p>\n  bigdummy works!\n  <i class=\"material-icons\">attach_m
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BigdummyComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -253,10 +258,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var BigdummyComponent = (function () {
-    function BigdummyComponent() {
+    function BigdummyComponent(data) {
+        this.data = data;
     }
     BigdummyComponent.prototype.ngOnInit = function () {
+        console.log("bigdummy:ngOnInit() ", this.data.mySession);
+        //console.log("bigdummy:ngOnInit() ", this.data.get('single2'));
     };
     return BigdummyComponent;
 }());
@@ -266,9 +275,10 @@ BigdummyComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.html"),
         styles: [__webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === "function" && _a || Object])
 ], BigdummyComponent);
 
+var _a;
 //# sourceMappingURL=bigdummy.component.js.map
 
 /***/ }),
@@ -361,9 +371,64 @@ var CharttwoComponent = (function () {
                 '#bf9d76', '#e99450', '#d89f59', '#f2dfa7', '#a5d7c6', '#7794b1', '#afafaf', '#707160', '#ba9383', '#d9d5c3'
             ]
         };
+        console.log('charttwo:constructor');
+        console.log("\t this.resturaunts= " + this.resturaunts);
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
         Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
     }
+    CharttwoComponent.prototype.ngOnDestroy = function () {
+        console.log('ngOnDestroy()');
+        console.log("\t this.resturaunts= " + this.resturaunts);
+        clearInterval(this.timer);
+        // unsubscribe
+        this.msg22$.unsubscribe();
+        //this.data.currentMessage22.
+    };
+    CharttwoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
+        console.log('charttwo:ngOnInit()');
+        console.log("***this.data.mySession = " + JSON.stringify(this.data.mySession));
+        // FM begin
+        this.msg22$ = this.data.currentMessage22.subscribe(function (message) {
+            console.log("\* currentMessage22: " + message);
+            if (message == 's1') {
+                _this.s1();
+            }
+            if (message == 's2') {
+                _this.s2();
+            }
+            //this.onSelect(null);
+            //this.town = message
+        });
+        // FM end
+        this.route.paramMap
+            .switchMap(function (params) { return _this.townService.searchTown(params.get('id')); })
+            .subscribe(function (res) { _this.single2 = res; _this.setColors('RANDOM'); });
+        this.townService.searchTown('the towns').subscribe(function (res) {
+            _this.single = res;
+            _this.towns = res;
+            _this.towns = _this.towns.map(function (item) { return item.name; });
+            _this.town = 'the towns';
+            _this.data.mySession["single"] = _this.town;
+            _this.tellEveryoneAboutTown('the towns');
+            _this.s2();
+        }, function (err) {
+            alert("FM err = " + err);
+            console.log(err);
+        });
+        var delta = 66000;
+        this.timer = setInterval(function () {
+            _this.onSelect(null);
+            //console.log(`tick tock every ${delta}`);
+        }, delta);
+        // this.timer = setTimeout(() => 
+        // {
+        //   alert('this.onSelect(null)')
+        //   console.log('ssssssssssss');
+        // }, 500);
+        //console.log('ngOnInit() ngOnInit() ngOnInit()');
+    };
     CharttwoComponent.prototype.tellEveryoneAboutTown = function (town) {
         //console.log(`tellEveryoneAboutTown(${town})`);
         this.data.changeMessage(town);
@@ -376,61 +441,56 @@ var CharttwoComponent = (function () {
             _this.resturaunts = res;
             _this.single2 = res;
             _this.town = town;
+            _this.data.mySession["single2"] = town;
+            _this.s2();
             //console.log("resturaunts = ", this.single2)
+            // fm new 9/11
+            //this.single = this.single2;
+            //
+            //Object.assign(this, {single2}); 
         }, function (err) {
             alert("FM err = " + err);
             console.log(err);
         });
     };
-    CharttwoComponent.prototype.ngOnDestroy = function () {
-        console.log('ngOnDestroy()');
-        clearInterval(this.timer);
+    CharttwoComponent.prototype.s1 = function () {
+        console.log("s1");
+        Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
+        this.single[0].value = this.single[0].value + 1;
+        var name = this.single[1].name;
+        this.setColors('fire');
+        //this.town='Westfield(default)';
+        this.tellEveryoneAboutTown('Westfield');
+        //this.count++;
     };
-    CharttwoComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
-        console.log('charttwo:ngOnInit()');
-        this.route.paramMap
-            .switchMap(function (params) { return _this.townService.searchTown(params.get('id')); })
-            .subscribe(function (res) { _this.single2 = res; _this.setColors('RANDOM'); });
-        this.townService.searchTown('the towns').subscribe(function (res) {
-            _this.single = res;
-            _this.towns = res;
-            _this.towns = _this.towns.map(function (item) { return item.name; });
-            _this.town = 'the towns';
-            _this.tellEveryoneAboutTown('the towns');
-        }, function (err) {
-            alert("FM err = " + err);
-            console.log(err);
-        });
-        var delta = 6000;
-        this.timer = setInterval(function () {
-            _this.onSelect(null);
-            //console.log(`tick tock every ${delta}`);
-        }, delta);
-        // this.timer = setTimeout(() => 
-        // {
-        //   alert('this.onSelect(null)')
-        //   console.log('ssssssssssss');
-        // }, 500);
-        //console.log('ngOnInit() ngOnInit() ngOnInit()');
+    CharttwoComponent.prototype.s2 = function () {
+        console.log("s2");
+        this.tellEveryoneAboutTown(this.town);
+        var wasCount = this.count;
+        this.setColors('vivid');
+        this.single = this.single2;
+        this.single[0].value = this.single[0].value + wasCount;
+        //this.count++;
     };
     CharttwoComponent.prototype.onSelect = function (event) {
         //Object.assign(this, {single});
-        var _this = this;
         if (event != null) {
             var town = event.name;
-            if (this.towns.findIndex(function (item) { return (item == event.name); }) != -1) {
+            if (this.towns.findIndex(function (item) { return (item.toUpperCase() == event.name.toUpperCase()); }) != -1) {
                 console.log("SET single for " + town);
                 //this.town=town;
                 this.setResturaunts(event.name, this.single);
+                // fm new 9/11
+                this.single = this.single2;
+                Object.assign(this, { single2: __WEBPACK_IMPORTED_MODULE_2__westfieldfood__["a" /* single2 */] });
+                return;
             }
             this.getCoupon(event);
             return;
-            //this.townService.getCoupon(event);
         }
         if (this.count % 2) {
-            Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
+            console.log("onSelect count(" + this.count + ")");
+            // Object.assign(this, {single});
             this.single[0].value = this.single[0].value + 1;
             var name = this.single[1].name;
             this.setColors('fire');
@@ -439,19 +499,28 @@ var CharttwoComponent = (function () {
         }
         else {
             //console.log("\t ***** ***** ", event, this.count);
+            console.log("onSelect count(" + this.count + ")");
             this.tellEveryoneAboutTown(this.town);
-            var wasCount_1 = this.count;
-            this.townService.searchGit('mastronardi').subscribe(function (res) {
-                //console.log("\t", event, this.count);
-                _this.setColors('vivid');
-                _this.single = _this.single2;
-                //console.log("2 this.single= ", this.single);
-                //let name = `${this.single[0].name} ZZ`;    
-                _this.single[0].value = _this.single[0].value + wasCount_1;
-            }, function (err) {
-                alert("FM err = " + err);
-                console.log(err);
-            });
+            var wasCount = this.count;
+            this.setColors('vivid');
+            this.single = this.single2;
+            //console.log("2 this.single= ", this.single);
+            //let name = `${this.single[0].name} ZZ`;    
+            this.single[0].value = this.single[0].value + wasCount;
+            // this.townService.searchGit('mastronardi').subscribe(      
+            //     res => {            
+            //       //console.log("\t", event, this.count);
+            //       this.setColors('vivid');
+            //       this.single = this.single2;  
+            //       //console.log("2 this.single= ", this.single);
+            //       //let name = `${this.single[0].name} ZZ`;    
+            //       this.single[0].value =  this.single[0].value+wasCount;      
+            //     },           
+            //    err => {
+            //      alert("FM err = " + err);
+            //      console.log(err);
+            //    }
+            //   );    
         }
         this.count++;
     };
@@ -833,11 +902,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var DataService = (function () {
     function DataService() {
+        this.mySession = {}; // Contains session data.
         this.messageSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"]("-");
         this.currentMessage = this.messageSource.asObservable();
+        this.messageSource22 = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"]("-");
+        this.currentMessage22 = this.messageSource22.asObservable();
     }
     DataService.prototype.changeMessage = function (message) {
         this.messageSource.next(message);
+    };
+    DataService.prototype.changeMessage22 = function (message) {
+        this.messageSource22.next(message);
+    };
+    DataService.prototype.set = function (left, right) {
+        this.mySession[left] = right;
+    };
+    DataService.prototype.get = function (left) {
+        return this.mySession[left];
     };
     return DataService;
 }());

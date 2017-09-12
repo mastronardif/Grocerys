@@ -1,38 +1,58 @@
 ﻿[
   {
-    "name": "Westfield",
-    "value": 8940000
+    "name": "Westfield(categories)",
+    "value": 624
+  },
+  {
+    "name": "Westfield(food)",
+    "value": 524
+  },
+  {
+    "name": "Westfield(restaurants)",
+    "value": 624
+  },
+  {
+    "name": "Westfield(desert,coffee)",
+    "value": 624
+  },
+  {
+    "name": "Westfield(apparel)",
+    "value": 624
+  },
+  {
+    "name": "Westfield(liquors)",
+    "value": 624
   },
   {
     "name": "Metuchen",
-    "value": 400010
+    "value": 400
   },
   {
     "name": "Summit",
-    "value": 3208020
+    "value": 328
   },
   {
     "name": "Rutgers",
-    "value": 3200020
+    "value": 321
   },
   {
     "name": "Chatham",
-    "value": 500013
+    "value": 501
   },
   {
     "name": "Cranford",
-    "value": 500000
+    "value": 500
   },
   {
     "name": "Garwood",
-    "value": 720010
+    "value": 721
   },
   {
     "name": "Madison",
-    "value": 720000
+    "value": 720
   },
   {
     "name": "Millburn",
-    "value": 720010
+    "value": 721
   }
 ]
