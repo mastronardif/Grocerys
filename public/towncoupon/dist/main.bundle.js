@@ -402,9 +402,16 @@ var CharttwoComponent = (function () {
             //this.town = message
         });
         // FM end
+        console.log("this.route.params=" + JSON.stringify(this.route.params));
         this.route.paramMap
             .switchMap(function (params) { return _this.townService.searchTown(params.get('id')); })
-            .subscribe(function (res) { _this.single2 = res; _this.setColors('RANDOM'); });
+            .subscribe(function (res) {
+            _this.single2 = res;
+            _this.s2();
+            _this.setColors('RANDOM');
+            console.log('*\t** this.route.paramMap');
+            //this.tellEveryoneAboutTown(('wtf')); 
+        });
         this.townService.searchTown('the towns').subscribe(function (res) {
             _this.single = res;
             _this.towns = res;
