@@ -291,7 +291,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body, div {\r\n    font-family: arvo, sans-serif;\r\n    height:600px; \r\n    font-size: 50%;\r\n  }\r\n  \r\n  ", ""]);
 
 // exports
 
@@ -304,7 +304,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/charttwo/charttwo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"height:600px; font-size: 50%\"> \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n<router-outlet></router-outlet>\n-->\n\n</div>"
+module.exports = "<!--\n<div style=\"height:600px; font-size: 50%\"> \n-->\n<div > \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n<router-outlet></router-outlet>\n-->\n\n</div>"
 
 /***/ }),
 
