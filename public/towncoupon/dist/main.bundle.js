@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"color: gray\">\r\n\r\n<md-toolbar style=\"font-size: 40%\" color=\"primary\">\r\n         \r\n\r\n\r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"adminTown($event)\">\r\n            T</button>\r\n\r\n    <button md-button id=\"s1\" name=\"s1\" md-raised-button (click)=\"sendMsg($event)\">\r\n                S1</button>      \r\n    <button md-button id=\"s1\" name=\"s2\" md-raised-button (click)=\"sendMsg($event)\">\r\n                S2</button> \r\n                \r\n    <span style=\"font-size: 170%\">{{town}} </span>\r\n\r\n    <span class=\"example-spacer\"></span>\r\n    <md-icon class=\"material-icon\" (click)=\"adminSelectTown()\">search</md-icon>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail()\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n</div>\r\n"
+module.exports = "\r\n<md-toolbar style=\"height:30px;\" color=\"primary\">\r\n               \r\n    <md-icon class=\"example-icon\" (click)=\"adminAddStoreDetail()\">favorite</md-icon>\r\n    <a routerLink=\"/\">\r\n        <md-icon class=\"example-icon\">home</md-icon> \r\n    </a>\r\n\r\n    <button md-button id=\"admin\" name=\"admin\" md-raised-button color=\"accent\" (click)=\"adminTown($event)\">\r\n            T</button>\r\n\r\n    <button md-button id=\"s1\" name=\"s1\" md-primary (click)=\"sendMsg($event)\">\r\n                S1</button>      \r\n    <button md-button id=\"s1\" name=\"s2\"  (click)=\"sendMsg($event)\">\r\n                S2</button> \r\n                \r\n    <span>{{town}} </span>\r\n\r\n    <span class=\"example-spacer\"></span>\r\n    <md-icon class=\"material-icon\" (click)=\"adminAddStoreDetail('gridList')\">view_list</md-icon>\r\n    <md-icon class=\"material-icon\" (click)=\"adminAddStoreDetail('gridDashboard')\">dashboard</md-icon>\r\n    <md-icon class=\"material-icon\" (click)=\"adminSelectTown()\">search</md-icon>\r\n\r\n    <button md-raised-button color=\"accent\" (click)=\"adminAddStoreDetail('addStore')\">\r\n        <i class=\"material-icons\">add_circle_outline</i>Store</button>        \r\n        \r\n</md-toolbar>       \r\n<router-outlet></router-outlet>\r\n<span style=\"font-size: 40%\">v0.13 &copy; 2017 Gracy girl enterprises</span> \r\n\r\n"
 
 /***/ }),
 
@@ -88,16 +88,26 @@ var AppComponent = (function () {
         var elementId = event.currentTarget.id;
         this.getCoupon('Add an establishment. ');
     };
-    AppComponent.prototype.adminSelectTown = function () {
+    AppComponent.prototype.adminSelectTown = function (idType) {
+        console.log("adminSelectTown(" + idType + ")");
         var id = 'b' + Date.now();
         console.log(':adminAddSelectTown', id);
         var link = ['/charttwo', id];
         this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
     };
-    AppComponent.prototype.adminAddStoreDetail = function () {
-        console.log('adminAddStoreDetail');
-        var id = 'tbd_id';
+    AppComponent.prototype.adminAddStoreDetail = function (id) {
+        console.log("adminAddStoreDetail(" + id + ")");
         var link = ['/store', id];
+        if (id === 'gridList') {
+            id = this.town;
+            link = ['/storeAsaGrid', id];
+        }
+        if (id === 'gridDashboard') {
+            id = this.town;
+            link = ['/storeAsaDashboard', id];
+        }
+        //console.log('adminAddStoreDetail');
+        //let id = 'tbd_id';
         //this.router.navigate(link);
         this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
         //this.router.navigate(['/store', 'tbd']);
@@ -153,14 +163,20 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__ = __webpack_require__("../../../../../src/app/townroutes/townroutes-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__storegrid_storegrid_component__ = __webpack_require__("../../../../../src/app/storegrid/storegrid.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__bigdummy_bigdummy_component__ = __webpack_require__("../../../../../src/app/bigdummy/bigdummy.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__tableex_tableex_component__ = __webpack_require__("../../../../../src/app/tableex/tableex.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__storedashboard_storedashboard_component__ = __webpack_require__("../../../../../src/app/storedashboard/storedashboard.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -190,10 +206,13 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_11__charttwo_charttwo_component__["a" /* CharttwoComponent */],
             __WEBPACK_IMPORTED_MODULE_12__towndetail_towndetail_component__["a" /* TowndetailComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__bigdummy_bigdummy_component__["a" /* BigdummyComponent */],
             __WEBPACK_IMPORTED_MODULE_14__storedetail_storedetail_component__["a" /* StoredetailComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__storegrid_storegrid_component__["a" /* StoregridComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__tableex_tableex_component__["a" /* TableexComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__storedashboard_storedashboard_component__["a" /* StoredashboardComponent */],
         ],
-        entryComponents: [__WEBPACK_IMPORTED_MODULE_15__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]],
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_16__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"], __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MaterialModule */],
@@ -207,7 +226,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__angular_material__["d" /* MdSnackBarModule */],
             __WEBPACK_IMPORTED_MODULE_13__townroutes_townroutes_routing_module__["a" /* TownroutesRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__["SimpleTimer"], __WEBPACK_IMPORTED_MODULE_16__services_data_service__["a" /* DataService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_8_ng2_simple_timer__["SimpleTimer"], __WEBPACK_IMPORTED_MODULE_17__services_data_service__["a" /* DataService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -224,7 +243,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "div.bigdummy{\r\n  \r\n    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;\r\n    text-align: center;\r\n    font-style: normal;\r\n    font-weight: 300;\r\n    font-size: 1.4rem;\r\n    line-height: 2rem;\r\n    letter-spacing: 0.01rem;\r\n    color: #212121;\r\n    background-color: #f5f5f5;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n    text-rendering: optimizeLegibility;\r\n    margin:20px;\r\n  }", ""]);
 
 // exports
 
@@ -237,7 +256,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/bigdummy/bigdummy.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  bigdummy works!\n  <i class=\"material-icons\">attach_money</i>\n  <i class=\"material-icons\">store</i>\n  <i class=\"material-icons\">home</i>\n  <i class=\"material-icons\">save</i>\n  <md-icon class=\"example-icon\">delete</md-icon>\n  <img src=\"https://i.pinimg.com/736x/69/c8/9a/69c89a7e9bae6bdfa31a0e38f13cb63d--sanford-and-son-lol-funny.jpg\"\n  alt=\"Smiley face\" height=\"42\" width=\"42\">\n</p>"
+module.exports = "\n<p>\n  bigdummy works!\n  <i class=\"material-icons\">attach_money</i>\n  <i class=\"material-icons\">store</i>\n  <i class=\"material-icons\">home</i>\n  <i class=\"material-icons\">save</i>\n  <md-icon class=\"example-icon\">delete</md-icon>\n  <img src=\"https://i.pinimg.com/736x/69/c8/9a/69c89a7e9bae6bdfa31a0e38f13cb63d--sanford-and-son-lol-funny.jpg\"\n  alt=\"Smiley face\" height=\"42\" width=\"42\">\n</p>\n\n<div class=\"bigdummy\">\n<ngx-charts-advanced-pie-chart\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n[gradient]=\"gradient\"\n(select)=\"onSelect($event)\">\n</ngx-charts-advanced-pie-chart>\n\n</div>"
 
 /***/ }),
 
@@ -248,6 +267,7 @@ module.exports = "<p>\n  bigdummy works!\n  <i class=\"material-icons\">attach_m
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BigdummyComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data__ = __webpack_require__("../../../../../src/app/bigdummy/data.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -259,13 +279,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var BigdummyComponent = (function () {
     function BigdummyComponent(data) {
         this.data = data;
+        this.view = [480, 130]; //[700, 400];
+        this.colorScheme = {
+            domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+        };
+        Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_2__data__["b" /* single */], multi: __WEBPACK_IMPORTED_MODULE_2__data__["a" /* multi */] });
     }
     BigdummyComponent.prototype.ngOnInit = function () {
         console.log("bigdummy:ngOnInit() ", this.data.mySession);
         //console.log("bigdummy:ngOnInit() ", this.data.get('single2'));
+    };
+    BigdummyComponent.prototype.onSelect = function (event) {
+        console.log(event);
     };
     return BigdummyComponent;
 }());
@@ -283,6 +312,71 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/bigdummy/data.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return single; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return multi; });
+var single = [
+    {
+        "name": "iPad",
+        "value": 894
+    },
+    {
+        "name": "Laptop",
+        "value": 500
+    },
+    {
+        "name": "Phone",
+        "value": 120
+    }
+];
+var multi = [
+    {
+        "name": "Germany",
+        "series": [
+            {
+                "name": "2010",
+                "value": 73000
+            },
+            {
+                "name": "2011",
+                "value": 89000
+            }
+        ]
+    },
+    {
+        "name": "USA",
+        "series": [
+            {
+                "name": "2010",
+                "value": 78700
+            },
+            {
+                "name": "2011",
+                "value": 82700
+            }
+        ]
+    },
+    {
+        "name": "France",
+        "series": [
+            {
+                "name": "2010",
+                "value": 50002
+            },
+            {
+                "name": "2011",
+                "value": 58000
+            }
+        ]
+    }
+];
+//# sourceMappingURL=data.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/charttwo/charttwo.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -291,7 +385,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body, div {\r\n    font-family: arvo, sans-serif;\r\n    height:600px; \r\n    font-size: 50%;\r\n  }\r\n  \r\n  ", ""]);
+exports.push([module.i, "body, div {\r\n    font-family: arvo, sans-serif;\r\n     height: 500px;\r\n    font-size: 50%;\r\n  }\r\n  \r\n  ", ""]);
 
 // exports
 
@@ -304,7 +398,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/charttwo/charttwo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<div style=\"height:600px; font-size: 50%\"> \n-->\n<div > \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n<router-outlet></router-outlet>\n-->\n\n</div>"
+module.exports = "<!--\n<div style=\"height:600px; font-size: 50%\"> \n-->\n<div> \n<ngx-charts-tree-map\n[view]=\"view\"\n[scheme]=\"colorScheme\"\n[results]=\"single\"\n(select)=\"onSelect($event)\">\n</ngx-charts-tree-map>\n</div>\n<div>\n<!--\n<hr/>\n<a href=\"https://swimlane.gitbooks.io/ngx-charts/content/charts/tree-map.html\">\n  bobo\n</a>\n<a href=\"https://swimlane.github.io/ngx-charts/#/ngx-charts/tree-map\">\n  bobo\n</a>\n<br/>\n<a  [routerLink]=\"['/detail', 321]\">rlink</a>\n<nav>\n  <a routerLink=\"/detail\">detail</a>\n  <a routerLink=\"/detail/z444\">get coupon</a>    \n</nav>\n<router-outlet></router-outlet>\n-->\n\n</div>"
 
 /***/ }),
 
@@ -357,6 +451,7 @@ var CharttwoComponent = (function () {
         this.count = 123;
         this.town = 'bbb';
         // options
+        //view: any[] = [320, 568]; //[700, 1400]; // [width, height]
         //showXAxis = true;
         //showYAxis = true;
         this.gradient = false;
@@ -424,9 +519,11 @@ var CharttwoComponent = (function () {
             alert("FM err = " + err);
             console.log(err);
         });
-        var delta = 66000;
+        var delta = 12000;
         this.timer = setInterval(function () {
-            _this.onSelect(null);
+            //this.onSelect(null);        
+            (_this.count++ % 2) ? _this.s1() : _this.s2();
+            //this.single2 = this.randomizeData(this.single2);
             //console.log(`tick tock every ${delta}`);
         }, delta);
         // this.timer = setTimeout(() => 
@@ -463,8 +560,9 @@ var CharttwoComponent = (function () {
     CharttwoComponent.prototype.s1 = function () {
         console.log("s1");
         Object.assign(this, { single: __WEBPACK_IMPORTED_MODULE_1__westfieldfood1__["a" /* single */] });
-        this.single[0].value = this.single[0].value + 1;
-        var name = this.single[1].name;
+        //this.randomizeData(this.single);
+        //this.single[0].value =  this.single[0].value+1;
+        //this.single[0].name = this.single[0].name.toUpperCase();
         this.setColors('fire');
         //this.town='Westfield(default)';
         this.tellEveryoneAboutTown('Westfield');
@@ -476,7 +574,8 @@ var CharttwoComponent = (function () {
         var wasCount = this.count;
         this.setColors('vivid');
         this.single = this.single2;
-        this.single[0].value = this.single[0].value + wasCount;
+        //this.single2 = this.randomizeData(this.single2);
+        //this.single2[0].value =  this.single2[0].value+wasCount; 
         //this.count++;
     };
     CharttwoComponent.prototype.onSelect = function (event) {
@@ -495,11 +594,10 @@ var CharttwoComponent = (function () {
             this.getCoupon(event);
             return;
         }
-        if (this.count % 2) {
+        if (this.count++ % 2) {
             console.log("onSelect count(" + this.count + ")");
             // Object.assign(this, {single});
-            this.single[0].value = this.single[0].value + 1;
-            var name = this.single[1].name;
+            //this.single[0].value =  this.single[0].value+1;
             this.setColors('fire');
             //this.town='Westfield(default)';
             this.tellEveryoneAboutTown('Westfield');
@@ -512,8 +610,7 @@ var CharttwoComponent = (function () {
             this.setColors('vivid');
             this.single = this.single2;
             //console.log("2 this.single= ", this.single);
-            //let name = `${this.single[0].name} ZZ`;    
-            this.single[0].value = this.single[0].value + wasCount;
+            //this.single[0].value =  this.single[0].value+wasCount; 
             // this.townService.searchGit('mastronardi').subscribe(      
             //     res => {            
             //       //console.log("\t", event, this.count);
@@ -547,7 +644,7 @@ var CharttwoComponent = (function () {
         //CharttwoComponent,
         //StoredetailComponent,
         //TowndetailComponent,
-        __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 1000, });
+        __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__["a" /* BigdummyComponent */], { duration: 2000, });
     };
     CharttwoComponent.prototype.getCoupon = function (event) {
         var name = event.name;
@@ -569,6 +666,15 @@ var CharttwoComponent = (function () {
         //this.router.navigate(link);
         this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
         //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
+    };
+    CharttwoComponent.prototype.randomizeData = function (src) {
+        console.log('src ', src);
+        //src.forEach(item => (item.value = item.value+1000) );
+        //src = src.map((item, index) => ({name: item.name, value:  item.value+index%2}) );
+        //src[3].name = src[3].name+'o-';
+        //src = src;
+        console.log('src ', src);
+        return src;
     };
     CharttwoComponent.prototype.getRandomIntInclusive = function (min, max) {
         min = Math.ceil(min);
@@ -592,8 +698,9 @@ CharttwoComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/charttwo/charttwo.component.html"),
         styles: [__webpack_require__("../../../../../src/app/charttwo/charttwo.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */], __WEBPACK_IMPORTED_MODULE_8__towndetail_towndetail_component__["a" /* TowndetailComponent */], __WEBPACK_IMPORTED_MODULE_9__storedetail_storedetail_component__["a" /* StoredetailComponent */], __WEBPACK_IMPORTED_MODULE_10__bigdummy_bigdummy_component__["a" /* BigdummyComponent */]]
-    }),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[view]' }),
+    })
+    //@Directive({ selector: '[view]' })
+    ,
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__services_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _f || Object])
 ], CharttwoComponent);
 
@@ -1135,6 +1242,103 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/storedashboard/storedashboard.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "md-grid-tile {\r\n    background: lightblue;\r\n  }", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/storedashboard/storedashboard.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"height:600px; font-size: 50%\"> \n    \n    <md-grid-list cols=\"4\" rowHeight=\"100px\">\n      <md-grid-tile\n          *ngFor=\"let tile of tiles\"\n          [colspan]=\"tile.cols\"\n          [rowspan]=\"tile.rows\"\n          [style.background]=\"tile.color\">\n    \n          <p>\n              {{tile.stuff}}\n          <button (click)=\"wtf('sss')\">Home <i class=\"material-icons\">home</i></button>\n          \n        {{tile.text}} <button> ass </button>\n        <a routerLink=\"/\">\n          <md-icon class=\"example-icon\">Take me home.</md-icon> \n      </a>\n       </p> \n      </md-grid-tile>\n    </md-grid-list>\n    \n    <md-grid-list cols=\"2\" rowHeight=\"3:1\">\n        <md-grid-tile>\n        <button (click)=\"randomize(strNums)\">Randomize</button>        \n         <textarea mdInput placeholder=\"numbers\" [(ngModel)]=\"strNums\">{{strNums}}</textarea>\n         \n        </md-grid-tile>\n        <md-grid-tile>Randomized <br/>\n            <p>\n            {{nums}}\n            </p>\n        </md-grid-tile>\n        <md-grid-tile>\n    <div style=\"width:90%;height:500px\">\n    <app-tableex></app-tableex>\n  </div>\n        </md-grid-tile>\n    \n        <md-grid-tile>4\n                \n        </md-grid-tile>\n      </md-grid-list>\n    </div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/storedashboard/storedashboard.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StoredashboardComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var StoredashboardComponent = (function () {
+    function StoredashboardComponent() {
+        this.tiles = [
+            { text: 'One', cols: 3, rows: 1, color: 'lightblue', stuff: "XXX" },
+            { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
+            { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+            { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
+        ];
+        this.strNums = "wtf asdf ewr ";
+        this.tiles1 = this.wtf();
+        this.tilesJson = JSON.stringify(this.tiles1, null, 2);
+    }
+    StoredashboardComponent.prototype.ngOnInit = function () {
+    };
+    StoredashboardComponent.prototype.wtf = function () {
+        return [{ "icon": "avatar:svg-1", "title": "Svg-1", "background": "red", "span": { "row": 2, "col": 2 } }, { "icon": "avatar:svg-2", "title": "Svg-2", "background": "green", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-3", "title": "Svg-3", "background": "darkBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-4", "title": "Svg-4", "background": "blue", "span": { "row": 1, "col": 2 } }, { "icon": "avatar:svg-5", "title": "Svg-5", "background": "yellow", "span": { "row": 2, "col": 2 } }, { "icon": "avatar:svg-6", "title": "Svg-6", "background": "pink", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-7", "title": "Svg-7", "background": "darkBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-8", "title": "Svg-8", "background": "purple", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-9", "title": "Svg-9", "background": "deepBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-10", "title": "Svg-10", "background": "lightPurple", "span": { "row": 1, "col": 1 }
+            }, { "icon": "avatar:svg-11", "title": "Svg-11", "background": "yellow", "span": { "row": 1, "col": 1 } }];
+    };
+    return StoredashboardComponent;
+}());
+StoredashboardComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-storedashboard',
+        template: __webpack_require__("../../../../../src/app/storedashboard/storedashboard.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/storedashboard/storedashboard.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], StoredashboardComponent);
+
+//# sourceMappingURL=storedashboard.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/storedetail/data.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return single; });
+var single = [
+    {
+        "name": "Food",
+        "value": 89400
+    },
+    {
+        "name": "Clothing",
+        "value": 50000
+    },
+    {
+        "name": "Other",
+        "value": 72000
+    }
+];
+//# sourceMappingURL=data.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/storedetail/storedetail.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1156,7 +1360,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/storedetail/storedetail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n<div *ngIf=\"!name; else forminfo\">\n    <form [formGroup]=\"rForm\" (ngSubmit)=\"addPost(rForm.value)\">\n      <div class=\"form-container\">\n        <div class=\"row columns\">\n          <h1>Store Details </h1>\n          <p>\n              This is where you add a store and its \n              details and its coupons. \n              <br/>\n              <!--\n              <label>Secret\n                  <input type=\"text\" formControlName=\"secret\">\n              </label>\n            -->\n            <a routerLink=\"/\">\n              <md-icon class=\"example-icon\">home</md-icon> \n          </a>\n              <button (click)=\"goHome()\">Home <i class=\"material-icons\">home</i></button>\n              <button (click)=\"save()\">Save  <i class=\"material-icons\">save</i></button>\n            </p>\n  \n          <label>Name\n            <input type=\"text\" formControlName=\"name\">\n          </label>\n          <div class=\"alert\" *ngIf=\"!rForm.controls['name'].valid && rForm.controls['name'].touched\">{{ titleAlert }}</div>\n  \n          <label>Description\n              <textarea formControlName=\"description\"></textarea>\n          </label>\n          <div class=\"alert\" *ngIf=\"!rForm.controls['description'].valid \n            && rForm.controls['description'].touched\">\n            You must specify a description that's between 30 and 500 characters.\n          </div>\n\n          <label for=\"validate\">Minimum of 3 Characters</label>\n          <input type=\"checkbox\" name=\"validate\" formControlName=\"validate\" value=\"1\"> On\n\n          <label>Store Code\n              <input type=\"text\" formControlName=\"storecode\">\n            </label>\n            <div class=\"alert\" *ngIf=\"!rForm.controls['storecode'].valid \n               && rForm.controls['storecode'].touched\">{{ titleAlert }}\n            </div>\n  <br/>\n  <label>Coupon\n      <textarea formControlName=\"coupon\"></textarea>\n  </label>\n  <div class=\"alert\" *ngIf=\"!rForm.controls['coupon'].valid \n    && rForm.controls['coupon'].touched\">\n    You must specify a description that's between 30 and 500 characters.\n  </div>\n          <input type=\"submit\" class=\"button expanded\" value=\"Submit Form\" [disabled]=\"!rForm.valid\">\n        </div>\n      </div>\n      \n    </form>\n  </div>\n  \n  <ng-template #forminfo>\n    <div class=\"form-container\">\n      <div class=\"row columns\">\n          <h1>{{ name }}</h1>\n  \n          <p>{{ description }}</p>\n      </div>\n    </div>\n  </ng-template>\n"
+module.exports = "\n\n\n<div *ngIf=\"!name; else forminfo\">\n    <form [formGroup]=\"rForm\" (ngSubmit)=\"addPost(rForm.value)\">\n      <div class=\"form-container\">\n        <div class=\"row columns\">\n          <h1>Store Details </h1>\n          <p>\n              This is where you add a store and its \n              details and its coupons TBD. \n              <br/>\n              <!--\n              <label>Secret\n                  <input type=\"text\" formControlName=\"secret\">\n              </label>\n            -->\n            <a routerLink=\"/\">\n              <md-icon class=\"example-icon\">home</md-icon> \n          </a>\n              <button (click)=\"goHome()\">Home <i class=\"material-icons\">home</i></button>\n              <button (click)=\"save()\">Save  <i class=\"material-icons\">save</i></button>\n            </p>\n  \n          <label>Name\n            <input type=\"text\" formControlName=\"name\">\n          </label>\n          <div class=\"alert\" *ngIf=\"!rForm.controls['name'].valid && rForm.controls['name'].touched\">{{ titleAlert }}</div>\n  \n          <label>Description\n              <textarea formControlName=\"description\"></textarea>\n          </label>\n          <div class=\"alert\" *ngIf=\"!rForm.controls['description'].valid \n            && rForm.controls['description'].touched\">\n            You must specify a description that's between 30 and 500 characters.\n          </div>\n\n          <label for=\"validate\">Minimum of 3 Characters</label>\n          <input type=\"checkbox\" name=\"validate\" formControlName=\"validate\" value=\"1\"> On\n\n          <label>Store Code\n              <input type=\"text\" formControlName=\"storecode\">\n            </label>\n            <div class=\"alert\" *ngIf=\"!rForm.controls['storecode'].valid \n               && rForm.controls['storecode'].touched\">{{ titleAlert }}\n            </div>\n  <br/>\n  <label>Coupon\n      <textarea formControlName=\"coupon\"></textarea>\n  </label>\n  <div class=\"alert\" *ngIf=\"!rForm.controls['coupon'].valid \n    && rForm.controls['coupon'].touched\">\n    You must specify a description that's between 30 and 500 characters.\n  </div>\n          <input type=\"submit\" class=\"button expanded\" value=\"Submit Form\" [disabled]=\"!rForm.valid\">\n        </div>\n      </div>\n      \n    </form>\n  </div>\n  \n  <ng-template #forminfo>\n    <div class=\"form-container\">\n      <div class=\"row columns\">\n          <h1>{{ name }}</h1>\n  \n          <p>{{ description }}</p>\n      </div>\n    </div>\n\n    <ngx-charts-gauge\n    [view]=\"view\"\n    [scheme]=\"colorScheme\"\n    [results]=\"data\"\n    [min]=\"0\"\n    [max]=\"100\"\n    [angleSpan]=\"240\"\n    [startAngle]=\"-120\"\n    [units]=\"'alerts'\"\n    [bigSegments]=\"10\"\n    [smallSegments]=\"5\"\n    (select)=\"onSelect($event)\">\n  </ngx-charts-gauge>\n  \n  </ng-template>\n"
 
 /***/ }),
 
@@ -1168,6 +1372,7 @@ module.exports = "\n\n\n<div *ngIf=\"!name; else forminfo\">\n    <form [formGro
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data__ = __webpack_require__("../../../../../src/app/storedetail/data.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1181,16 +1386,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 //import { Location } from '@angular/common';
 
 
+
 var StoredetailComponent = (function () {
     function StoredetailComponent(router, fb) {
         this.router = router;
         this.fb = fb;
+        this.view = [700, 400];
         this.description = '';
         this.name = '';
         this.storecode = "";
         this.coupon = "";
         //secret:string = '';
         this.titleAlert = 'This field is required';
+        this.colorScheme = {
+            domain: ['#5AA454', '#A10A28', '#C7B42C']
+        };
+        this.data = __WEBPACK_IMPORTED_MODULE_3__data__["a" /* single */];
         this.rForm = fb.group({
             'storecode': [null, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required],
             'coupon': [null, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required],
@@ -1212,6 +1423,9 @@ var StoredetailComponent = (function () {
             }
             _this.rForm.get('name').updateValueAndValidity();
         });
+    };
+    StoredetailComponent.prototype.onSelect = function (event) {
+        console.log(event);
     };
     StoredetailComponent.prototype.addPost = function (post) {
         this.description = post.description;
@@ -1238,6 +1452,511 @@ StoredetailComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=storedetail.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/storegrid/storegrid.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "md-grid-tile {\r\n    background: lightblue;\r\n  }", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/storegrid/storegrid.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<!--\n<div style=\"height:600px; font-size: 50%\"> \n <md-grid-list cols=\"4\" rowHeight=\"100px\">\n  <md-grid-tile\n      *ngFor=\"let tile of tiles\"\n      [colspan]=\"tile.cols\"\n      [rowspan]=\"tile.rows\"\n      [style.background]=\"tile.color\">\n\n      <p>\n          {{tile.stuff}}\n      <button (click)=\"wtf('sss')\">Home <i class=\"material-icons\">home</i></button>\n      \n    {{tile.text}} <button> ass </button>\n    <a routerLink=\"/\">\n      <md-icon class=\"example-icon\">Take me home.</md-icon> \n  </a>\n   </p> \n  </md-grid-tile>\n</md-grid-list> \n\n<md-grid-list cols=\"2\" rowHeight=\"3:1\">\n    <md-grid-tile>\n    <button (click)=\"randomize(strNums)\">Randomize</button>        \n     <textarea mdInput placeholder=\"numbers\" [(ngModel)]=\"strNums\">{{strNums}}</textarea>\n     \n    </md-grid-tile>\n    <md-grid-tile>Randomized <br/>\n        <p>\n        {{nums}}\n        </p>\n    </md-grid-tile>\n    <md-grid-tile>3\n--- table ----\n    </md-grid-tile>\n\n    <md-grid-tile>4\n            \n    </md-grid-tile>\n  </md-grid-list>\n</div>\n-->\n\n<div style=\"background-color: pink\">\n        <app-tableex></app-tableex>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/storegrid/storegrid.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StoregridComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var StoregridComponent = (function () {
+    //bobo = console.log("FFFFFFFFFFFF ", this.tiles1);
+    function StoregridComponent() {
+        this.tiles = [
+            { text: 'One', cols: 3, rows: 1, color: 'lightblue', stuff: "XXX" },
+            { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
+            { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+            { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
+        ];
+        this.tiles00 = this.buildGridModel({
+            icon: "avatar:svg-",
+            title: "Svg-",
+            background: ""
+        });
+        this.strNums = "wtf asdf ewr ";
+        this.tiles1 = this.wtf();
+        this.tilesJson = JSON.stringify(this.tiles1, null, 2);
+        console.log('StoregridComponent:constructor');
+        //console.log(this.tiles);
+    }
+    StoregridComponent.prototype.ngOnInit = function () {
+    };
+    StoregridComponent.prototype.buildGridModel = function (tileTmpl) {
+        var it2, results = [];
+        //console.log(` copy = ${JSON.stringify(it)}`);
+        for (var j = 0; j < 11; j++) {
+            var it = Object.assign({}, tileTmpl);
+            //it = angular.extend({},tileTmpl);
+            it.icon = it.icon + (j + 1);
+            it.title = it.title + (j + 1);
+            it.span = { row: 1, col: 1 };
+            switch (j + 1) {
+                case 1:
+                    it.background = "red";
+                    it.span.row = it.span.col = 2;
+                    break;
+                case 2:
+                    it.background = "green";
+                    break;
+                case 3:
+                    it.background = "darkBlue";
+                    break;
+                case 4:
+                    it.background = "blue";
+                    it.span.col = 2;
+                    break;
+                case 5:
+                    it.background = "yellow";
+                    it.span.row = it.span.col = 2;
+                    break;
+                case 6:
+                    it.background = "pink";
+                    break;
+                case 7:
+                    it.background = "darkBlue";
+                    break;
+                case 8:
+                    it.background = "purple";
+                    break;
+                case 9:
+                    it.background = "deepBlue";
+                    break;
+                case 10:
+                    it.background = "lightPurple";
+                    break;
+                case 11:
+                    it.background = "yellow";
+                    break;
+            }
+            //console.log(it);
+            results.push(it);
+        }
+        //console.log('results = ', results);
+        return results;
+    };
+    StoregridComponent.prototype.shuffle = function (a) {
+        for (var i = a.length; i; i--) {
+            var j = Math.floor(Math.random() * i);
+            _a = [a[j], a[i - 1]], a[i - 1] = _a[0], a[j] = _a[1];
+        }
+        var _a;
+    };
+    StoregridComponent.prototype.randomize = function (nums) {
+        console.log("nums = " + nums);
+        //this.nums = [2,3,5, 7];
+        //this.nums = this.strNums;
+        var numbers = this.strNums.split(' ');
+        console.log("numbers = " + numbers);
+        this.shuffle(numbers);
+        console.log("shuffle numbers = " + numbers);
+        this.nums = numbers;
+    };
+    StoregridComponent.prototype.wtf = function () {
+        return [{ "icon": "avatar:svg-1", "title": "Svg-1", "background": "red", "span": { "row": 2, "col": 2 } }, { "icon": "avatar:svg-2", "title": "Svg-2", "background": "green", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-3", "title": "Svg-3", "background": "darkBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-4", "title": "Svg-4", "background": "blue", "span": { "row": 1, "col": 2 } }, { "icon": "avatar:svg-5", "title": "Svg-5", "background": "yellow", "span": { "row": 2, "col": 2 } }, { "icon": "avatar:svg-6", "title": "Svg-6", "background": "pink", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-7", "title": "Svg-7", "background": "darkBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-8", "title": "Svg-8", "background": "purple", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-9", "title": "Svg-9", "background": "deepBlue", "span": { "row": 1, "col": 1 } }, { "icon": "avatar:svg-10", "title": "Svg-10", "background": "lightPurple", "span": { "row": 1, "col": 1 }
+            }, { "icon": "avatar:svg-11", "title": "Svg-11", "background": "yellow", "span": { "row": 1, "col": 1 } }];
+    };
+    return StoregridComponent;
+}());
+StoregridComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-storegrid',
+        template: __webpack_require__("../../../../../src/app/storegrid/storegrid.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/storegrid/storegrid.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], StoregridComponent);
+
+//# sourceMappingURL=storegrid.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/tableex/tableex.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Structure */\r\n.example-container {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    min-width: 300px;\r\n  }\r\n\r\n  .example-header {\r\n    min-height: 64px;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-align: baseline;\r\n        -ms-flex-align: baseline;\r\n            align-items: baseline;\r\n    padding: 8px 24px 0;\r\n    font-size: 20px;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n  }\r\n\r\n  .example-h2 {\r\n    margin: 10px;\r\n  }\r\n  \r\n  .example-section {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -ms-flex-line-pack: center;\r\n        align-content: center;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    height: 60px;\r\n  }\r\n  \r\n  .example-margin {\r\n    margin: 10px;\r\n  }\r\n  \r\n  .mat-slider-horizontal {\r\n    width: 300px;\r\n  }\r\n  \r\n  .mat-slider-vertical {\r\n    height: 300px;\r\n  }\r\n  \r\n  \r\n  .mat-form-field {\r\n    font-size: 14px;\r\n    -webkit-box-flex: 1;\r\n        -ms-flex-positive: 1;\r\n            flex-grow: 1;\r\n    margin-left: 32px;\r\n  }\r\n  \r\n  .mat-table {\r\n    overflow: auto;\r\n    max-height: 500px;\r\n  }\r\n  \r\n  \r\nbutton {\r\n  min-height: 13px !important;\r\n  min-width: 3px !important;\r\n  font-size: 10px !important;\r\n  line-height: 0px; \r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/tableex/tableex.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"example-container\">\n    <div class=\"example-header\">\n        \n      <md-form-field floatPlaceholder=\"never\">\n        Tics:\n        <md-slider class=\"example-margin\" \n        [invert]=\"slider.invert\" [max]=\"slider.max\" [min]=\"slider.min\" \n        [step]=\"slider.step\" [value]=\"slider.value\" [vertical]=\"slider.vertical\" \n        [thumbLabel]=\"slider.thumbLabel\"        \n        tickInterval=\"1\"\n        (input)=\"updateValueImme($event)\" (change)=\"updateValue($event)\"          \n        #slider1 ng-model=\"timerTickSize\">\n        </md-slider>\n        {{timerTickSize}} Tics {{ slider1.value.toFixed(1)}}\n        \n        <input mdInput #filter placeholder=\"Filter users\">\n      </md-form-field>\n    </div>\n  \n    \n    \n    <md-table #table [dataSource]=\"dataSource\">\n  \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n  \n      <!-- ID Column -->\n      <ng-container mdColumnDef=\"userId\">\n        <md-header-cell *mdHeaderCellDef> ID </md-header-cell>\n        <md-cell *mdCellDef=\"let row\">           \n        <a style=\"cursor: pointer;\" id=\"{{row.id}}\" (click)=\"myEvent($event)\">{{row.id}}</a>\n<!--\n  {{row.id}}\n          <button md-button id=\"admin\" name=\"admin\" md-raised-button (click)=\"myEvent($event)\">\n              {{row.id}}</button>\n          -->       \n        </md-cell>\n      </ng-container>\n  \n      <!-- Progress Column -->\n      <ng-container mdColumnDef=\"progress\">\n        <md-header-cell *mdHeaderCellDef> Coupons  </md-header-cell>\n        <md-cell *mdCellDef=\"let row\"> {{row.progress}}% </md-cell>\n      </ng-container>\n  \n      <!-- Name Column -->\n      <ng-container mdColumnDef=\"userName\">\n        <md-header-cell *mdHeaderCellDef> Name </md-header-cell>\n        <md-cell *mdCellDef=\"let row\"> {{row.name}} </md-cell>\n      </ng-container>\n  \n      <!-- Color Column -->\n      <ng-container mdColumnDef=\"color\">\n        <md-header-cell *mdHeaderCellDef> Chomp Code </md-header-cell>\n        <md-cell *mdCellDef=\"let row\" [style.color]=\"row.color\"> {{row.color}} </md-cell>\n      </ng-container>\n  \n      <md-header-row *mdHeaderRowDef=\"displayedColumns\"></md-header-row>\n      <md-row *mdRowDef=\"let row; columns: displayedColumns;\"></md-row>\n    </md-table>\n  </div>\n  "
+
+/***/ }),
+
+/***/ "../../../../../src/app/tableex/tableex.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TableexComponent; });
+/* unused harmony export ExampleDatabase */
+/* unused harmony export ExampleDataSource */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__ = __webpack_require__("../../../cdk/@angular/cdk/collections.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_town_service__ = __webpack_require__("../../../../../src/app/services/town.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__ = __webpack_require__("../../../../ng2-simple-timer/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith__ = __webpack_require__("../../../../rxjs/add/operator/startWith.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_merge__ = __webpack_require__("../../../../rxjs/add/observable/merge.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_merge__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_debounceTime__ = __webpack_require__("../../../../rxjs/add/operator/debounceTime.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__("../../../../rxjs/add/operator/distinctUntilChanged.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_add_operator_distinctUntilChanged__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_observable_fromEvent__ = __webpack_require__("../../../../rxjs/add/observable/fromEvent.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_observable_fromEvent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_add_operator_switchMap__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var TableexComponent = (function () {
+    function TableexComponent(st, townService, route, router) {
+        this.st = st;
+        this.townService = townService;
+        this.route = route;
+        this.router = router;
+        this.displayedColumns = ['userId', 'userName', 'progress', 'color'];
+        this.exampleDatabase = new ExampleDatabase();
+        // timer stuff
+        this.sttv = {
+            st: null,
+            timerCounter0: 0,
+            timerStopAt: 100,
+            timerTickSize: 0.5,
+            timer0Id: null,
+            timerName: '1sec'
+        };
+        this.timerCounter0 = 0;
+        this.timerStopAt = 100;
+        this.timerName = '1sec';
+        this.slider = {
+            autoTicks: false,
+            disabled: false,
+            invert: false,
+            max: 2,
+            min: .1,
+            showTicks: true,
+            step: 0.1,
+            thumbLabel: true,
+            value: this.sttv.timerTickSize,
+            vertical: false
+        };
+        this.sttv.st = st;
+        console.log("\t ** tableex.component.ts:constructor, " + JSON.stringify(this.sttv));
+    }
+    TableexComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log("\t ** tableex.component:ngOnInit timerName= " + this.timerName + ", sttv= " + JSON.stringify(this.sttv));
+        this.dataSource = new ExampleDataSource(this.exampleDatabase);
+        __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].fromEvent(this.filter.nativeElement, 'keyup')
+            .debounceTime(150)
+            .distinctUntilChanged()
+            .subscribe(function () {
+            if (!_this.dataSource) {
+                return;
+            }
+            _this.dataSource.filter = _this.filter.nativeElement.value;
+        });
+        // Simulate real time with a dummy timmer.
+        this.st.newTimer(this.timerName, this.sttv.timerTickSize);
+        if (true) {
+            this.startTimer0();
+        }
+        this.route.paramMap
+            .switchMap(function (params) { return _this.townService.searchTown(params.get('id')); })
+            .subscribe(function (res) {
+            console.log('res =', res);
+            // update data names
+            var idx = 0;
+            res.forEach(function (element) {
+                console.log(element.name);
+                _this.exampleDatabase.data[idx++].name = element.name;
+                _this.exampleDatabase.data[idx].name = "ZZZZZ " + idx + " YYYY";
+            });
+            console.log('*\t* table ex * this.route.paramMap');
+            //this.tellEveryoneAboutTown(('wtf')); 
+        });
+    };
+    TableexComponent.prototype.ngOnDestroy = function () {
+        //console.log(`\t ** tableex.component:ngOnDestroy, this.st.delTimer(${this.timerName}), sttv= ${JSON.stringify(this.sttv)}`);
+        this.st.delTimer(this.timerName);
+    };
+    TableexComponent.prototype.resetTimer = function (ticSize) {
+        //debugger;
+        this.stopTimer0();
+        this.sttv.timerTickSize = this.slider.value;
+        this.st.delTimer(this.timerName);
+        this.st.newTimer(this.timerName, this.sttv.timerTickSize);
+        this.startTimer0();
+    };
+    TableexComponent.prototype.startTimer0 = function () {
+        this.timerCounter0 = 0;
+        this.subscribeTimer();
+        //this.subscribeTimer0();
+    };
+    TableexComponent.prototype.stopTimer0 = function () {
+        //this.param= "";
+        this.timerCounter0 = 0;
+        this.unsubscribeTimer();
+    };
+    TableexComponent.prototype.unsubscribeTimer = function () {
+        if (this.timer0Id) {
+            this.st.unsubscribe(this.timer0Id);
+            this.timer0Id = undefined;
+            console.log('timer 0 Unsubscribed.');
+        }
+    };
+    TableexComponent.prototype.subscribeTimer = function () {
+        var _this = this;
+        if (!this.timer0Id) {
+            this.timer0Id = this.st.subscribe('1sec', function () { return _this.timer0callback(); });
+            console.log('timer 0 Subscribed.');
+        }
+    };
+    TableexComponent.prototype.timer0callback = function () {
+        this.timerCounter0++;
+        console.log("counter " + this.timerCounter0);
+        console.timeEnd("answer time");
+        this.simulateDataChange();
+        // stop at __
+        if (this.timerCounter0 > this.timerStopAt) {
+            if (this.timer0Id) {
+                this.stopTimer0();
+                // Unsubscribe if timer Id is defined
+                //this.st.unsubscribe(this.timer0Id);
+            }
+        }
+        console.time("answer time");
+    };
+    //
+    TableexComponent.prototype.simulateDataChange = function () {
+        var i = 5;
+        var idx = Math.floor(Math.random() * i);
+        console.log("idx= " + idx);
+        this.exampleDatabase.data[idx].progress = this.timerCounter0.toString(); // idx.toString();
+    };
+    TableexComponent.prototype.myEvent = function (event) {
+        console.log("id= ", event.currentTarget.id);
+        var id = event.currentTarget.id;
+        //console.log("exampleDatabase.data= ", this.exampleDatabase.data);
+        if (id === '1') {
+            this.timerCounter0 = 0;
+            this.exampleDatabase.data[0].progress = '87';
+            console.log("this.slider.value= " + this.slider.value);
+            if (!this.timer0Id) {
+                //this.st.unsubscribe(this.timer0Id);
+                //this.timer0Id = undefined;
+                this.startTimer0();
+            }
+        }
+    };
+    // slider begin
+    TableexComponent.prototype.updateValueImme = function (event) {
+        console.log("This is emitted as the thumb slides", event);
+    };
+    TableexComponent.prototype.updateValue = function (event) {
+        console.log("updateValue: event= ", event);
+        this.slider.value = event.value.toFixed(1); //replace(/\.(\d\d)\d?$/, '.$1');
+        //    console.log(`* 2 * this.slider.value= ${this.slider.value}`);
+        console.log("** updateValue: " + this.sttv.timerTickSize + " , " + this.slider.value);
+        {
+            //this.st.getTimer().
+            this.resetTimer(this.slider.value);
+            this.sttv.timerTickSize = this.slider.value;
+        }
+    };
+    return TableexComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('filter'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
+], TableexComponent.prototype, "filter", void 0);
+TableexComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-tableex',
+        template: __webpack_require__("../../../../../src/app/tableex/tableex.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/tableex/tableex.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__["SimpleTimer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_simple_timer__["SimpleTimer"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_town_service__["a" /* TownService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _e || Object])
+], TableexComponent);
+
+//
+/** Constants used to fill up our data base. */
+var COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
+    'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
+var NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
+    'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
+    'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+/** An example database that the data source uses to retrieve data for the table. */
+var ExampleDatabase = (function () {
+    function ExampleDatabase() {
+        // this.listenFunc = renderer.listen(elementRef.nativeElement, 'click', (event) => {
+        //   event.preventDefault();
+        //   let target = event.target || event.srcElement || event.currentTarget;
+        //   console.log(target);
+        /** Stream that emits whenever the data has been modified. */
+        this.dataChange = new __WEBPACK_IMPORTED_MODULE_5_rxjs_BehaviorSubject__["BehaviorSubject"]([]);
+        // });
+        // Fill up the database with 100 users.
+        for (var i = 0; i < 100; i++) {
+            this.addUser();
+        }
+    }
+    Object.defineProperty(ExampleDatabase.prototype, "data", {
+        get: function () { return this.dataChange.value; },
+        enumerable: true,
+        configurable: true
+    });
+    /** Adds a new user to the database. */
+    ExampleDatabase.prototype.addUser = function () {
+        var copiedData = this.data.slice();
+        copiedData.push(this.createNewUser());
+        //console.log(copiedData);
+        this.dataChange.next(copiedData);
+    };
+    /** Builds and returns a new User. */
+    ExampleDatabase.prototype.createNewUser = function () {
+        var name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+            NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+        return {
+            id: (this.data.length + 1).toString(),
+            name: name,
+            progress: Math.round(Math.random() * 100).toString(),
+            color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+        };
+    };
+    return ExampleDatabase;
+}());
+
+/**
+* Data source to provide what data should be rendered in the table. Note that the data source
+* can retrieve its data in any way. In this case, the data source is provided a reference
+* to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
+* the underlying data. Instead, it only needs to take the data and send the table exactly what
+* should be rendered.
+*/
+var ExampleDataSource = (function (_super) {
+    __extends(ExampleDataSource, _super);
+    function ExampleDataSource(_exampleDatabase) {
+        var _this = _super.call(this) || this;
+        _this._exampleDatabase = _exampleDatabase;
+        _this._filterChange = new __WEBPACK_IMPORTED_MODULE_5_rxjs_BehaviorSubject__["BehaviorSubject"]('');
+        return _this;
+    }
+    Object.defineProperty(ExampleDataSource.prototype, "filter", {
+        get: function () { return this._filterChange.value; },
+        set: function (filter) { this._filterChange.next(filter); },
+        enumerable: true,
+        configurable: true
+    });
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    ExampleDataSource.prototype.connect = function () {
+        var _this = this;
+        var displayDataChanges = [
+            this._exampleDatabase.dataChange,
+            this._filterChange,
+        ];
+        return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].merge.apply(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"], displayDataChanges).map(function () {
+            return _this._exampleDatabase.data.slice().filter(function (item) {
+                var searchStr = (item.name + item.color).toLowerCase();
+                return searchStr.indexOf(_this.filter.toLowerCase()) != -1;
+            });
+        });
+    };
+    ExampleDataSource.prototype.disconnect = function () { };
+    return ExampleDataSource;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__["a" /* DataSource */]));
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=tableex.component.js.map
 
 /***/ }),
 
@@ -1426,7 +2145,9 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__ = __webpack_require__("../../../../../src/app/towndetail/towndetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__storedetail_storedetail_component__ = __webpack_require__("../../../../../src/app/storedetail/storedetail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charttwo_charttwo_component__ = __webpack_require__("../../../../../src/app/charttwo/charttwo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__storegrid_storegrid_component__ = __webpack_require__("../../../../../src/app/storegrid/storegrid.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__storedashboard_storedashboard_component__ = __webpack_require__("../../../../../src/app/storedashboard/storedashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__charttwo_charttwo_component__ = __webpack_require__("../../../../../src/app/charttwo/charttwo.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1438,15 +2159,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var appRoutes = [
     //{ path: '', redirectTo: '/detail', pathMatch: 'full' },
     //{ path: '', redirectTo: '/', pathMatch: 'full' },
     { path: '', redirectTo: '/charttwo', pathMatch: 'full' },
-    { path: 'charttwo', component: __WEBPACK_IMPORTED_MODULE_4__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
-    { path: 'charttwo/:id', component: __WEBPACK_IMPORTED_MODULE_4__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
+    { path: 'charttwo', component: __WEBPACK_IMPORTED_MODULE_6__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
+    { path: 'charttwo/:id', component: __WEBPACK_IMPORTED_MODULE_6__charttwo_charttwo_component__["a" /* CharttwoComponent */] },
     { path: 'detail', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] },
     { path: 'detail/:id', component: __WEBPACK_IMPORTED_MODULE_2__towndetail_towndetail_component__["a" /* TowndetailComponent */] },
     { path: 'store/:id', component: __WEBPACK_IMPORTED_MODULE_3__storedetail_storedetail_component__["a" /* StoredetailComponent */] },
+    { path: 'storeAsaGrid/:id', component: __WEBPACK_IMPORTED_MODULE_4__storegrid_storegrid_component__["a" /* StoregridComponent */] },
+    { path: 'storeAsaDashboard/:id', component: __WEBPACK_IMPORTED_MODULE_5__storedashboard_storedashboard_component__["a" /* StoredashboardComponent */] },
     //{ path: '**', component: CharttwoComponent }
     { path: '**', redirectTo: '/charttwo', pathMatch: 'full' },
 ];
