@@ -1,0 +1,34 @@
+
+<link href="/stylesheets/devices.min.css" rel="stylesheet" />
+
+<h1 id="bigOne" > ____</h1>
+
+<input type="text" id="myData"  placeholder="Where all the poor people at">
+<button class="button" onclick="setData()">Set Data</button>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAviVeDPQMqS1_sYEwNfSYERIvpgN9oJJ8",
+    authDomain: "third-index-619.firebaseapp.com",
+    databaseURL: "https://third-index-619.firebaseio.com",
+    projectId: "third-index-619",
+    storageBucket: "third-index-619.appspot.com",
+    messagingSenderId: "838458623675"
+  };
+  firebase.initializeApp(config);
+  
+  var bigOne = document.getElementById('bigOne')
+  var dbRef = firebase.database().ref().child('text');
+  dbRef.on('value', snap => bigOne.innerText = snap.val());
+
+  //dbRef.set("help me ");
+
+  function setData() {
+    var data = document.getElementById("myData").value;
+    
+    dbRef.set(data);
+  }
+  </script>
