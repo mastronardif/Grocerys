@@ -90,14 +90,15 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_services_youtube_api_service__ = __webpack_require__("../../../../../src/app/shared/services/youtube-api.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_services_youtube_player_service__ = __webpack_require__("../../../../../src/app/shared/services/youtube-player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_services_playlist_store_service__ = __webpack_require__("../../../../../src/app/shared/services/playlist-store.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_services_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/notification.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_services_browser_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/browser-notification.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_pipes_video_duration_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-duration.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_pipes_video_likes_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-likes.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_pipes_video_views_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-views.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_pipes_playlist_item_name_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/playlist-item-name.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_pipes_now_playing_name_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/now-playing-name.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_directives_lazy_scroll_lazy_scroll_directive__ = __webpack_require__("../../../../../src/app/shared/directives/lazy-scroll/lazy-scroll.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_services_playlist_sortby_service__ = __webpack_require__("../../../../../src/app/shared/services/playlist-sortby.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_services_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/notification.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_services_browser_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/browser-notification.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__shared_pipes_video_duration_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-duration.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_pipes_video_likes_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-likes.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_pipes_video_views_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/video-views.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__shared_pipes_playlist_item_name_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/playlist-item-name.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__shared_pipes_now_playing_name_pipe__ = __webpack_require__("../../../../../src/app/shared/pipes/now-playing-name.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_directives_lazy_scroll_lazy_scroll_directive__ = __webpack_require__("../../../../../src/app/shared/directives/lazy-scroll/lazy-scroll.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -116,6 +117,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // Services
+
 
 
 
@@ -145,12 +147,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_8__main_videos_search_videos_search_component__["a" /* VideosSearchComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__main_video_player_video_player_component__["a" /* VideoPlayerComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__main_videos_playlist_videos_playlist_component__["a" /* VideosPlaylistComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__shared_pipes_video_duration_pipe__["a" /* VideoDurationPipe */],
-                __WEBPACK_IMPORTED_MODULE_16__shared_pipes_video_likes_pipe__["a" /* VideoLikesPipe */],
-                __WEBPACK_IMPORTED_MODULE_17__shared_pipes_video_views_pipe__["a" /* VideoViewsPipe */],
-                __WEBPACK_IMPORTED_MODULE_18__shared_pipes_playlist_item_name_pipe__["a" /* PlaylistItemNamePipe */],
-                __WEBPACK_IMPORTED_MODULE_19__shared_pipes_now_playing_name_pipe__["a" /* NowPlayingNamePipe */],
-                __WEBPACK_IMPORTED_MODULE_20__shared_directives_lazy_scroll_lazy_scroll_directive__["a" /* LazyScrollDirective */]
+                __WEBPACK_IMPORTED_MODULE_16__shared_pipes_video_duration_pipe__["a" /* VideoDurationPipe */],
+                __WEBPACK_IMPORTED_MODULE_17__shared_pipes_video_likes_pipe__["a" /* VideoLikesPipe */],
+                __WEBPACK_IMPORTED_MODULE_18__shared_pipes_video_views_pipe__["a" /* VideoViewsPipe */],
+                __WEBPACK_IMPORTED_MODULE_19__shared_pipes_playlist_item_name_pipe__["a" /* PlaylistItemNamePipe */],
+                __WEBPACK_IMPORTED_MODULE_20__shared_pipes_now_playing_name_pipe__["a" /* NowPlayingNamePipe */],
+                __WEBPACK_IMPORTED_MODULE_21__shared_directives_lazy_scroll_lazy_scroll_directive__["a" /* LazyScrollDirective */]
             ],
             bootstrap: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]
@@ -159,8 +161,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__shared_services_youtube_api_service__["a" /* YoutubeApiService */],
                 __WEBPACK_IMPORTED_MODULE_11__shared_services_youtube_player_service__["a" /* YoutubePlayerService */],
                 __WEBPACK_IMPORTED_MODULE_12__shared_services_playlist_store_service__["a" /* PlaylistStoreService */],
-                __WEBPACK_IMPORTED_MODULE_13__shared_services_notification_service__["a" /* NotificationService */],
-                __WEBPACK_IMPORTED_MODULE_14__shared_services_browser_notification_service__["a" /* BrowserNotificationService */]
+                __WEBPACK_IMPORTED_MODULE_13__shared_services_playlist_sortby_service__["a" /* PlaylistSortbyService */],
+                __WEBPACK_IMPORTED_MODULE_14__shared_services_notification_service__["a" /* NotificationService */],
+                __WEBPACK_IMPORTED_MODULE_15__shared_services_browser_notification_service__["a" /* BrowserNotificationService */]
             ]
         })
     ], AppModule);
@@ -206,7 +209,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header\">\r\n\r\n  <header class=\"mdl-layout__header\">\r\n    <div class=\"mdl-layout__header-row\">\r\n      <div class=\"mdl-layout-title\">\r\n        <img src=\"assets/logo.png\">\r\n      </div>\r\n      <nav class=\"mdl-navigation\">\r\n        <videos-search (videosUpdated)=\"handleSearchVideo($event)\" [loadingInProgress]=\"loadingInProgress\">\r\n        </videos-search>\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b1\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b2\t\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b3\r\n\t\t<button (click)=\"wtf()\">wtf</button>\r\n      </nav>\r\n\r\n      <div aria-expanded=\"false\" role=\"button\" tabindex=\"0\" class=\"mdl-layout__drawer-button toggle-playlist-icon\" (click)=\"togglePlaylist()\">\r\n        <i class=\"material-icons\"></i>\r\n      </div>\r\n    </div>\r\n  </header>\r\n\r\n  <videos-playlist [repeat]=\"repeat\" [shuffle]=\"shuffle\" [playlistToggle]=\"playlistToggle\" [playlistNames]=\"playlistNames\" [videoPlaylist]=\"videoPlaylist\">\r\n  </videos-playlist>\r\n\r\n  <main class=\"mdl-layout__content\" LazyScroll (OnScrollMethod)=\"searchMore()\" ScrollDistance=\"3\">\r\n    <div class=\"page-content\" [ngClass]=\"{'blur-main-playlist-opened': playlistToggle}\">\r\n      <videos-list *ngIf=\"videoList.length\" class=\"mdl-grid\" (videoPlaylist)=\"checkAddToPlaylist($event)\" [videoList]=\"videoList\" [loadingInProgress]=\"loadingInProgress\">\r\n      </videos-list>\r\n      <div class=\"loader\" *ngIf=\"!videoList.length\">\r\n        <div class=\"loading\"></div>\r\n      </div>\r\n    </div>\r\n  </main>\r\n\r\n</div>\r\n\r\n<video-player (closePlaylist)=\"closePlaylist()\" (importPlaylist)=\"importPlaylist($event)\" (exportPlaylist)=\"exportPlaylist()\" (clearPlaylist)=\"clearPlaylist()\" (playFirstInPlaylist)=\"playFirstInPlaylist()\" (repeatActive)=\"repeatActive($event)\" (shuffleActive)=\"shuffleActive($event)\"\r\n  (nextVideoEvent)=\"nextVideo()\" (prevVideoEvent)=\"prevVideo()\">\r\n</video-player>\r\n\r\n<div id=\"demo-toast-example\" class=\"mdl-js-snackbar mdl-snackbar\">\r\n  <div class=\"mdl-snackbar__text\"></div>\r\n  <button class=\"mdl-snackbar__action\" type=\"button\"></button>\r\n</div>"
+module.exports = "<div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header\">\r\n\r\n  <header class=\"mdl-layout__header\">\r\n    <div class=\"mdl-layout__header-row\">\r\n      <div class=\"mdl-layout-title\">\r\n        <img src=\"assets/logo.png\">\r\n      </div>\r\n      <nav class=\"mdl-navigation\">\r\n        <videos-search (videosUpdated)=\"handleSearchVideo($event)\" [loadingInProgress]=\"loadingInProgress\">\r\n        </videos-search>\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b1\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b2\t\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b3\r\n\t\t<button (click)=\"wtf()\">sort</button>\r\n\t\t<button (click)=\"lpl()\">lpl</button>\r\n      </nav>\r\n\r\n      <div aria-expanded=\"false\" role=\"button\" tabindex=\"0\" class=\"mdl-layout__drawer-button toggle-playlist-icon\" (click)=\"togglePlaylist()\">\r\n        <i class=\"material-icons\"></i>\r\n      </div>\r\n    </div>\r\n  </header>\r\n\r\n  <videos-playlist [repeat]=\"repeat\" [shuffle]=\"shuffle\" [playlistToggle]=\"playlistToggle\" [playlistNames]=\"playlistNames\" [videoPlaylist]=\"videoPlaylist\">\r\n  </videos-playlist>\r\n\r\n  <main class=\"mdl-layout__content\" LazyScroll (OnScrollMethod)=\"searchMore()\" ScrollDistance=\"3\">\r\n    <div class=\"page-content\" [ngClass]=\"{'blur-main-playlist-opened': playlistToggle}\">\r\n      <videos-list *ngIf=\"videoList.length\" class=\"mdl-grid\" (videoPlaylist)=\"checkAddToPlaylist($event)\" [videoList]=\"videoList\" [loadingInProgress]=\"loadingInProgress\">\r\n      </videos-list>\r\n      <div class=\"loader\" *ngIf=\"!videoList.length\">\r\n        <div class=\"loading\"></div>\r\n      </div>\r\n    </div>\r\n  </main>\r\n\r\n</div>\r\n\r\n<video-player (closePlaylist)=\"closePlaylist()\" (importPlaylist)=\"importPlaylist($event)\" (exportPlaylist)=\"exportPlaylist()\" (clearPlaylist)=\"clearPlaylist()\" (playFirstInPlaylist)=\"playFirstInPlaylist()\" (repeatActive)=\"repeatActive($event)\" (shuffleActive)=\"shuffleActive($event)\"\r\n  (nextVideoEvent)=\"nextVideo()\" (prevVideoEvent)=\"prevVideo()\">\r\n</video-player>\r\n\r\n<div id=\"demo-toast-example\" class=\"mdl-js-snackbar mdl-snackbar\">\r\n  <div class=\"mdl-snackbar__text\"></div>\r\n  <button class=\"mdl-snackbar__action\" type=\"button\"></button>\r\n</div>"
 
 /***/ }),
 
@@ -220,6 +223,7 @@ module.exports = "<div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_youtube_player_service__ = __webpack_require__("../../../../../src/app/shared/services/youtube-player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_playlist_store_service__ = __webpack_require__("../../../../../src/app/shared/services/playlist-store.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/notification.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_playlist_sortby_service__ = __webpack_require__("../../../../../src/app/shared/services/playlist-sortby.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -234,11 +238,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MainComponent = /** @class */ (function () {
-    function MainComponent(youtubeService, youtubePlayer, playlistService, notificationService) {
+    function MainComponent(youtubeService, youtubePlayer, playlistService, playlistSortbyService, notificationService) {
         this.youtubeService = youtubeService;
         this.youtubePlayer = youtubePlayer;
         this.playlistService = playlistService;
+        this.playlistSortbyService = playlistSortbyService;
         this.notificationService = notificationService;
         this.videoList = [];
         this.videoPlaylist = [];
@@ -292,9 +298,12 @@ var MainComponent = /** @class */ (function () {
     };
     MainComponent.prototype.searchMore = function () {
         var _this = this;
+        //alert('searchMore loadingInProgress ');
+        console.log("this = ", this);
         if (this.loadingInProgress || this.pageLoadingFinished || this.videoList.length < 1) {
             return;
         }
+        //alert('searchMore')
         this.loadingInProgress = true;
         this.youtubeService.searchNext()
             .then(function (data) {
@@ -390,6 +399,11 @@ var MainComponent = /** @class */ (function () {
         this.videoPlaylist = playlist;
         this.playlistService.importPlaylist(this.videoPlaylist);
     };
+    MainComponent.prototype.lpl = function () {
+        if (this.videoPlaylist.length > 0) {
+            this.videoList = this.videoPlaylist;
+        }
+    };
     MainComponent.prototype.wtf = function () {
         if (this.videoList.length > 2) {
             //swap
@@ -400,6 +414,9 @@ var MainComponent = /** @class */ (function () {
             //this.videoList = this.videoPlaylist;
             //this.videoList =[];
             //this.videosUpdated.emit([]);
+            var bbb = this.playlistSortbyService.test(this.videoList);
+            //let current = this.youtubePlayer.getCurrentVideo();
+            //alert(bbb);
         }
     };
     MainComponent = __decorate([
@@ -411,6 +428,7 @@ var MainComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__shared_services_youtube_api_service__["a" /* YoutubeApiService */],
             __WEBPACK_IMPORTED_MODULE_2__shared_services_youtube_player_service__["a" /* YoutubePlayerService */],
             __WEBPACK_IMPORTED_MODULE_3__shared_services_playlist_store_service__["a" /* PlaylistStoreService */],
+            __WEBPACK_IMPORTED_MODULE_5__shared_services_playlist_sortby_service__["a" /* PlaylistSortbyService */],
             __WEBPACK_IMPORTED_MODULE_4__shared_services_notification_service__["a" /* NotificationService */]])
     ], MainComponent);
     return MainComponent;
@@ -962,7 +980,7 @@ var VideosSearchComponent = /** @class */ (function () {
         this.searchForm = this.fb.group({
             query: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required]
         });
-        this.youtubeService.searchVideos('')
+        this.youtubeService.searchVideos('autism dynamic intelligence DI')
             .then(function (data) {
             _this.videosUpdated.emit(data);
         });
@@ -1397,6 +1415,100 @@ var NotificationService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/services/playlist-sortby.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistSortbyService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_notification_service__ = __webpack_require__("../../../../../src/app/shared/services/notification.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PlaylistSortbyService = /** @class */ (function () {
+    function PlaylistSortbyService(notificationService) {
+        this.notificationService = notificationService;
+        this.ngxYTPlayer = 'ngx_yt_player';
+        this.playlists_template = {
+            'playlists': []
+        };
+    }
+    PlaylistSortbyService.prototype.init = function () {
+        localStorage.setItem(this.ngxYTPlayer, JSON.stringify(this.playlists_template));
+    };
+    PlaylistSortbyService.prototype.test = function (videoList) {
+        //alert(videoList[0]);
+        console.log(videoList[0]);
+        videoList.forEach(function (video, index) {
+            console.log(video.id, video.snippet.title);
+            // if (video.id === current) {
+            //     ;inPlaylist = index;
+            // }
+        });
+        this.exportSortlist(videoList);
+        return "this is a test from sort service";
+    };
+    PlaylistSortbyService.prototype.exportSortlist = function (videoList) {
+        if (videoList.length < 1) {
+            this.notificationService.showNotification('Nothing to export.');
+            return;
+        }
+        var data = JSON.stringify(videoList);
+        var a = document.createElement('a');
+        var file = new Blob([data], { type: 'text/json' });
+        a.href = URL.createObjectURL(file);
+        a.download = 'sortedlist.json';
+        a.click();
+        this.notificationService.showNotification('Playlist exported.');
+    };
+    PlaylistSortbyService.prototype.retrieveStorage = function () {
+        var storedPlaylist = this.parse();
+        if (!storedPlaylist) {
+            this.init();
+            storedPlaylist = this.parse();
+        }
+        return storedPlaylist;
+    };
+    PlaylistSortbyService.prototype.addToPlaylist = function (video) {
+        var store = this.parse();
+        store.playlists.push(video);
+        localStorage.setItem(this.ngxYTPlayer, JSON.stringify(store));
+    };
+    PlaylistSortbyService.prototype.removeFromPlaylist = function (video) {
+        var store = this.parse();
+        store.playlists = store.playlists.filter(function (item) { return item.id !== video.id; });
+        localStorage.setItem(this.ngxYTPlayer, JSON.stringify(store));
+    };
+    PlaylistSortbyService.prototype.parse = function () {
+        return JSON.parse(localStorage.getItem(this.ngxYTPlayer));
+    };
+    PlaylistSortbyService.prototype.clearPlaylist = function () {
+        this.init();
+    };
+    PlaylistSortbyService.prototype.importPlaylist = function (videos) {
+        var store = this.parse();
+        store.playlists = videos;
+        localStorage.setItem(this.ngxYTPlayer, JSON.stringify(store));
+    };
+    PlaylistSortbyService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_notification_service__["a" /* NotificationService */]])
+    ], PlaylistSortbyService);
+    return PlaylistSortbyService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/services/playlist-store.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1506,7 +1618,7 @@ var YoutubeApiService = /** @class */ (function () {
         return this.http.get(url)
             .map(function (response) {
             var jsonRes = response.json();
-            console.log(jsonRes);
+            //console.log(jsonRes);
             var res = jsonRes['items'];
             _this.lastQuery = query;
             _this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
