@@ -209,7 +209,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header\">\r\n\r\n  <header class=\"mdl-layout__header\">\r\n    <div class=\"mdl-layout__header-row\">\r\n      <div class=\"mdl-layout-title\">\r\n        <img src=\"assets/logo.png\">\r\n      </div>\r\n      <nav class=\"mdl-navigation\">\r\n        <videos-search (videosUpdated)=\"handleSearchVideo($event)\" [loadingInProgress]=\"loadingInProgress\">\r\n        </videos-search>\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b1\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b2\t\r\n\t\t<input id=\"checkBox\" type=\"checkbox\">b3\r\n\t\t<button (click)=\"wtf()\">sort</button>\r\n\t\t<button (click)=\"lpl()\">lpl</button>\r\n      </nav>\r\n\r\n      <div aria-expanded=\"false\" role=\"button\" tabindex=\"0\" class=\"mdl-layout__drawer-button toggle-playlist-icon\" (click)=\"togglePlaylist()\">\r\n        <i class=\"material-icons\"></i>\r\n      </div>\r\n    </div>\r\n  </header>\r\n\r\n  <videos-playlist [repeat]=\"repeat\" [shuffle]=\"shuffle\" [playlistToggle]=\"playlistToggle\" [playlistNames]=\"playlistNames\" [videoPlaylist]=\"videoPlaylist\">\r\n  </videos-playlist>\r\n\r\n  <main class=\"mdl-layout__content\" LazyScroll (OnScrollMethod)=\"searchMore()\" ScrollDistance=\"3\">\r\n    <div class=\"page-content\" [ngClass]=\"{'blur-main-playlist-opened': playlistToggle}\">\r\n      <videos-list *ngIf=\"videoList.length\" class=\"mdl-grid\" (videoPlaylist)=\"checkAddToPlaylist($event)\" [videoList]=\"videoList\" [loadingInProgress]=\"loadingInProgress\">\r\n      </videos-list>\r\n      <div class=\"loader\" *ngIf=\"!videoList.length\">\r\n        <div class=\"loading\"></div>\r\n      </div>\r\n    </div>\r\n  </main>\r\n\r\n</div>\r\n\r\n<video-player (closePlaylist)=\"closePlaylist()\" (importPlaylist)=\"importPlaylist($event)\" (exportPlaylist)=\"exportPlaylist()\" (clearPlaylist)=\"clearPlaylist()\" (playFirstInPlaylist)=\"playFirstInPlaylist()\" (repeatActive)=\"repeatActive($event)\" (shuffleActive)=\"shuffleActive($event)\"\r\n  (nextVideoEvent)=\"nextVideo()\" (prevVideoEvent)=\"prevVideo()\">\r\n</video-player>\r\n\r\n<div id=\"demo-toast-example\" class=\"mdl-js-snackbar mdl-snackbar\">\r\n  <div class=\"mdl-snackbar__text\"></div>\r\n  <button class=\"mdl-snackbar__action\" type=\"button\"></button>\r\n</div>"
+module.exports = "<div class=\"mdl-layout mdl-js-layout mdl-layout--fixed-header\">\r\n\r\n  <header class=\"mdl-layout__header\">\r\n    <div class=\"mdl-layout__header-row\">\r\n      <div class=\"mdl-layout-title\">\r\n        <img src=\"assets/logo.png\">\r\n      </div>\r\n      <nav class=\"mdl-navigation\">\r\n        <videos-search (videosUpdated)=\"handleSearchVideo($event)\" [loadingInProgress]=\"loadingInProgress\">\r\n        </videos-search>\r\n\r\n\t\t<!-- <input id=\"checkBox1\" type=\"checkbox\">b1\r\n\t\t<input id=\"checkBox2\" type=\"checkbox\">b2\t\r\n    <input id=\"checkBox3\" type=\"checkbox\">b3 \r\n\r\n    <label><input type=\"checkbox\" [checked]=\"checkbox2\" /> F2: </label>\r\n    -->\r\n    \r\n    <div class=\"form-group\">\r\n      <span *ngFor=\"let option of options; index as i\">\r\n          <div *ngIf=\"i%3 == 0\">\r\n              \r\n          </div>\r\n         <label>\r\n            <input type=\"checkbox\"\r\n                  name=\"options\"\r\n                  [checked]=\"option.checked != 0\"\r\n\r\n                  value=\"{{option.value}}\"\r\n                  (change)=\"updateCheckedOptions(option,i, $event.target.checked)\"/>\r\n            {{option.value}}\r\n        </label>\r\n      </span>  \r\n\r\n  </div>\r\n\r\n\r\n    <button (click)=\"wtf()\">sort</button>\r\n    <button (click)=\"lpl()\">lpl</button>\r\n    <button (click)=\"decorate()\">decorate</button>\r\n      </nav>\r\n\r\n      <div aria-expanded=\"false\" role=\"button\" tabindex=\"0\" class=\"mdl-layout__drawer-button toggle-playlist-icon\" (click)=\"togglePlaylist()\">\r\n        <i class=\"material-icons\"></i>\r\n      </div>\r\n    </div>\r\n  </header>\r\n\r\n  <videos-playlist [repeat]=\"repeat\" [shuffle]=\"shuffle\" [playlistToggle]=\"playlistToggle\" [playlistNames]=\"playlistNames\" [videoPlaylist]=\"videoPlaylist\">\r\n  </videos-playlist>\r\n\r\n  <main class=\"mdl-layout__content\" LazyScroll (OnScrollMethod)=\"searchMore()\" ScrollDistance=\"3\">\r\n    <div class=\"page-content\" [ngClass]=\"{'blur-main-playlist-opened': playlistToggle}\">\r\n      <videos-list *ngIf=\"videoList.length\" class=\"mdl-grid\" (videoPlaylist)=\"checkAddToPlaylist($event)\" [videoList]=\"videoList\" [loadingInProgress]=\"loadingInProgress\">\r\n      </videos-list>\r\n      \r\n      <div class=\"loader\" *ngIf=\"!videoList.length\">\r\n        <div class=\"loading\"></div>\r\n      </div>\r\n\r\n\r\n    </div>\r\n  </main>\r\n\r\n</div>\r\n\r\n<video-player (closePlaylist)=\"closePlaylist()\" (importPlaylist)=\"importPlaylist($event)\" (exportPlaylist)=\"exportPlaylist()\" (clearPlaylist)=\"clearPlaylist()\" (playFirstInPlaylist)=\"playFirstInPlaylist()\" (repeatActive)=\"repeatActive($event)\" (shuffleActive)=\"shuffleActive($event)\"\r\n  (nextVideoEvent)=\"nextVideo()\" (prevVideoEvent)=\"prevVideo()\">\r\n</video-player>\r\n\r\n<div id=\"demo-toast-example\" class=\"mdl-js-snackbar mdl-snackbar\">\r\n  <div class=\"mdl-snackbar__text\"></div>\r\n  <button class=\"mdl-snackbar__action\" type=\"button\"></button>\r\n</div>"
 
 /***/ }),
 
@@ -240,7 +240,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MainComponent = /** @class */ (function () {
-    function MainComponent(youtubeService, youtubePlayer, playlistService, playlistSortbyService, notificationService) {
+    function MainComponent(checkBox1, youtubeService, youtubePlayer, playlistService, playlistSortbyService, notificationService) {
+        this.checkBox1 = checkBox1;
         this.youtubeService = youtubeService;
         this.youtubePlayer = youtubePlayer;
         this.playlistService = playlistService;
@@ -254,10 +255,23 @@ var MainComponent = /** @class */ (function () {
         this.repeat = false;
         this.shuffle = false;
         this.pageLoadingFinished = false;
+        this.checkbox2 = false;
+        this.options = [
+            { name: 'DIAttribute', value: 'AAA', checked: true },
+            { name: 'DIAttribute', value: 'BBB', checked: false },
+            { name: 'DIAttribute', value: 'CCC', checked: true },
+            { name: 'DIAttribute', value: 'DDD', checked: true },
+            { name: 'DIAttribute', value: 'EEE', checked: false },
+            { name: 'DIAttribute', value: 'FFF', checked: true }
+        ];
         this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
     }
     MainComponent.prototype.ngAfterViewInit = function () {
         this.playlistElement = document.getElementById('playlist');
+        //console.log("playlist= ", document.getElementById('playlist') );
+        //video-info-block
+        //console.log("video-info-block= ", document.getElementsByClassName('video-info-block') );
+        console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col'));
     };
     MainComponent.prototype.playFirstInPlaylist = function () {
         if (this.videoPlaylist[0]) {
@@ -404,6 +418,34 @@ var MainComponent = /** @class */ (function () {
             this.videoList = this.videoPlaylist;
         }
     };
+    MainComponent.prototype.decorate = function () {
+        console.log('decorate() : void {');
+        var list = document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col');
+        console.log(list[0].innerHTML);
+        var decorators = '<td>' +
+            '<br/>  <label><input id="checkBox" type="checkbox">AAA </label>' +
+            '<br/> <input id="checkBox" type="checkbox">BBB' +
+            '<br/> <input id="checkBox" type="checkbox">CCC' +
+            '<br/> <input id="checkBox" type="checkbox">DDD' +
+            '<br/> <input id="checkBox" type="checkbox">EEE' +
+            '<br/> <input id="checkBox" type="checkbox">FFF' +
+            '</td>';
+        for (var idx = 0; idx < list.length; idx++) {
+            //console.log(list[i].id); //second console output
+            list[idx].innerHTML = list[idx].innerHTML.replace('</td>', decorators);
+        }
+        //list[0].innerHTML = list[0].innerHTML.replace('Fuck ','Fuck XXXXXXX');
+        //list[0].innerHTML = list[0].innerHTML.replace('</td>', decorators);
+        console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col'));
+        if (this.videoPlaylist.length > 0) {
+            //this.videoList = this.videoPlaylist;
+            //this. .document.body.classList.add('test');
+        }
+    };
+    MainComponent.prototype.updateCheckedOptions = function (option, idx, ischecked) {
+        console.log(option, idx, ischecked);
+        this.options[idx].checked = ischecked;
+    };
     MainComponent.prototype.wtf = function () {
         if (this.videoList.length > 2) {
             //swap
@@ -414,7 +456,13 @@ var MainComponent = /** @class */ (function () {
             //this.videoList = this.videoPlaylist;
             //this.videoList =[];
             //this.videosUpdated.emit([]);
-            var bbb = this.playlistSortbyService.test(this.videoList);
+            //console.log(this. input.nativeElement.value);
+            var val = this.options[0].value;
+            var check = this.options[1].checked;
+            this.options.forEach(function (element) {
+                console.log('di  option val = ', element); //, val, check );  
+            });
+            //let bbb = this.playlistSortbyService.test(this.videoList);
             //let current = this.youtubePlayer.getCurrentVideo();
             //alert(bbb);
         }
@@ -425,7 +473,8 @@ var MainComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/main/main.component.html"),
             styles: [__webpack_require__("../../../../../src/app/main/main.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__shared_services_youtube_api_service__["a" /* YoutubeApiService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["r" /* ElementRef */],
+            __WEBPACK_IMPORTED_MODULE_1__shared_services_youtube_api_service__["a" /* YoutubeApiService */],
             __WEBPACK_IMPORTED_MODULE_2__shared_services_youtube_player_service__["a" /* YoutubePlayerService */],
             __WEBPACK_IMPORTED_MODULE_3__shared_services_playlist_store_service__["a" /* PlaylistStoreService */],
             __WEBPACK_IMPORTED_MODULE_5__shared_services_playlist_sortby_service__["a" /* PlaylistSortbyService */],
@@ -719,7 +768,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main/videos-list/videos-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"mdl-cell custom-cell mdl-cell--2-col\" id=\"{{i + video.id}}\" *ngFor=\"let video of videoList; let i = index;\" [ngClass]=\"{'last-item': i === videoList.length-1}\">\r\n<table>\r\n<td>\r\n  <div class=\"demo-card-square mdl-card mdl-shadow--2dp\">\r\n  \r\n    <div class=\"mdl-card__title mdl-card--expand\" (click)=\"play(video)\" [ngStyle]=\"{'background': '#000 url(' + video.snippet?.thumbnails.high.url + ') center center no-repeat', 'background-size': '125%'}\">\r\n      <div class=\"video-info-block\">\r\n        <div class=\"video-informations\">\r\n          <span style=\"float: left;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">thumb_up</i>\r\n\t\t\t\t\t\t{{ video.statistics?.likeCount | videoLikes }}\r\n\t\t\t\t\t</span>\r\n          <span style=\"margin-left: 10px;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">remove_red_eye</i>\r\n\t\t\t\t\t\t{{ video.statistics?.viewCount | videoViews}}\r\n\t\t\t\t\t</span>\r\n          <span style=\"margin-left: 10px; float: right;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">access_time</i>\r\n\t\t\t\t\t\t{{ video.contentDetails?.duration | videoDuration }}\r\n\t\t\t\t\t</span>\r\n        </div>\r\n      </div>\r\n      <div class=\"video-name-block\">\r\n        <div class=\"video-informations\">\r\n          {{ video.snippet?.title | playlistItemName }}\r\n        </div>\r\n      </div>\r\n      <div class=\"video-play-button\">\r\n        <i class=\"material-icons\">play_circle_filled</i>\r\n      </div>\r\n    </div>\r\n    <div class=\"mdl-card__supporting-text\">\r\n      <i (click)=\"addToPlaylist(video)\" class=\"material-icons\">playlist_add</i>\r\n\t  <i> (*d1)</i>\r\n    </div>\r\n\t<div>\r\n  </div>\r\n  \r\n</div>\r\n</td>\r\n<td>222\r\n<br/> <input id=\"checkBox\" type=\"checkbox\">b1\r\n<br/> ...\r\n<br/> <input id=\"checkBox\" type=\"checkbox\">b2\r\n</td>\r\n</table>\r\n<div class=\"loader loader-progress\" *ngIf=\"loadingInProgress\">\r\n  <div class=\"loading\"></div>\r\n"
+module.exports = "<div class=\"mdl-cell custom-cell mdl-cell--2-col\" id=\"{{i + video.id}}\" *ngFor=\"let video of videoList; let i = index;\" [ngClass]=\"{'last-item': i === videoList.length-1}\">\r\n<table border=\"1\">\r\n<td>\r\n  <div class=\"demo-card-square mdl-card mdl-shadow--2dp\">\r\n  \r\n    <div class=\"mdl-card__title mdl-card--expand\" (click)=\"play(video)\" [ngStyle]=\"{'background': '#000 url(' + video.snippet?.thumbnails.high.url + ') center center no-repeat', 'background-size': '125%'}\">\r\n      <div class=\"video-info-block\">\r\n        <div class=\"video-informations\">\r\n          <span style=\"float: left;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">thumb_up</i>\r\n\t\t\t\t\t\t{{ video.statistics?.likeCount | videoLikes }}\r\n\t\t\t\t\t</span>\r\n          <span style=\"margin-left: 10px;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">remove_red_eye</i>\r\n\t\t\t\t\t\t{{ video.statistics?.viewCount | videoViews}}\r\n\t\t\t\t\t</span>\r\n          <span style=\"margin-left: 10px; float: right;\">\r\n\t\t\t\t\t\t<i class=\"material-icons\">access_time</i>\r\n\t\t\t\t\t\t{{ video.contentDetails?.duration | videoDuration }}\r\n\t\t\t\t\t</span>\r\n        </div>\r\n      </div>\r\n      <div class=\"video-name-block\">\r\n        <div class=\"video-informations\">\r\n          {{ video.snippet?.title | playlistItemName }}\r\n        </div>\r\n      </div>\r\n      <div class=\"video-play-button\">\r\n        <i class=\"material-icons\">play_circle_filled</i>\r\n      </div>\r\n    </div>\r\n    <div class=\"mdl-card__supporting-text\">\r\n      <i (click)=\"addToPlaylist(video)\" class=\"material-icons\">playlist_add</i>\r\n\t  <i> (*d1)</i>\r\n    </div>\r\n\t<div>\r\n  </div>\r\n  \r\n</div>\r\n</td>\r\n<!--\r\n<td>222\r\n    <span #tref>I am span</span>\r\n<br/> <input id=\"checkBox\" type=\"checkbox\">b1\r\n<br/> ...\r\n<br/> <input id=\"checkBox\" type=\"checkbox\">b2\r\n</td>\r\n-->\r\n</table>\r\n<div class=\"loader loader-progress\" *ngIf=\"loadingInProgress\">\r\n  <div class=\"loading\"></div>\r\n"
 
 /***/ }),
 
