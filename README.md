@@ -1,2 +1,10 @@
 # Grocerys
-this is a test.(2)
+Mostly NodeJS and Angular(2456...)
+This is my root object.
+Contains:
+ Grocerys
+ Homeless Ads
+ Town Coupons
+ Doggy
+ DI videos
+

@@ -12,9 +12,14 @@ var gpath = require('path');
 var path = __dirname + '/views/';
 var pathUploads = __dirname + '/uploads/';
 global.config = require('config');
+
 var replyController = require('./controllers/reply-controller');
 var pingController = require('./controllers/ping-controller');
 var townController = require('./controllers/town-controller');
+
+//angular-material-course
+var lessonController = require('./controllers/angular-material-course/search-lessons.route');
+var courseController = require('./controllers/angular-material-course/get-courses.route');
 
 console.log(__dirname);
 
@@ -33,7 +38,7 @@ var allowCrossDomain = function(req, res, next) {
   next();
 }
 
-//app.use(allowCrossDomain); 
+app.use(allowCrossDomain); 
 
 // app.all('*', function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "*");
@@ -192,11 +197,23 @@ router.get ('/town/mylist/:id', function(req,res){
   townController.townlist(path, req, res);
 });
 
+// from angular coruse begin
+router.get('/town/api/courses',     courseController.getAllCourses);
+router.get('/town/api/courses/:id', courseController.getCourseById);
+router.get('/town/api/lessons',     lessonController.searchLessons);
+
 router.all ('/pingcors', pingController.pingcors);
 router.all ('/ping', pingController.ping);
 router.all ('/mysubmit', replyController.reply);
 router.all ('/mailstore/mysubmit', replyController.mailStore);
 router.all ('/tellafriend/mysubmit', replyController.replyTellAFriend);
+
+
+//app.route('/api/courses').get(getAllCourses);
+//app.route('/api/courses/:id').get(getCourseById);
+//app.route('/api/lessons').get(searchLessons);
+// from angular coruse end
+
 router.get("/tellafriend",function(req,res){
   res.sendFile(path + "tellafriend.html");
 });
