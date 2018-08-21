@@ -296,8 +296,12 @@ var MainComponent = /** @class */ (function () {
         this.videos22$ = this.youtubeService.searchVideos22('The Who');
         this.youtubeService.searchVideos22('The Who')
             .subscribe(function (response) {
-            _this.videoList = response.items;
-            console.log(response);
+            response.subscribe(function (res) {
+                _this.videos = res;
+                console.log('res.items=', res.items);
+                _this.videoList = res.items;
+                console.log(response);
+            });
         });
         //return;
         // this.videos$.subscribe(val => {
@@ -1929,32 +1933,26 @@ var YoutubeApiService = /** @class */ (function () {
     };
     // search22
     YoutubeApiService.prototype.searchVideos22 = function (query) {
+        var _this = this;
         var url = this.base_url + 'search?q=' + query + '&maxResults=' + this.max_results +
             '&type=video&part=snippet,id&key=' + _constants__WEBPACK_IMPORTED_MODULE_3__["YOUTUBE_API_KEY"] + '&videoEmbeddable=true';
         console.log("searchVideos: url=" + url);
-        return this
-            .http
-            .get(url);
-        /*
-        .pipe(
-          map(response => {
-            let jsonRes = response;
-            //console.log(jsonRes);
-            let res = jsonRes['items'];
-            this.lastQuery = query;
-            this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
-            
-            let ids = [];
-            res.forEach((item) => {
-              ids.push(item.id.videoId);
-              });
-
-              console.log(ids);
-              console.log(`ids= ${ids}`);
-              return this.getVideos(ids);
-          })
-      );
-      */
+        return this.http
+            .get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (response) {
+            var jsonRes = response;
+            //console.log(jsonRes);  
+            var res = jsonRes['items'];
+            _this.lastQuery = query;
+            _this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
+            var ids = [];
+            res.forEach(function (item) {
+                ids.push(item.id.videoId);
+            });
+            console.log(ids);
+            console.log("ids= " + ids);
+            return _this.getVideos(ids);
+        }));
     };
     YoutubeApiService.prototype.searchVideos = function (query) {
         var _this = this;
@@ -1976,7 +1974,7 @@ var YoutubeApiService = /** @class */ (function () {
             });
             console.log(ids);
             console.log("ids= " + ids);
-            return _this.getVideos(ids);
+            _this.getVideos(ids);
         }));
     };
     //   searchVideos(query: string): Promise<any> {
@@ -2026,15 +2024,7 @@ var YoutubeApiService = /** @class */ (function () {
         console.log("url= " + url);
         return this
             .http
-            .get(url)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (results) { return results; })
-        //   {
-        //   let jsonRes = results;
-        //   let res = jsonRes['items'];
-        //   console.log(`jsonRes['items']= ${jsonRes['items']}`);
-        //   //return res;
-        // }
-        );
+            .get(url);
         //)
     };
     YoutubeApiService = __decorate([
