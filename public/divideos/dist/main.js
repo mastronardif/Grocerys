@@ -287,8 +287,8 @@ var MainComponent = /** @class */ (function () {
     MainComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.playlistElement = document.getElementById('playlist');
-        this.videos$ = this.youtubeService.searchVideos('The Doors');
-        console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col'));
+        //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
+        //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
         // wtf 8/4/18
         // this.youtubeService.getVideos('ass')
         //   .subscribe(response => this.videos = response);
@@ -364,22 +364,26 @@ var MainComponent = /** @class */ (function () {
         //alert('searchMore')
         this.loadingInProgress = true;
         this.youtubeService.searchNext()
-            .then(function (data) {
-            _this.loadingInProgress = false;
-            if (data.length < 1 || data.status === 400) {
-                setTimeout(function () {
-                    _this.pageLoadingFinished = true;
+            .subscribe(function (response) {
+            response.subscribe(function (data) {
+                _this.loadingInProgress = false;
+                if (data.items.length < 1 || data.status === 400) {
                     setTimeout(function () {
-                        _this.pageLoadingFinished = false;
-                    }, 10000);
+                        _this.pageLoadingFinished = true;
+                        setTimeout(function () {
+                            _this.pageLoadingFinished = false;
+                        }, 10000);
+                    });
+                    return;
+                }
+                data.items.forEach(function (val) {
+                    _this.videoList.push(val);
                 });
-                return;
-            }
-            data.forEach(function (val) {
-                _this.videoList.push(val);
+                // this.videos=res;
+                // console.log('res.items=', res.items);
+                // this.videoList= res.items;
+                // console.log(response)
             });
-        }).catch(function (error) {
-            _this.loadingInProgress = false;
         });
     };
     MainComponent.prototype.nextVideo = function () {
@@ -1154,6 +1158,7 @@ var VideosSearchComponent = /** @class */ (function () {
         //   })
     }
     VideosSearchComponent.prototype.doSearch = function (event) {
+        var _this = this;
         if (this.loadingInProgress || (this.searchForm.value.query.trim().length === 0) ||
             (this.last_search && this.last_search === this.searchForm.value.query)) {
             return;
@@ -1161,13 +1166,23 @@ var VideosSearchComponent = /** @class */ (function () {
         this.videosUpdated.emit([]);
         this.last_search = this.searchForm.value.query;
         //alert('this.last_search= ' +  this.last_search);
-        // this.youtubeService.searchVideos(this.last_search)
-        //   .then(data => {
-        //     if (data.length < 1) {
-        //       this.notificationService.showNotification('No matches found.');
-        //     }
-        //     this.videosUpdated.emit(data);
-        //   })
+        this.youtubeService.searchVideos22(this.last_search)
+            .subscribe(function (response) {
+            response.subscribe(function (res) {
+                //this.videos=res;
+                console.log('res.items=', res.items);
+                //this.videoList= res.items;
+                console.log(response);
+                _this.videosUpdated.emit(res.items);
+            });
+        });
+        /*   this.youtubeService.searchVideos(this.last_search)
+              .then(data => {
+                if (data.length < 1) {
+                  this.notificationService.showNotification('No matches found.');
+                }
+                this.videosUpdated.emit(data);
+              }) */
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -1213,7 +1228,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  main-list works!\n</p>\n\n<div *ngIf=\"show\"> \n    Hello {{users}}!\n  </div>\n\n<table *ngIf=\"show\">\n  <thead>\n    <tr>\n      <th>ID</th>\n      <th>Description</th>\n      <th>Category</th>\n    </tr>\n  </thead>\n  <tbody>\n     <tr *ngFor=\"let user of users.results\">\n      <td>{{ user.id }}\n      </td>\n      <td>{{ user.description }}</td>\n      <td>{{ user.category }}</td>\n    </tr> \n  </tbody>\n</table>\n<div>users= {{users}}</div> \n\n<div *ngIf=\"showVideos\"> \n    <!--videos = <span>{{videos.items | json : 12}}</span>-->\n\n    <table *ngIf=\"showVideos\">\n        <thead>\n          <tr>\n            <th>ID</th>\n            <th>Description</th>\n            <th>Category</th>\n          </tr>\n        </thead>\n        <tbody>\n           <tr *ngFor=\"let video of videos.items\">\n            <td>{{ video.snippet.channelId }}\n                <div class=\"mat-card__title mat-card--expand\" (click)=\"alert('play(video)')\" \n                [ngStyle]=\"{'background': '#000 url(' + video.snippet?.thumbnails.high.url + ') center center no-repeat', 'background-size': '125%'}\">\n                </div>\n\n\n\n\n            </td>\n            <td>\n              \n                <div>\n                    \n\n                    <span style=\"float: left;\">\n                      <i>thumb_up</i>\n                      {{ video.statistics?.likeCount  }}\n                    </span>\n                    <span style=\"margin-left: 10px;\">\n                      <i >remove_red_eye</i>\n                      {{ video.statistics?.viewCount }}\n                    </span>\n                    <span style=\"margin-left: 10px; float: right;\">\n                      <i >access_time</i>\n                      {{ video.contentDetails?.duration  }}\n                    </span>\n                  </div>\n\n            </td>\n            <td>\n\n              {{ video.snippet.thumbnails.high.url }}<br/>\n              <div>\n                  <img [attr.src]=\"video.snippet.thumbnails.high.url\" width=\"80\" height=\"70\"  />\n              </div>\n              \n            \n            </td>\n          </tr> \n        </tbody>\n      </table>\n  </div>"
+module.exports = "<p>\n  main-list works!\n</p>\n\n<div *ngIf=\"show\"> \n    Hello {{users}}!\n  </div>\n\n<table *ngIf=\"show\">\n  <thead>\n    <tr>\n      <th>ID</th>\n      <th>Description</th>\n      <th>Category</th>\n    </tr>\n  </thead>\n  <tbody>\n     <tr *ngFor=\"let user of users.results\">\n      <td>{{ user.id }}\n      </td>\n      <td>{{ user.description }}</td>\n      <td>{{ user.category }}</td>\n    </tr> \n  </tbody>\n</table>\n<!-- <div>users= {{users}}</div>  -->\n\n<div *ngIf=\"showVideos\"> \n    <!--videos = <span>{{videos.items | json : 12}}</span>-->\n\n    <table *ngIf=\"showVideos\">\n        <thead>\n          <tr>\n            <th>ID</th>\n            <th>Description</th>\n            <th>Category</th>\n          </tr>\n        </thead>\n        <tbody>\n           <tr *ngFor=\"let video of videos.items\">\n            <td>{{ video.snippet.channelId }}\n                <div class=\"mat-card__title mat-card--expand\" (click)=\"alert('play(video)')\" \n                [ngStyle]=\"{'background': '#000 url(' + video.snippet?.thumbnails.high.url + ') center center no-repeat', 'background-size': '125%'}\">\n                </div>\n\n\n\n\n            </td>\n            <td>\n              \n                <div>\n                    \n\n                    <span style=\"float: left;\">\n                      <i>thumb_up</i>\n                      {{ video.statistics?.likeCount  }}\n                    </span>\n                    <span style=\"margin-left: 10px;\">\n                      <i >remove_red_eye</i>\n                      {{ video.statistics?.viewCount }}\n                    </span>\n                    <span style=\"margin-left: 10px; float: right;\">\n                      <i >access_time</i>\n                      {{ video.contentDetails?.duration  }}\n                    </span>\n                  </div>\n\n            </td>\n            <td>\n\n              {{ video.snippet.thumbnails.high.url }}<br/>\n              <div>\n                  <img [attr.src]=\"video.snippet.thumbnails.high.url\" width=\"80\" height=\"70\"  />\n              </div>\n              \n            \n            </td>\n          </tr> \n        </tbody>\n      </table>\n  </div>"
 
 /***/ }),
 
@@ -1323,7 +1338,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var LazyScrollDirective = /** @class */ (function () {
     function LazyScrollDirective(element) {
         this.element = element;
+        this._count = 0;
         this.OnScrollMethod = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        //wtf this._count=0;
         this._element = this.element.nativeElement;
         if (!this.scrollTrigger) {
             this.scrollTrigger = 1;
@@ -2016,7 +2033,26 @@ var YoutubeApiService = /** @class */ (function () {
     //       .catch(this.handleError)
     //   }
     YoutubeApiService.prototype.searchNext = function () {
-        return null;
+        var _this = this;
+        var url = this.base_url + 'search?q=' + this.lastQuery + '&pageToken=' + this.nextToken +
+            '&maxResults=' + this.max_results + '&type=video&part=snippet,id&key=' + _constants__WEBPACK_IMPORTED_MODULE_3__["YOUTUBE_API_KEY"] + '&videoEmbeddable=true';
+        console.log("searchVideos: url=" + url);
+        return this.http
+            .get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (response) {
+            var jsonRes = response;
+            //console.log(jsonRes);  
+            var res = jsonRes['items'];
+            //this.lastQuery = query;
+            _this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
+            var ids = [];
+            res.forEach(function (item) {
+                ids.push(item.id.videoId);
+            });
+            console.log(ids);
+            console.log("ids= " + ids);
+            return _this.getVideos(ids);
+        }));
     };
     YoutubeApiService.prototype.getVideos = function (ids) {
         var url = this.base_url + 'videos?id=' + ids.join(',') + '&maxResults=' + this.max_results +
