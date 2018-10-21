@@ -1,5 +1,8 @@
+"use strict";
+
 // Define some variables used to remember state.
 var playlistId, channelId;
+var gg = {last: {response: {} }};
 
 // After the API loads, call a function to enable the playlist creation form.
 function handleAPILoaded() {
@@ -140,6 +143,140 @@ buildApiRequest('PUT',
 
 }
 
+/////////////////////////////
+/////////////////////////////
+
+function getPlaylists() {
+  var id = $('#playlist-id').val();
+  let videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
+  var params = {
+    mine: true, // current user.
+    maxResults: 10,
+    part: 'snippet,contentDetails'
+    //id: videoIds.join(',')
+    //maxResults?: number; 
+    //pageToken?:  string; 
+    //playlistId: id
+    //videoId?: string; 
+  };
+
+  var request = gapi.client.youtube.playlists.list(params);
+  request.execute(function(response) {
+    $('#playlist-title').html(videoIds.join(','));
+
+    $('#pageTokens').html(JSON.stringify({nextPageToken: response.result.nextPageToken, 
+                                          prevPageToken: response.result.prevPageToken}, undefined, 4));
+    $('#playlist-description').html(JSON.stringify(response.result, undefined, 4));    
+    gg.last.response = response;
+
+    var pls = response.result.items.map(obj => ({
+      kind: obj.kind,
+      id: obj.id,
+      //snippet: obj.snippet,
+      snippet: {
+        publishedAt: obj.snippet.publishedAt,
+        channelId: obj.snippet.channelId,
+        title: obj.snippet.title
+      },      
+      contentDetails: obj.contentDetails,
+    }))
+
+    output('getPlaylists');
+    output(JSON.stringify(response.result.pageInfo,  undefined, 4));
+    //var str = JSON.stringify(response.result.items, undefined, 4);
+    var str = JSON.stringify(pls,  undefined, 4);
+    output(str);    
+  });
+}
+
+
+function getVideosTags() {
+  var id = $('#playlist-id').val();
+  var videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
+  console.log('playlist-description= '+ JSON.parse($('#playlist-description').html()));
+  console.log(gg.last.response.result.items);
+  videoIds = gg.last.response.result.items.map(obj => obj.snippet.resourceId.videoId);
+  console.log(videoIds);
+
+  var params = {
+    part: 'snippet,contentDetails', //snippet,contentDetails', 
+    id: videoIds.join(',')
+    //maxResults?: number; 
+    //pageToken?:  string; 
+    //playlistId: id
+    //videoId?: string; 
+  };
+
+  var request = gapi.client.youtube.videos.list(params);
+  request.execute(function(response) {
+    $('#playlist-title').html(videoIds.join(','));
+    //$('#playlist-description').html(JSON.stringify(response.result));
+
+    $('#playlist-description').html(JSON.stringify(response.result.items, undefined, 4));
+
+    var videotags = response.result.items.map(obj => ({
+      kind: obj.kind,
+      id: obj.id,
+      //snippet: obj.snippet,
+      //channelTitle: obj.channelTitle,
+      tags: obj.tags,
+      snippet: {
+        publishedAt: obj.snippet.publishedAt,
+        channelId: obj.snippet.channelId,
+        title: obj.snippet.title,        
+        channelTitle: obj.snippet.channelTitle,
+        tags: obj.snippet.tags,
+      },      
+      contentDetails: obj.contentDetails,
+    }))
+
+    output('getVideosTags');
+    output(JSON.stringify(response.result.pageInfo,  undefined, 4));
+    //var str = JSON.stringify(response.result.items, undefined, 4);    
+    var str = JSON.stringify(videotags, undefined, 4);    
+    output(str);    
+  });
+}
+ 
+function listVideos() {
+  var id = $('#playlist-id').val();
+  
+  var params = {
+     part: 'snippet,contentDetails', //snippet,contentDetails', 
+     //id?: string; 
+     //maxResults?: number; 
+     //pageToken?:  string; 
+     playlistId: id
+     //videoId?: string; 
+  };
+  var request = gapi.client.youtube.playlistItems.list(params);
+  request.execute(function(response) {
+    $('#playlist-title').html(id);
+    //$('#playlist-description').html(JSON.stringify(response.result));
+    $('#playlist-description').html(JSON.stringify(response.result, undefined, 4));
+    gg.last.response = response;
+
+    output('listVideos');
+    output(JSON.stringify(response.result.pageInfo,  undefined, 4));
+    //$('#playlist-description').html(JSON.stringify(response.result.items, undefined, 4));
+    var videos = response.result.items.map(obj => ({
+      kind: obj.kind,
+      id: obj.id,
+      //snippet: obj.snippet,
+      snippet: {
+        publishedAt: obj.snippet.publishedAt,
+        channelId: obj.snippet.channelId,
+        title: obj.snippet.title
+      },      
+      resourceId: obj.resourceId,
+      contentDetails: obj.contentDetails,
+    }))
+    var str = JSON.stringify(videos, undefined, 4);  
+    //var str = JSON.stringify(response.result.items, undefined, 4);  
+    output(str);    
+  });
+
+}
 
 //////////////////////////////////////////////
 // Add a video ID specified in the form to the playlist.
@@ -190,3 +327,26 @@ function addToPlaylist(playlistId, id) {
 //     console.log('User signed out.');
 //   });
 // }
+// other
+function output(inp) {
+  document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+}
+
+function syntaxHighlight(json) {
+  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+      var cls = 'number';
+      if (/^"/.test(match)) {
+          if (/:$/.test(match)) {
+              cls = 'key';
+          } else {
+              cls = 'string';
+          }
+      } else if (/true|false/.test(match)) {
+          cls = 'boolean';
+      } else if (/null/.test(match)) {
+          cls = 'null';
+      }
+      return '<span class="' + cls + '">' + match + '</span>';
+  });
+}

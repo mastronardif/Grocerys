@@ -29,6 +29,18 @@
       <span id="status">No Videos</span>
     </div>
 
+    <div style="border-style: groove">
+        <button onclick="listVideos()">list videos </button>      
+        <button onclick="getVideosTags()">getVideosTags</button>    
+        <button onclick="getPlaylists()">getPlaylists</button>  
+
+        <button onclick="test()">test(1) </button>    
+      </div>
+      <div style="border-style: groove">
+      <span id="pageTokens"></span>  
+      <button onclick="next_getPlaylists()">nextPL</button>  
+      <button onclick="prev_getPlaylists()">prevPL</button>  
+      </div>
   
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="auth.js"></script>
