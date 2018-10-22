@@ -2,7 +2,8 @@
 
 // Define some variables used to remember state.
 var playlistId, channelId;
-var gg = {last: {response: {} }};
+var gg = {videos: [],
+  last: {response: {} }};
 
 // After the API loads, call a function to enable the playlist creation form.
 function handleAPILoaded() {
@@ -147,7 +148,7 @@ buildApiRequest('PUT',
 /////////////////////////////
 
 function getPlaylists() {
-  var id = $('#playlist-id').val();
+  //var id = $('#playlist-id').val();
   let videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
   var params = {
     mine: true, // current user.
@@ -237,16 +238,46 @@ function getVideosTags() {
     output(str);    
   });
 }
- 
-function listVideos() {
-  var id = $('#playlist-id').val();
+
+///
+async function logFetch(id) {
+  try {
+    //const response = await fetch(url);
+    //const text = await response.text();
+    //console.log(text);
+    listVideos(id);
+    console.log(`item= ${id}`);
+  }
+  catch (err) {
+    console.error('fetch failed', err);
+  }
+}
+
+function done() {
+  console.log('Holly fuck im done.');
+};
+///
+function listVideosForEach(ids) { 
+  ids = ids.split(',');
+  //var ids = $('#playlist-id').val().split(',');
+  gg.videos=[];
+  async.eachSeries(ids,  logFetch, done);
+  console.log("gg.videos= ");
+  console.log(gg.videos);
+
+}
+
+function listVideos(id) {
+  //var id = $('#playlist-id').val();
+  //alert(id);
   
   var params = {
      part: 'snippet,contentDetails', //snippet,contentDetails', 
      //id?: string; 
-     //maxResults?: number; 
+     maxResults: 25, 
      //pageToken?:  string; 
      playlistId: id
+     //id: id,
      //videoId?: string; 
   };
   var request = gapi.client.youtube.playlistItems.list(params);
@@ -255,6 +286,7 @@ function listVideos() {
     //$('#playlist-description').html(JSON.stringify(response.result));
     $('#playlist-description').html(JSON.stringify(response.result, undefined, 4));
     gg.last.response = response;
+    
 
     output('listVideos');
     output(JSON.stringify(response.result.pageInfo,  undefined, 4));
@@ -271,9 +303,14 @@ function listVideos() {
       resourceId: obj.resourceId,
       contentDetails: obj.contentDetails,
     }))
-    var str = JSON.stringify(videos, undefined, 4);  
+
+    gg.videos.push(videos);
+    //gg.videos = [gg.videos, videos];
+
+    //var afuck = gg.videos.concat(videos);
+    //var str = JSON.stringify(videos, undefined, 4);  
     //var str = JSON.stringify(response.result.items, undefined, 4);  
-    output(str);    
+    //output(str);    
   });
 
 }
