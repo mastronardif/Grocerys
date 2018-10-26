@@ -191,12 +191,13 @@ function getPlaylists() {
 }
 
 
-function getVideosTags() {
+function getVideosTags(videoIds) {
   var id = $('#playlist-id').val();
-  var videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
-  console.log('playlist-description= '+ JSON.parse($('#playlist-description').html()));
-  console.log(gg.last.response.result.items);
-  videoIds = gg.last.response.result.items.map(obj => obj.snippet.resourceId.videoId);
+  //var videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
+  //console.log('playlist-description= '+ JSON.parse($('#playlist-description').html()));
+  //console.log(gg.last.response.result.items);
+  //videoIds = gg.last.response.result.items.map(obj => obj.snippet.resourceId.videoId);
+
   console.log(videoIds);
 
   var params = {
@@ -253,9 +254,93 @@ async function logFetch(id) {
   }
 }
 
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+
+  let result = await promise; // wait till the promise resolves (*)
+
+  console.log(result); // "done!"
+}
+
+function testPrintVideos(vids) {
+  var bobo = [];
+  for (var i = 0; i < vids.length; i++) {
+    bobo.push(vids[i].map(obj => (
+      obj.resourceId.videoId
+      )) );
+  }
+  return bobo;
+  //return bobo.join(",");
+}
+var gTest = [];
+function testDone() {
+  //alert('testDone. '+ gTest.join(', '));
+  //alert('testDone. '+gg.videos.join(', '));
+  var videoIds = testPrintVideos(gg.videos);
+  //console.log(videoIds);
+  getVideosTags(videoIds);
+}
+function test(src) {
+  //f();
+  gTest = [];
+  gg.videos=[];
+  //var ids= ["ONE", "TWO"]
+  var ids = $('#playlist-id').val().split(',');
+  async.eachSeries(ids,  f, testDone);
+}
+async function f(id) {
+  gTest.push(id);
+  listVideos(id);
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done! "+id), 1000)
+  });
+
+  let result = await promise; // wait till the promise resolves (*)
+
+ /// alert(result); // "done!"
+}
+
 function done() {
   console.log('Holly fuck im done.');
+  console.log(`gg.videos= ${gg.videos}`);
+
+  var vids = gg.videos.map(nested => nested.map(element => element));
+ console.log('vids= ');
+ console.log(vids);
+
+ async.concat(['dir1','dir2','dir3'], getProcessedData, 
+ function(err, files) {
+   console.log(`files= ${files}`);
+  // files is now a list of filenames that exist in the 3 directories
+  });
 };
+function wtf(aaa){console.log('= ', aaa); return 'bbb';}
+
+function downloadData(url) {
+
+  fetch(`http://localhost:3000/ping?LEFT=${url}`)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+  //let reponse = await fetch(url);
+  //let data = await reponse;
+  //return data;
+}
+async function getProcessedData(url) {
+  let v;
+  try {
+    v = await downloadData(url); 
+  } catch(e) {
+    v = await wtf(url);
+  }
+  return processDataInWorker(v);
+}
 ///
 function listVideosForEach(ids) { 
   ids = ids.split(',');
@@ -264,7 +349,6 @@ function listVideosForEach(ids) {
   async.eachSeries(ids,  logFetch, done);
   console.log("gg.videos= ");
   console.log(gg.videos);
-
 }
 
 function listVideos(id) {
@@ -289,7 +373,7 @@ function listVideos(id) {
     
 
     output('listVideos');
-    output(JSON.stringify(response.result.pageInfo,  undefined, 4));
+    //output(JSON.stringify(response.result.pageInfo,  undefined, 4));
     //$('#playlist-description').html(JSON.stringify(response.result.items, undefined, 4));
     var videos = response.result.items.map(obj => ({
       kind: obj.kind,
@@ -300,7 +384,7 @@ function listVideos(id) {
         channelId: obj.snippet.channelId,
         title: obj.snippet.title
       },      
-      resourceId: obj.resourceId,
+      resourceId: obj.snippet.resourceId,
       contentDetails: obj.contentDetails,
     }))
 
