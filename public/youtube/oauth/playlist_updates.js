@@ -168,7 +168,7 @@ function getPlaylists() {
     $('#pageTokens').html(JSON.stringify({nextPageToken: response.result.nextPageToken, 
                                           prevPageToken: response.result.prevPageToken}, undefined, 4));
     $('#playlist-description').html(JSON.stringify(response.result, undefined, 4));    
-    gg.last.response = response;
+    // gg.last.response = response;
 
     var pls = response.result.items.map(obj => ({
       kind: obj.kind,
