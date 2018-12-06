@@ -192,13 +192,15 @@ function getPlaylists() {
 
 
 function getVideosTags(videoIds) {
-  var id = $('#playlist-id').val();
+  //var id = $('#playlist-id').val();
+  videoIds = testPrintVideos(gg.videos);
+  console.log(`gg.videos= ${gg.videos}`);
   //var videoIds = ['CNQVwBktvzQ','dXcdqmLkGBA'];
   //console.log('playlist-description= '+ JSON.parse($('#playlist-description').html()));
   //console.log(gg.last.response.result.items);
   //videoIds = gg.last.response.result.items.map(obj => obj.snippet.resourceId.videoId);
 
-  console.log(videoIds);
+ // console.log(videoIds);
 
   var params = {
     part: 'snippet,contentDetails', //snippet,contentDetails', 
@@ -267,10 +269,19 @@ async function f() {
 
 function testPrintVideos(vids) {
   var bobo = [];
+  var wtf = [];
   for (var i = 0; i < vids.length; i++) {
-    bobo.push(vids[i].map(obj => (
+
+    //bobo.push(vids[i].map(obj => (
+      wtf.push(vids[i].map(obj => (      
       obj.resourceId.videoId
       )) );
+
+      //
+      for (let i = 0; i < wtf[0].length; i++) {
+        bobo.push(wtf[0][i]);
+      }
+      //
   }
   return bobo;
   //return bobo.join(",");
