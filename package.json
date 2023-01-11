@@ -5,12 +5,12 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.16.0",
+    "body-parser": "^1.20.1",
     "config": "^1.24.0",
     "express": "latest",
     "formidable": "^1.1.1",
     "frameguard": "^3.0.0",
-    "mailgun-js": "^0.8.0",
+    "mailgun-js": "^0.22.0",
     "mongodb": "^2.2.28",
     "node-json2html": "^1.1.1",
     "request": "^2.81.0",
